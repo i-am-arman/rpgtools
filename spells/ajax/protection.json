@@ -91,7 +91,7 @@
 {"name":"Saving throw avoids spell effect","value":0.5}
 ]},{"id":"savemods","title":"Saving Throw Modifiers","type":"checkbox","add":0,"values":[
 {"name":"Saving throw is at -2 if only 1 creature targeted*","value":1.1}
-]},{"id":"multiplier","title":"Multiplier","type":"dropdown","add":0,"values":[
-{"name":"Arcane/Divine","value":1},
+]},{"id":"multiplier","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane or Divine","value":1},
 {"name":"Custom","value":-1}
 ]}]}

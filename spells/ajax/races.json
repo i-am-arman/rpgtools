@@ -1,0 +1,160 @@
+{"races":{
+	"Dwarf":[
+		{"powers":[
+			{"level":1,"name":"Sensitivity to Rock and Stone","cost":0.5},
+			{"level":1,"name":"Bonus Languages","cost":1},
+			{"level":1,"name":"Detect Traps","cost":1},
+			{"level":1,"name":"Hardy People","cost":2.5}
+		],"xp":200},{
+		"powers":[
+			{"level":1,"name":"Bonus Proficiency","cost":1,"extend":true},
+			{"level":1,"name":"Thief/Prof Roll Bonus","cost":1,"extend":true}
+		],"xp":400},{
+		"powers":[
+			{"level":1,"name":"Bonus Proficiency","cost":2,"extend":true},
+			{"level":1,"name":"Thief/Prof Roll Bonus","cost":2,"extend":true}
+		],"xp":600},{
+		"powers":[
+			{"level":1,"name":"Bonus Proficiency","cost":3,"extend":true},
+			{"level":1,"name":"Thief/Prof Roll Bonus","cost":3,"extend":true}
+		],"xp":900},{
+		"powers":[
+			{"level":1,"name":"Bonus Proficiency","cost":4,"extend":true},
+			{"level":1,"name":"Thief/Prof Roll Bonus","cost":4,"extend":true}
+		],"xp":1400}
+	],
+	"Elf":[
+		{"powers":[
+			{"level":1,"name":"Attunement to Nature","cost":0.5},
+			{"level":1,"name":"Bonus Languages","cost":1},
+			{"level":1,"name":"Keen Eyes","cost":1},
+			{"level":1,"name":"Connection to Nature","cost":1},
+			{"level":1,"name":"Animal Friendship","cost":0.5}
+		],"xp":125},
+		{"arcane":true,"xp":750},
+		{"arcane":true,"xp":1375},
+		{"arcane":true,"xp":2000},
+		{"arcane":true,"xp":2500}
+	],
+	"Gnome":[
+		{
+			"powers":[
+				{"level":1,"name":"Nose for Potions","cost":2.5},
+				{"level":1,"name":"Bonus Languages","cost":1},
+				{"level":1,"name":"Infravision","cost":2.5,"extend":true},
+				{"level":1,"name":"Resistant to Illusion","cost":1}
+			],
+			"xp":250
+		},
+		{
+			"powers":[
+				{"level":1,"name":"Faerie Fire (1 round, 1/hr)","cost":1},
+				{"level":1,"name":"Ventriloquism (1 round, 1/hr)","cost":1},
+				{"level":1,"name":"Speak with Animals","cost":1}
+			],
+			"xp":450
+		},
+		{
+			"arcane":true,
+			"xp":1075
+		},
+		{
+			"powers":[
+				{"level":1,"name":"Mirror image (1 round, 1/8hr)","cost":1},
+				{"level":1,"name":"Phantasmal force (1 round, 1/8hr)","cost":1},
+				{"level":1,"name":"Arcane Dabbling","cost":1}
+			],
+			"xp":1275
+		},
+		{
+			"powers":[
+				{"level":1,"name":"Innate Illusion Mastery","cost":1}
+			],
+			"arcane":true,
+			"xp":1975
+		}
+	],
+	"Nobirus":[
+		{
+			"powers":[
+				{"level":1,"name":"Divine Blessing","cost":1},
+				{"level":1,"name":"Blood of Kings","cost":1},
+				{"level":1,"name":"Heroic Spirit","cost":1},
+				{"level":1,"name":"Longevity","cost":1}
+			],
+			"xp":125
+		},
+		{"divine":true,"xp":375},
+		{"divine":true,"xp":625},
+		{"divine":true,"xp":1125},
+		{"divine":true,"xp":2125}
+	],
+	"Thrassian":[
+		{"powers":[
+			{"level":1,"name":"Fangs and Claws","cost":2,"extend":true},
+			{"level":1,"name":"Infravision","cost":1,"extend":true},
+			{"level":1,"name":"Scaly Hide","cost":1,"extend":true},
+			{"level":1,"name":"Swimming","cost":2,"extend":true}
+		],
+		"xp":200
+		},
+		{"powers":[
+			{"level":1,"name":"Fangs and Claws","cost":3,"extend":true},
+			{"level":1,"name":"Infravision","cost":1.5,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":1,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":-1,"extend":true},
+			{"level":1,"name":"Scaly Hide","cost":2,"extend":true},
+			{"level":1,"name":"Swimming","cost":2.5,"extend":true}
+		],
+		"xp":400
+		},
+		{"powers":[
+			{"level":1,"name":"Fangs and Claws","cost":4,"extend":true},
+			{"level":1,"name":"Infravision","cost":2,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":2,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":-2,"extend":true},
+			{"level":1,"name":"Scaly Hide","cost":3,"extend":true},
+			{"level":1,"name":"Swimming","cost":3,"extend":true}
+		],
+		"fighting":true,
+		"xp":1000
+		},
+		{"powers":[
+			{"level":1,"name":"Fangs and Claws","cost":5,"extend":true},
+			{"level":1,"name":"Infravision","cost":2.5,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":3,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":-3,"extend":true},
+			{"level":1,"name":"Scaly Hide","cost":4,"extend":true}
+		],
+		"xp":1250
+		},
+		{"powers":[
+			{"level":1,"name":"After the Flesh","cost":3},
+			{"level":1,"name":"Fangs and Claws","cost":6,"extend":true},
+			{"level":1,"name":"Flying","cost":5},
+			{"level":1,"name":"Infravision","cost":3,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":4,"extend":true},
+			{"level":1,"name":"Inhumanity","cost":-4,"extend":true},
+			{"level":1,"name":"Scaly Hide","cost":5,"extend":true}
+		],
+		"fighting":true,
+		"xp":2300
+		}
+	],
+	"Zaharan":[
+		{
+			"powers":[
+				{"level":1,"name":"Ancient Pacts","cost":1},
+				{"level":1,"name":"Bonus Languages","cost":1},
+				{"level":1,"name":"Strength of Spirit","cost":1},
+				{"level":1,"name":"Dark Soul","cost":-1},
+				{"level":1,"name":"After the Flesh","cost":1}
+			],
+			"xp":200
+		},
+		{"arcane":true,"xp":825},
+		{"arcane":true,"xp":1450},
+		{"arcane":true,"xp":2075},
+		{"arcane":true,"xp":2700}
+	]
+}}

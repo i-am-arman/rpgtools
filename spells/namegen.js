@@ -1,5 +1,5 @@
-(function (arman, $) {
- arman.NameGen = function () {
+(function (acks, $) {
+ acks.NameGen = function () {
 
   var dwarfMale=["Agaro","Arnan","Auxlan","Avamir","Azaghâl","Baelnar","Balfam","Balin","Bariken","Bifur","Bofur","Bombur","Borin","Borkûl","Dáin","Darkûl","Dís","Dolmen","Dori","Durin","Dwalin","Dyrnar","Erag","Ezegan","Farin","Ferrek","Fíli","Flói","Frár","Frerin","Frór","Fundin","Gamil","Garmûl","Ghorvas","Gimli","Glint","Glóin","Grimmalk","Gróin","Gróin","Grór","Haeltar","Halagmar","Halzar","Håvard","Hlant","Ibûn","Kåre","Khîm","Kíli","Korlag","Krag","Krim","Kurman","Lóni","Lurtrum","Malagar","Mardam","Maulnar","Melgar","Mîm","Morak","Náin","Náli","Nár","Narvi","Nori","Óin","Ori","Orobok","Rogath","Roken","Rozag","Sabakzar","Sharak","Smethykk","Swargar","Telchar","Thorbalt","Thorbjørn","Thorin","Thráin","Thrór","Tredigar","Vabûl","Vistrum","Wolvar","Zirak"];
   var dwarfFemale=["Adela","Agata","Agda","Agnetta","Alva","Anika","Annalisa","Annborg","Anneka","Annika","Arnborg","Arnborgh","Aslög","Asrid","Astrid","Auda","Batilda","Bengta","Beyla","Bothild","Brynhild","Charlotta","Emelie","Fenryl","Fredrika","Freja","Freydis","Fröja","Gärd","Gerdi","Gittan","Grenenzel","Greta","Gudrun","Gulla","Gullan","Gunilla","Gunnhild","Gunnvor","Helgi","Hilde","Hillevi","Ide","Ingegard","Inger","Inghild","Ingrid","Ingvild","Jannike","Kai","Kaia","Kaj","Kaja","Kajsa","Karin","Katarina","Katerin","Katina","Kia","Kjerstin","Krista","Krystolari","Linn","Linnéa","Lokara","Lotta","Lovisa","Lurka","Margareta","Marit","Marna","Marnia","Marta","Mia","Mikaela","Néa","Nilsine","Oda","Ottalie","Ottilie","Pernilla","Praxana","Ragnhild","Ragnild","Ranveig","Rebecka","Rokel","Roksana","Sassa","Sigrid","Sigrunn","Siv","Sjusann","Sofia","Solvig","Svanhild","Svanhilda","Svea","Teresia","Thorbjörg","Thorborg","Thorfridh","Thorridh","Thurlfara","Torbjörg","Torhild","Torhilda","Torunn","Tova","Turid","Tyri","Ulva","Valdis","Vallborg","Vauldra","Veklani","Vendela","Vigdis","Viva","Viveka","Vronwe","Yngvild","Zebel"];
@@ -48,4 +48,4 @@
    Create: createName
   }
  }();
-}(window.arman = window.arman || {}, jQuery));
+}(window.acks = window.acks || {}, jQuery));

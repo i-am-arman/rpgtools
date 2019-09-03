@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS Custom Magic Class</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="pako.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="https://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+<script type="text/javascript">
+	window.acksCreator.Register("temp",function(){
+		window.acksCreator.temp = {
+			start: function(){
+				$.getJSON("ajax/proficiencies.json", function(data) {
+					var items = [];
+					data.profs.forEach(function(el){
+						let tr = $('<tr/>');
+						tr.append('<td class="name">'+el.name+'</td>');
+						tr.append('<td class="type">'+el.type+'</td>');
+						tr.append('<td class="stacks">Stacks <input type="text" value="'+(el.stacks ? 2 : 1)+'" /></td>');
+						tr.append('<td class="multi"><label><input type="checkbox" />Multi?</label></td>');
+						if(el.multi)
+							tr.find('.multi input').attr('checked','true');
+						tr.append('<td class="book">'+el.book+'</td>');
+						$('table').append(tr);
+					});
+				});
+				$('button').click(function(){
+					let saveme = {"profs":[]};
+					$('table tr').each(function(){
+						let x = {}
+						x.name = $(this).children('.name').text();
+						x.book = $(this).children('.book').text();
+						x.type = $(this).children('.type').text();
+						x.stacks = $(this).find('.stacks input').val();
+						x.multi = $(this).find('.multi input').is(':checked');
+						saveme.profs.push(x);
+					});
+					console.log(saveme,JSON.stringify(saveme));
+				});
+			}
+		}
+	});
+</script>
+<style type="text/css">
+table {color:#fff; margin: 0 auto;}
+tr {border:1px solid #000}
+</style>
+</head>
+<body>
+	<table></table>
+	<button>Save</button>
+</body>
+</html>

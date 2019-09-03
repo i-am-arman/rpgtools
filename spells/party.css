@@ -1,5 +1,5 @@
 
-.wide{width:95%}
+.wide{width:95%;margin:0 auto}
 #radios label{margin:0}
 #dvCore,#dvPHB,#dvCust{width:100%;padding:.5em;clear:left}
 .classholder{width:100%}

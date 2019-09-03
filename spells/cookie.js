@@ -1,3 +1,5 @@
+//TODO: convert to correct shape
+//TODO: turn into a loadable, self-contained form
 function start(){
  //Delete selected
  $('#delete').button().click(function(){

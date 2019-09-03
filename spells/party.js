@@ -6,8 +6,8 @@ var proficiencies = [[1,1,1,1,2,2,2,2,3,3,3,3,4,4],[1,1,2,2,2,3,3,3,4,4,4,5,5,5]
 var equipment=[["Short Sword","Sword","Two-Handed Sword"],["Battle Axe","Great Axe","Hand Axe"],["Club","Flail","Mace","Morning Star","War Hammer"],["Lance","Javelin","Pole Arm","Spear"],["Arbalest","Crossbow","Composite Bow","Longbow","Shortbow"],["Dagger","Silver Dagger"],["Bola","Darts (5)","Net","Sling","Sap","Staff","Whip"],["No Armor","Hide and Fur Armor","Leather Armor","Ring Mail/Scale Armor","Chain Mail","Banded Plate/Lamellar","Plate Armor","Shield"],["<span class='icon req1' title='Craftsman’s Tools'><span>Craftsman’s Tools</span></span>","<span class='icon req2' title='Craftsman’s Workshop'><span>Craftsman’s Workshop</span></span>","<span class='icon req3' title='Holy Book'><span>Holy Book</span></span>","<span class='icon req4' title='Holy Symbol'><span>Holy Symbol</span></span>","<span class='icon req5' title='Machinist’s Tools'><span>Machinist’s Tools</span></span>","<span class='icon req6' title='Musical instrument'><span>Musical instrument</span></span>","<span class='icon req7' title='Spell Book'><span>Spell Book</span></span>","<span class='icon req8' title='Thieves’ Tools'><span>Thieves’ Tools</span></span>","<span class='icon req9' title='Automaton'><span>Automaton</span></span>"],["Ale/Beer (1 pint)","Backpack","Belladonna (1lb)","Birthwort (1lb)","Blanket (wool, thick)","Candle (tallow, 1lb)","Candle (wax, 1lb)","Comfrey (1lb)","Crowbar","Dice (pair)","Dice (pair, crooked)","Flask of Oil (common, 1 pint)","Flask of Oil (military, 1 pint)","Garlic (1lb)","Goldenrod (1lb)","Grappling Hook","Hammer (small)","Holy Water (1 pint)","Ink (1 oz.)","Iron Spikes (12)","Journal","Lantern","Lock","Manacles","Mirror (hand-sized, steel)","Mirror (thieves', glass)","Pole (10')","Pouch/Purse","Rations (Iron)","Rations (Standard)","Rope","Sack (large)","Sack (small)","Stakes (4) and Mallet","Tent","Tinder Box (flint & steel)","Torches (6)","Water/Wine Skin","Wolfsbane (1lb)","Woundwart (1lb)"]];
 var coin='';
 
-(function (arman, $) {
- arman.NPCGenerator = function () {
+(function (acks, $) {
+ acks.NPCGenerator = function () {
   var init = function() {
    var dirs=[$('#dvCust .classholder'),$('#dvCore .classholder'),$('#dvPHB .classholder')];
    for(var i=0;i<classlist.length;i++) {
@@ -120,8 +120,8 @@ var coin='';
    $.get("/img/icons/delapouite/originals/svg/ffffff/transparent/two-coins.svg",function(data){coin=$(data).children('svg');});
 
    $('#btnPDF').button().hide().click(function(){
-    arman.makePDF.NewWindow();
-    //var result=arman.makePDF.Embed();
+    acks.makePDF.NewWindow();
+    //var result=acks.makePDF.Embed();
     //var obj=$('<object id="pdf" data="" type=application/pdf></object>');
     //$('#results').prepend(obj);
     //$('#pdf').attr('data', result);
@@ -187,7 +187,7 @@ var coin='';
      result.append(makeChar(count+'a',newlist,level-2,vary,replace,name,stats,weapons,req,misc,magic,money,profs,lang,book));
      result.append(makeChar(count+'b',newlist,level-2,vary,replace,name,stats,weapons,req,misc,magic,money,profs,lang,book));
     } else
-     result.append(makeChar(count,newlist,level,vary,replace,name,stats,weapons,req,misc,magic,money,profs,lang,book,alignment));
+     result.append(makeChar(count,newlist,level,vary,replace,name,stats,weapons,req,misc,magic,money,profs,lang,book));
    }
    $('#generated').html('').append(result);
    $('.cp,.sp,.ep,.gp,.pp').append(coin);
@@ -203,7 +203,7 @@ var coin='';
     level=npc[24];
    if(name) {
     var sex=rand(1,100)<100*npc[21];
-    div.append('<p class="pname">'+arman.NameGen.Create(npc[3].charAt(rand(0,npc[3].length-1)),sex)+' (<span class="icon '+(sex?'sexmale':'sexfemale') +'" title="'+(sex?'Male':'Female')+'"><span>'+(sex?'Male':'Female') + ', </span></span>level '+level+' ' + npc[0] + ')</p>');
+    div.append('<p class="pname">'+acks.NameGen.Create(npc[3].charAt(rand(0,npc[3].length-1)),sex)+' (<span class="icon '+(sex?'sexmale':'sexfemale') +'" title="'+(sex?'Male':'Female')+'"><span>'+(sex?'Male':'Female') + ', </span></span>level '+level+' ' + npc[0] + ')</p>');
    } else {
     div.append('<p>Level '+level+' '+npc[0]+'</p>');
    }
@@ -398,14 +398,4 @@ var coin='';
    GetMiscEquipment: getMiscEquipment
   }
  }();
-}(window.arman = window.arman || {}, jQuery));
-
-function d(a,b){
-  var c=0;
-  for(var i=0;i<a;i++)
-   c+=rand(1,b);
-  return c;
- }
-function rand(min, max) {
- return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+}(window.acks = window.acks || {}, jQuery));

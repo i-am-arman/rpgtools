@@ -13,7 +13,7 @@ body{font:75% "Trebuchet MS",sans-serif;background-color:#333}
 #holder select{width:90%}
 
 div.roundwide{width:25em}
-.roundbox{border:.15em solid #888;border-radius:10px;width:20em;background-color:#111;padding:.5em}
+.roundbox{border:.15em solid #888;border-radius:10px;width:25em;background-color:#111;padding:.5em}
 .roundwide label{width:24em;margin:0 auto;text-align:left}
 .roundwide .selectbox{width:24em}
 .buttonbox{margin-bottom:.5em;text-align:center}
@@ -22,9 +22,12 @@ div div h2{text-align:center;color:#44a;text-shadow:0.15em 0.1em #004}
 h3{text-align:center;margin-top:0px}
 select{margin:0 auto;display:block;width:90%}
 input[type='checkbox']{margin-left:1em}
+input[type='textbox']{padding:.3em .5em .3em 1em;}
 span.ui-state-query{font-weight:normal}
 p{margin-left:1em}
 ul li select{width:auto;margin:0;display:inline}
+select,textarea,input,button{outline:none !important}
+table{border-collapse:collapse}
 
 .ui-tabs-vertical{width:55em}
 .ui-tabs-vertical .ui-tabs-nav{padding:.2em .1em .2em .2em;float:left;width:12em}
@@ -36,12 +39,14 @@ ul li select{width:auto;margin:0;display:inline}
 #popup textarea{width:90%;margin:0 auto;height:5em;border:.1em solid #333;border-radius:.3em;padding:.3em}
 .no-close .ui-dialog-titlebar-close{display:none;}
 
-#info{border-style:none;width:50em;overflow:auto}
+#popload input[type="text"]{padding-left:2em;margin:.5em auto}
+
+#info{border-style:none;width:60em;overflow:auto}
 #wrapper{margin:2.5em auto;width:50em}
-#powertrade{height:20em}
+#powertrade{height:40em}
 #profs{height:20em;overflow:auto}
 
-.over{float:right;clear:right;width:25em}
+.over{float:right;clear:right;width:30em}
 #magics input{width:4em}
 #stats,#ranks{width:60%}
 #spells{border-collapse:collapse}
@@ -50,7 +55,8 @@ ul li select{width:auto;margin:0;display:inline}
 #spells td:first-child{border-right:.1em solid #fff;text-align:right}
 .error{background-color:#f00}
 #errors{display:none}
-#errors p span{float:left;margin-right:.3em}
+/*#errors p span{float:left;margin-right:.3em}*/
+#magicpowerlist{height:25em;overflow:auto}
 
 .power,.powers,.trade,.class{position:relative;display:inline-block;border-radius:.5em;border:1px solid #007;background-color:#555;margin:.2em;padding:.2em;width:90%;text-align:center;cursor:pointer}
 .target{display:inline-block;border-radius:5px;border:2px dashed #007;background-color:#555;height:2em;width:90%}
@@ -61,7 +67,31 @@ span.helper{width:15em;cursor:copy}
 #fightingSel label{width:35%}
 #magic{display:none}
 .roundbox>div{margin-bottom:1em}
+.ui-controlgroup-vertical {width: 75%}
+.ui-controlgroup.ui-controlgroup-vertical>.ui-button {text-align: center;}
 
-div div.raceholder{border:2px solid #777;height:5em;overflow:auto;padding:.5em;margin:0}
-.raceholder:first-of-type{border-top-left-radius:.5em;border-top-right-radius:.5em}
-.raceholder:last-child{border-bottom-left-radius:.5em;border-bottom.right-radius:.5em}
+.scrolldn{height:2em;position:relative;width:100%;z-index:10;margin-top:-3em}
+
+div div.raceholder{border:2px solid #777;height:34em;overflow:auto;padding:.5em;margin:0}
+.raceholder textarea{float:right;height:1.5em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#000 linear-gradient(#333,#000,#444);color:#fff;padding:.3em 5em .3em 1em;outline:none;border:1px solid #444444;resize:none;}
+.raceholder textarea.selected{height:15em;width:90%;white-space:normal;overflow-y:scroll;margin:0 auto;padding:.5em;}
+#minval{width:3em}
+
+#hd>div,#fighter>div,#thief>div,#divine>div,#arcane>div,#custommagic>div,#racename>div,#racepoints>div{width:100%;overflow:hidden}
+#hdsel-button,#fightsel-button,#thiefsel-button,#divinesel-button,#arcanesel-button,#custommagicsel-button,#racenamesel-button,#racepointssel-button{float:right;clear:both}
+#fightersel label{margin:0 auto;}
+#levels input{width:10em}
+#levels .backarcane,#levels .backdivine,#levels .backcustommagic{border-color:#444;border-width:1px;border-left-style:solid;padding-left:4px;text-align:center}
+#levels .backarcane ~ .backarcane,#levels .backdivine ~ .backdivine,#levels .backcustommagic ~ .backcustommagic{border-left-style:none;padding-left:2px}
+#levels tr td.backarcane:last-child,#levels tr td.backdivine:last-child,#levels tr td.backcustommagic:last-child{border-right-style:solid}
+#levels thead tr:first-child td.backarcane,#levels thead tr:first-child td.backdivine,#levels thead tr:first-child td.backcustommagic{border-top-style:solid}
+#levels tr:last-child td.backarcane,#levels tr:last-child td.backdivine,#levels tr:last-child td.backcustommagic{border-bottom-style:solid}
+.prof{width:99%;display:block;float:left}
+.prof input[type="text"]{float:right;clear:right;width:10em}
+#loadprof{float:right}
+#profs>div{clear:right}
+
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
+
+#desc{width: 28.75em;height:9em; margin: 0 auto;background:#000 linear-gradient(#333,#000,#444);color:#fff;padding:.5em}
+#desc.focus{background-image:none;}

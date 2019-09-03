@@ -1,5 +1,5 @@
-(function (arman, $) {
- arman.makePDF = function() {
+(function (acks, $) {
+ acks.makePDF = function() {
   var options = {
    orientation: 'p',
    unit: 'in',
@@ -122,4 +122,4 @@
    NewWindow: newwindow
   }
  }();
-}(window.arman = window.arman || {}, jQuery));
+}(window.acks = window.acks || {}, jQuery));

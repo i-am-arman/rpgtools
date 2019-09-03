@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS NPC Party Generator</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+<script type="text/javascript" src="creatures.js"></script>
+<script type="text/javascript" src="party.js"></script>
+<script type="text/javascript" src="namegen.js"></script>
+<script type="text/javascript" src="treasuregen.js"></script>
+<script type="text/javascript" src="magicgen.js"></script>
+<script type="text/javascript" src="spellgen.js"></script>
+<script type="text/javascript" src="/jsPDF/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="partypdf.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+<link href="party.css" rel="stylesheet">
+<link href="encounter.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){acks.Creatures.Initialize();});
+</script>
+</head>
+<body>
+<div id="outer">
+<div id="header">Buy <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System">ACKS</a> and the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion">Player's Companion</a>! ~ <a href="/spells/index.html">Home</a> ~ <a href="/spells/spells.html">Spell Creator</a> ~ <a href="/spells/character.html">Class Creator</a> ~ <a href="/spells/race.html">Race Creator</a> ~ <a href="/spells/magic.html">Magic Type Creator</a> ~ <a href="/spells/party.html">NPC Party Gen</a></div>
+<div id="wrapper" class="ui-widget ui-widget-content ui-corner-all">
+<div id="info" class="ui-widget-content">
+<div class="roundbox wide">
+ <p>Welcome to the Encounter Generator! Based on (but expanding on) the tables in the <a style="display:inline" href="http://www.autarch.co/buy-now">Adventurer, Conquerer, King</a> System's Core book and Lair's and Encounters, this randomly generates a full encounter. Not all encounters make sense based on the territory; feel free to keep re-rolling until something that fits the story shows up. If any part of this tool doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King books - they really are an awesome resource!</p>
+ <div id="selectors">
+  <label><input type="checkbox" id="chkCore" /> Core manual</label>
+  <label><input type="checkbox" id="chkLnE" /> Lairs &amp; Encounters</label>
+  <label><input type="checkbox" id="chkDIY" /> Custom creatures</label>
+  <select id="selLand"><option>Grass/Scrub</option><option>Woods</option><option>River/Lake</option><option>Swamp</option><option>Hills</option><option>Mountains</option><option>Barrens</option><option>Desert</option><option>Inhabited</option><option>City</option><option>Ocean</option><option>Jungle</option><option>North</option><option>Mareten</option><option>Prehistoric</option><option>Dungeon</option></select>
+  <button id="btnGo">Go!</button>
+
+  <table id='generated'></table>
+ </div>
+</div>
+</div></div></div></div>
+
+<div id="footer"><a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2016 Autarch LLC</div>
+</body>
