@@ -1,0 +1,76 @@
+{"name":"Death Spells","values":[
+{"id":"effects","title":"Damage Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"1d4 damage per level","value":27},
+{"name":"1d6 damage per level","value":33},
+{"name":"1d6+1 damage per level","value":35},
+{"name":"1d8 damage per level","value":44},
+{"name":"1d10 damage per level","value":52},
+{"name":"1d12 damage per level","value":60}
+]},{"id":"maxdmg","title":"Maximum Damage Modifiers","type":"dropdown","add":0,"values":[
+{"name":"Maximum 1d damage","value":0.1},
+{"name":"Maximum 2d damage","value":0.3},
+{"name":"Maximum 3d damage","value":0.5},
+{"name":"Maximum 4d damage","value":0.7},
+{"name":"Maximum 5d damage","value":0.9},
+{"name":"Maximum 6d damage","value":1.1},
+{"name":"Maximum 7d damage","value":1.3},
+{"name":"No maximum damage","value":1.5}
+]},{"id":"other","title":"Other Death-Related Effects","type":"checkbox","add":1,"values":[
+{"name":"--Destructive Effects--","value":0},
+{"name":"Target held helpless","value":15},
+{"name":"Target temporarily drained of 1 HD or life level","value":15},
+{"name":"Target suffers mortal wound (as per dismember)","value":60},
+{"name":"Target slain","value":85},
+{"name":"Target permanently drained of 1 HD or life level","value":100},
+{"name":"Target disintegrated","value":135},
+{"name":"--Other Effects--","value":0},
+{"name":"Imbue target with necromantic potence","value":10},
+{"name":"Animate dead target as undead skeleton/zombie","value":10},
+{"name":"De-animate undead skeleton/zombie","value":27}
+]},{"id":"target","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"--Target By Number of Creatures--","value":0},
+{"name":"1 creature","value":1},
+{"name":"1 HD of creatures per level within 60' diameter","value":1.5},
+{"name":"1 HD of creatures per level","value":1.75},
+{"name":"1 creature + 1 per 5 additional levels","value":2},
+{"name":"1 creature + 2 per 5 additional levels","value":3},
+{"name":"4d8 HD of creatures within 30' diameter","value":3},
+{"name":"1 creature + 1 per 2 additional levels","value":4},
+{"name":"4d8 HD of creatures","value":4},
+{"name":"1 creature per level within 30' diameter","value":5},
+{"name":"1 creature per level","value":7}
+]},{"id":"targetmod","title":"Targeting Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Attack throw required to hit target","value":0.75},
+{"name":"Creatures with fewest HD are affected first*","value":0.5},
+{"name":"Creatures with 8 HD or more cannot be targeted","value":0.75},
+{"name":"Able to target object (10' x 10' x 10')","value":1.25}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"0'/ Touch*","value":0.4},
+{"name":"15'","value":0.5},
+{"name":"30'","value":0.6},
+{"name":"60'","value":0.7},
+{"name":"90'","value":0.8},
+{"name":"120'","value":0.9},
+{"name":"150'","value":1},
+{"name":"180'","value":1.1},
+{"name":"240'","value":1.2},
+{"name":"360'","value":1.5}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Instantaneous","value":1},
+{"name":"Concentration or until target makes save*","value":1.75},
+{"name":"1 round per level","value":4},
+{"name":"Concentration","value":4},
+{"name":"1 turn","value":5},
+{"name":"1 hour","value":6},
+{"name":"1 hour per level","value":7},
+{"name":"1 day","value":7}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted","value":1},
+{"name":"Saving throw reduces spell effect by half","value":0.75},
+{"name":"Saving throw avoids spell effect","value":0.5}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":1.5},
+{"name":"Divine spell affecting undead or life energy","value":0.5},
+{"name":"Custom","value":-1}
+]}]}

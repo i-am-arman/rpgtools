@@ -1,0 +1,82 @@
+{"name":"Wall Spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"Attacks creatures within 5' as 2 HD monster","value":25},
+{"name":"Attacks creatures within 5' as 4 HD monster","value":60},
+{"name":"Attacks creatures within 5' as 8 HD monster","value":120},
+{"name":"Causes fear upon sight","value":45},
+{"name":"Causes cloudkill to creatures that pass through","value":27},
+{"name":"Causes mortal wounds roll on creatures that pass","value":60},
+{"name":"Causes death on creatures that pass through","value":85},
+{"name":"Causes disintegration on creatures that pass","value":135},
+{"name":"Deals 1d6 damage to creatures that pass through","value":10},
+{"name":"Deals 2d6 damage to creatures that pass through","value":20},
+{"name":"Impermeable to creatures","value":25},
+{"name":"Impermeable to creatures with less than 4 HD","value":20},
+{"name":"Impermeable to magic","value":10},
+{"name":"Impermeable to vision and light (opaque)","value":10},
+{"name":"Impermeable to vision (translucent)","value":5}
+]},{"id":"destruct","title":"Magical Destructibility","type":"dropdown","add":0,"values":[
+{"name":"Not affected by disintegrate","value":3},
+{"name":"Not affected by dispel magic","value":1.5},
+{"name":"Not affected by physical & magical effects","value":1},
+{"name":"Affected as smoke by physical & magical effects","value":0.9},
+{"name":"Affected as iron by physical & magical effects","value":0.8},
+{"name":"Affected as stone by physical & magical effects","value":0.7},
+{"name":"Affected as earth by physical & magical effects","value":0.6},
+{"name":"Affected as flesh/bone by physical & magical effects","value":0.5},
+{"name":"Affected as wood by physical & magical effects","value":0.4}
+]},{"id":"undead","title":"Undead Turning","type":"checkbox","add":0,"values":[
+{"name":"Affected as undead by turn undead","value":0.75}
+]},{"id":"manip","title":"Manipulability Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Wall may be readily shaped by reducing area","value":1},
+{"name":"Area may be crudely shaped by reducing area","value":0.8},
+{"name":"Thickness may be reduced to increase area","value":1.5},
+{"name":"Wall may be bonded to surrounding material","value":1.2},
+{"name":"Wall must be bonded to surrounding material","value":0.75},
+{"name":"Wall must be solidly supported","value":0.75},
+{"name":"Wall must always be a flat, vertical plane","value":0.75},
+{"name":"Wall must always be a sphere","value":0.75},
+{"name":"Wall must always be in contact with ground","value":0.75}
+]},{"id":"general","title":"General Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Wall is elemental (fire, earth, water, air)","value":1},
+{"name":"Wall moves away from caster at 20' per turn","value":1.5}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"0'","value":0.4},
+{"name":"30'","value":0.6},
+{"name":"60'","value":0.8},
+{"name":"120'","value":1},
+{"name":"180'","value":1.2},
+{"name":"240'","value":1.5},
+{"name":"360'","value":2}
+]},{"id":"","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Concentration","value":0.5},
+{"name":"1 turn","value":0.75},
+{"name":"2 turns","value":1},
+{"name":"3 turns","value":1.5},
+{"name":"6 turns","value":2},
+{"name":"8 hours","value":2.33},
+{"name":"Indefinite (until dispelled/destroyed)","value":2.66}
+]},{"id":"area","title":"Wall’s Area","type":"dropdown","add":0,"values":[
+{"name":"100 square feet","value":0.5},
+{"name":"500 square feet","value":0.75},
+{"name":"750 square feet","value":1},
+{"name":"1,000 square feet","value":1.25},
+{"name":"1,200 square feet","value":1.5},
+{"name":"1,500 square feet","value":2}
+]},{"id":"thickness","title":"Wall’s Thickness","type":"dropdown","add":0,"values":[
+{"name":"1”","value":0.75},
+{"name":"1'","value":1},
+{"name":"10'","value":2},
+{"name":"20'","value":3}
+]},{"id":"targeting","title":"Targeting Modifiers","type":"dropdown","add":0,"values":[
+{"name":"May not be evoked where objects/creatures are","value":1},
+{"name":"May be evoked where objects/creatures are","value":2}
+]},{"id":"saves","title":"Saving Throw","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted","value":1},
+{"name":"Saving throw reduces spell effect by half*","value":0.75},
+{"name":"Saving throw avoids spell effect*","value":0.5}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":1.5},
+{"name":"Custom","value":-1}
+]}]}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS Racemaker</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="race.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="/spells/main.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){start();});
+</script>
+</head>
+<body>
+<div id="outer">
+<div id="header">Buy <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System">ACKS</a> and the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion">player's companion</a>! ~ <a href="/spells/index.html">Home</a> ~ <a href="/spells/spells.html">Spell Creator</a> ~ <a href="/spells/character.html">Class Creator</a> ~ <a href="/spells/race.html">Race Creator</a> ~ <a href="/spells/magic.html">Magic Type Creator</a> ~ <a href="/spells/party.html">NPC Party Gen</a></div>
+<div id="wrapper" class="ui-widget ui-widget-content ui-corner-all">
+<div id="info" class="ui-widget-content">
+<div class="buttonbox"><button id='loadit'>Load Race/Magic</button><button id="saveit">Save Race</button> <button id="displayit">Display Printable Page</button></div>
+<div class="roundbox over">
+ Name: <input type="textbox" id="name" /><br />
+ Additional XP after level 8: <span id='additional'>0</span><br />
+ <div id="race0" class='raceholder'><span>Race 0</span></div>
+ <div id="race1" class='raceholder'><span>Race 1</span></div>
+ <div id="race2" class='raceholder'><span>Race 2</span></div>
+ <div id="race3" class='raceholder'><span>Race 3</span></div>
+ <div id="race4" class='raceholder'><span>Race 4</span></div>
+</div>
+<div class="roundbox">
+<div><h3>Custom Powers</h3>
+ <div id="powerholder"></div>
+  <div id="powertrade">
+   <h3>Tradeoffs</h3>
+   <div id="tradelist"><p></p></div>
+   <h3>Class Levels</h3>
+   <div id="classlist"><p><span class="class" cost="500,1000,1500,2000" trade="0">Hit Dice</span><span class="class" cost="500,1000,1500,2000" trade="1">Fighting</span><span class="class" cost="200,500,700,1100" trade="2">Thief</span><span class="class" cost="250,500,1000,2000" trade="3">Divine</span><span class="class" cost="625,1250,1875,2500" trade="4">Arcane</span><span class="class" cost="0,0,0,0,0" trade="5">Custom Magic</span></p></div>
+   <h3>Custom Powers</h3>
+   <div id="powerlist"><p><span class="power" cost="1">Accuracy</span><span class="power" cost="1">Acrobatics</span><span class="power" cost="1">After the Flesh</span><span class="power" cost="1">Alertness</span><span class="power" cost="1">Alter Shape</span><span class="power" cost="1">Ambush</span><span class="power" cost="1">Ancient Pacts</span><span class="power" cost=".5">Animal Friendship</span><span class="power" cost="1">Animal Magnetism</span><span class="power" cost="1">Animal Reflexes</span><span class="power" cost="1">Arcane Dabbling</span><span class="power" cost="arcane">Arcane Striking</span><span class="power" cost=".5">Attunement to Nature</span><span class="power" cost="1">Aura of Protection</span><span class="power" cost="1">Avoid Getting Lost</span><span class="power" cost="1">Battlefield Prowess</span><span class="power" cost="1">Blade-Dancing</span><span class="power" cost="1">Blood of Kings</span><span class="power" cost="1">Bonus Languages</span><span class="power" cost="1">Bribery</span><span class="power" cost="1">Chronicles of Battle</span><span class="power" cost="1">Command of Voice</span><span class="power" cost="1">Command Undead</span><span class="power" cost="1">Commune with Ancestral Spirits</span><span class="power" cost="1">Connection to Nature</span><span class="power" cost="1">Contact Dark Powers</span><span class="power" cost="1">Dark Blessing</span><span class="power" cost="1">Dark Charisma</span><span class="power" cost="-1">Dark Soul</span><span class="power" cost="arcane">Death Healing</span><span class="power" cost="3">Design, Build, and Repair Automatons</span><span class="power" cost="1">Detect Evil</span><span class="power" cost="1">Detect Good</span><span class="power" cost="1">Detect Traps</span><span class="power" cost="1">Difficult to Spot</span><span class="power" cost="1">Diplomacy and Protocol</span><span class="power" cost="1">Divine Blessing</span><span class="power" cost="1">Divine Health</span><span class="power" cost="1">Experience and Hardiness</span><span class="power" cost="1">Expert Bargainer</span><span class="power" cost="1">Expert Caver</span><span class="power" cost="2,3,4,5,6">Fangs and Claws</span><span class="power" cost="1">Familiar</span><span class="power" cost="2">Fighting Fury</span><span class="power" cost="3">Flesh-Runes</span><span class="power" cost="5">Flying</span><span class="power" cost="1">Forbidden Spells</span><span class="power" cost="1">Friend of Birds and Beasts</span><span class="power" cost="1">Glamorous Aura</span><span class="power" cost="1">Grey Lore</span><span class="power" cost="2.5">Hardy People</span><span class="power" cost="1">Harmony of Spirit</span><span class="power" cost="1">Heroic Spirit</span><span class="power" cost="1">Hex</span><span class="power" cost="1">Holy Fervor</span><span class="power" cost="1.5,2,2.5">Infravision</span><span class="power" cost="0">Inhumanity</span><span class="power" cost="1">Initiative</span><span class="power" cost="1">Innate Illusion Mastery</span><span class="power" cost="1">Inspire Courage</span><span class="power" cost="1">Keen Eyes</span><span class="power" cost="1">Lay on Hands</span><span class="power" cost="1">Longevity</span><span class="power" cost="1">Loremastery</span><span class="power" cost="1">Magical Music</span><span class="power" cost="1">Mapper</span><span class="power" cost="1">Mastery of Charms and Illusions</span><span class="power" cost="1">Mechanical Engineering</span><span class="power" cost="1">Meditative Focus</span><span class="power" cost="1">Mercantile Network</span><span class="power" cost="1">Mindfulness</span><span class="power" cost="1">Naturally Stealthy</span><span class="power" cost="2.5">Nose for Potions</span><span class="power" cost="1">Perceive Intentions</span><span class="power" cost="1">Perfection of Body</span><span class="power" cost="1">Perform</span><span class="power" cost="1">Perform Spiritual Ritual</span><span class="power" cost="1">Precise Shot</span><span class="power" cost="1">Prestidigitation</span><span class="power" cost="1">Probability Trance</span><span class="power" cost="1">Purity of Body and Soul</span><span class="power" cost="1">Quickening</span><span class="power" cost="1">Resistant to Illusion</span><span class="power" cost="1">Sanctified Body</span><span class="power" cost="1">Savage Resilience</span><span class="power" cost="1,2,3,4,5">Scaly Hide</span><span class="power" cost="1">Secrets of the Dark Arts</span><span class="power" cost=".5">Sensitivity to Rock and Stone</span><span class="power" cost="1">Shapechange</span><span class="power" cost="1">Speak with Animals</span><span class="power" cost="1">Speed of Thought</span><span class="power" cost="arcane">Spell Storing</span><span class="power" cost="1">Spiritwalk</span><span class="power" cost="1">Strength of Spirit</span><span class="power" cost="1">Summon Infernal Powers</span><span class="power" cost="2,2.5,3">Swimming</span><span class="power" cost="1">Totem Animal</span><span class="power" cost="1">Tracking</span><span class="power" cost="1">Unholy Fanaticism</span><span class="power" cost="1">Wholeness of Body</span><span class="power" cost="1">Wilderness Evasion</span></p></div>
+  <h3>Spell-as-power</h3>
+  <div><span class='power addspell'>Spell-as-power</span></div>
+  <h3>DIY Power</h3>
+  <div><span class='power addpower'>DIY Power</span></div>
+  </div>
+ </div>
+</div></div></div>
+
+<div id="popup" title="Welcome!"><h3>Race Creator</h3><div><p>Welcome to Race Creator, an interactive race creation service for the <a style="display:inline" href="http://www.autarch.co/buy-now">Adventurer, Conquerer, King</a> System. The data has been taken directly from <a href="http://www.autarch.co/comment/6770#comment-6770">this comment</a> at the ACKS Forums, as well as the player's companion and the guide. Without the guide and the player's companion, this tool won't be much use to you, so if you haven't bought them already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div></div>
+<div id="popask" title="Choose Power Level"><h3>Choose Power Level</h3><p></p><select></select></div>
+<div id="popspell" title="Spell As Power">Spell name: <input type="textbox" /><br />Spell level: <input type="number" /><br />Casting time: <div id="casttime"><fieldset><input type="radio" id="radRound" name="casttime" value="round" /><label for="radRound">1 round</label><input type="radio" id="radTurn" name="casttime" value="turn" /><label for="radTurn">1 turn</label></fieldset></div></div>
+<div id="poppower" title="Custom Power"><h3>Create a power</h3>Power name: <input type="textbox" /><br />Power point cost: <input type="number" /></div>
+<div id="popload" title="Load Custom Class"><p>Paste the code into the box below. <span id='loaderror'></span></p><input type="textbox" /><p>Or, load from cookies:<br /><select id="cookielist"></select> <button id='loadCookie'>Load</button></div>
+<div id="footer"><a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2016 Autarch LLC</div>
+</body>

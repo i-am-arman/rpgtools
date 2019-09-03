@@ -1,0 +1,110 @@
+{"worlds":[
+ {"world":"Alchiba System","rank":1,"dests":[
+  {"dist":24,"dest":2}
+ ]},{"world":"Earth","rank":2,"dests":[
+  {"dist":24,"dest":1},
+  {"dist":52,"dest":3},
+  {"dist":18,"dest":4},
+  {"dist":32,"dest":31}
+ ]},{"world":"Leporis A 4","rank":3,"dests":[
+  {"dist":52,"dest":2},
+  {"dist":34,"dest":4}
+ ]},{"world":"Alpha Corvi","rank":4,"dests":[
+  {"dist":18,"dest":2},
+  {"dist":33,"dest":3},
+  {"dist":49,"dest":5},
+  {"dist":59,"dest":6}
+ ]},{"world":"Bardron","rank":5,"dests":[
+  {"dist":49,"dest":4},
+  {"dist":26,"dest":7}
+ ]},{"world":"Pi Solaria System","rank":6,"dests":[
+  {"dist":59,"dest":4},
+  {"dist":28,"dest":7}
+ ]},{"world":"Nahundi System","rank":7,"dests":[
+  {"dist":26,"dest":5},
+  {"dist":28,"dest":6},
+  {"dist":14,"dest":9},
+  {"dist":39,"dest":8},
+  {"dist":49,"dest":14},
+  {"dist":42,"dest":11}
+ ]},{"world":"Vandana","rank":8,"dests":[
+  {"dist":39,"dest":7}
+ ]},{"world":"Eta Helion System","rank":9,"dests":[
+  {"dist":109,"dest":10},
+  {"dist":14,"dest":7}
+ ]},{"world":"Sci-02.B","rank":10,"dests":[
+  {"dist":109,"dest":9}
+ ]},{"world":"Dytallia System","rank":11,"dests":[
+  {"dist":42,"dest":7},
+  {"dist":12,"dest":13},
+  {"dist":22,"dest":12}
+ ]},{"world":"Sigma Rekonda","rank":12,"dests":[
+  {"dist":22,"dest":11}
+ ]},{"world":"L20 Industries","rank":13,"dests":[
+  {"dist":40,"dest":14},
+  {"dist":12,"dest":11}
+ ]},{"world":"Quern","rank":14,"dests":[
+  {"dist":49,"dest":7},
+  {"dist":40,"dest":13},
+  {"dist":60,"dest":15}
+ ]},{"world":"Discepe Wolf","rank":15,"dests":[
+  {"dist":60,"dest":14},
+  {"dist":59,"dest":16},
+  {"dist":44,"dest":19}
+ ]},{"world":"Omega Parada System","rank":16,"dests":[
+  {"dist":59,"dest":15},
+  {"dist":67,"dest":17},
+  {"dist":37,"dest":18}
+ ]},{"world":"Sci-45.L6","rank":17,"dests":[
+  {"dist":67,"dest":16}
+ ]},{"world":"Arabis","rank":18,"dests":[
+  {"dist":37,"dest":16},
+  {"dist":40,"dest":19},
+  {"dist":48,"dest":20}
+ ]},{"world":"Danex Emimus","rank":19,"dests":[
+  {"dist":44,"dest":15},
+  {"dist":40,"dest":18},
+  {"dist":42,"dest":20}
+ ]},{"world":"Seginus Cluster","rank":20,"dests":[
+  {"dist":42,"dest":19},
+  {"dist":48,"dest":18},
+  {"dist":57,"dest":21}
+ ]},{"world":"Epsilon Lyrae","rank":21,"dests":[
+  {"dist":57,"dest":20},
+  {"dist":22,"dest":22}
+ ]},{"world":"Eridani","rank":22,"dests":[
+  {"dist":22,"dest":21},
+  {"dist":11,"dest":23},
+  {"dist":13,"dest":24}
+ ]},{"world":"Nede","rank":23,"dests":[
+  {"dist":9,"dest":24},
+  {"dist":17,"dest":25},
+  {"dist":11,"dest":22}
+ ]},{"world":"Cannes Jot","rank":24,"dests":[
+  {"dist":9,"dest":23},
+  {"dist":11,"dest":25},
+  {"dist":13,"dest":22}
+ ]},{"world":"Pentacus System","rank":25,"dests":[
+  {"dist":17,"dest":23},
+  {"dist":11,"dest":24},
+  {"dist":33,"dest":26}
+ ]},{"world":"Class M","rank":26,"dests":[
+  {"dist":33,"dest":24},
+  {"dist":22,"dest":27}
+ ]},{"world":"Littlefinger","rank":27,"dests":[
+  {"dist":22,"dest":26},
+  {"dist":29,"dest":28}
+ ]},{"world":"Ship Graveyard","rank":28,"dests":[
+  {"dist":29,"dest":27},
+  {"dist":19,"dest":29}
+ ]},{"world":"Placidus","rank":29,"dests":[
+  {"dist":19,"dest":28},
+  {"dist":14,"dest":30},
+  {"dist":40,"dest":31}
+ ]},{"world":"Haroona System","rank":30,"dests":[
+  {"dist":14,"dest":29}
+ ]},{"world":"Pyl'Nyy","rank":31,"dests":[
+  {"dist":40,"dest":30},
+  {"dist":32,"dest":2}
+ ]}
+]}

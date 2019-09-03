@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arman's Adventurer, Conqueror, King Tools</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<style type="text/css">
+body{background-color:#000}
+#wrapper{width:60em;margin:0 auto}
+#header,#text{background-color:#999;width:60em;border-radius:1em;padding:1em;margin:1em;overflow:auto;opacity:1}
+#header{text-align:center}
+
+.ui-menu{overflow: hidden}
+.ui-menu .ui-menu {overflow: visible !important}
+.ui-menu > li {float: left;display: block;width: auto !important}
+.ui-menu ul li {display:block;float:none}
+.ui-menu ul li ul {left:120px !important;width:100%}
+.ui-menu ul li ul li {width:auto}
+/*.ui-menu ul li ul li a {float:left}*/
+.ui-menu>li{margin: 5px 5px !important;padding: 0 0 !important}
+.ui-menu>li>a{float: left;display: block;clear: both;overflow: hidden;}
+.ui-menu .ui-menu-icon{margin-top: 0.3em !important;}
+.ui-menu .ui-menu .ui-menu li{float:left;display:block}
+.ui-menu a{text-decoration: none;width:10em}
+</style>
+<script type="text/javascript">
+$(function(){
+ $('#header ul').menu({icons:{submenu:"ui-icon-caret-1-s"},position: {at: "left bottom"}});
+});
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id='header'><ul class="ui-corner-all">
+ <li><a href="/index.html">Home</a>
+ <li><a>Creators</a><ul>
+  <li><a href="/spells/spells.html">Spell Creator</a></li>
+  <li><a href="/spells/character.html">Class Creator</a></li>
+  <li><a href="/spells/race.html">Race Creator</a></li>
+  <li><a href="/spells/magic.html">Magic Type Creator</a></li>
+ </ul></li>
+ <li><a>Generators</a><ul>
+  <li><a href="/spells/party.html">NPC Party Gen</a></li>
+  <li><a href="/spells/domains.html">Domain Management</a></li>
+ </ul></li>
+</ul></div>
+<div id="text">
+<h2>Arman's ACKS Tools</h2>
+<p>This section of my website is dedicated to <a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>, an RPG based on the style of old-school D&amp;D. If you haven't purchased the <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System?affiliate_id=751437">manual</a> or the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion?affiliate_id=751437">player's companion</a>, you really should! Most of the information here is based on those two books, with a little help from <a href="http://www.drivethrurpg.com/product/179660/Axioms-Issue-1?affiliate_id=751437">Axioms Issue 1</a>. If you use those links, I get a little kickback, too, which is really nice; I don't charge for these tools, and I intend to never do so, but it does take time and energy.</p>
+<p>I have a few classes, races, and spells that I've created as well; some may be a little unbalanced, however, or take the world in directions your Judge may not want, so it's always a good idea to ask first.</p>
+<ul>
+<li><a href="JokeSpells.pdf">Joke Spells and Spellbooks</a></li>
+<li><a href="WerehumanType.pdf">Werehuman race type</a>, or "reverse were-creature" - a wolf (or other animal) that turns into a human.</li>
+<li><a href="Wolfwere.pdf">Wolfwere</a>, a class built on the Werehuman race</li>
+<li><a href="Spy.pdf">Spy</a>, for those "diplomatic" missions.</li>
+<li><a href="DwarvenSapper.pdf">Dwarven Sapper</a>, a work in progress; almost completely custom spells, using a custom magic type (sapper magic).</li>
+<li><a href="Ectomancer.pdf">Ectomancer</a>, also a work in progress (some of the spells are a bit wonky as yet)</li>
+<li><a href="FrightKnight.pdf">Fright Knight</a>, an XP-heavy Inherited magic class. Neutral or Chaotic only.</li>
+<li><a href="Clown.pdf">Clown</a> - don't use this. Just... don't. It's beyond broken. It's here more as a reminder of the depths of depravity human creativity can sink to...</li>
+</ul>
+</p>
+<p>Additionally, I've made quite a number of Google Sheets to help me with randomly generating... well, everything. My NPC Party Generator can be found <a href="https://docs.google.com/spreadsheets/d/1RWOxlYVnUfDUk_r3XPkoJ2bIgw1N3jkz1qqPJX02660/edit?usp=sharing">here</a>, though you'll need to make a copy or download it to do anything with it.</p>
+<p>List of known bugs in Creators:<br />Race and Class may have some trouble saving/loading custom powers (class especially)<br />Class may not load custom magic or race correctly<br />Cookies are brand new, and probably won't work well at all for a bit</p>
+</div>
+</div>
+</body>

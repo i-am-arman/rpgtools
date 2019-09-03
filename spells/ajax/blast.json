@@ -1,0 +1,77 @@
+{"name":"Blast Spells","values":[
+{"id":"effects","title":"Damaging Effects","type":"checkbox","add":1,"values":[
+{"name":"1d4 damage per level", "value":20},
+{"name":"1d6 damage per level", "value":27},
+{"name":"1d6+1 damage per level", "value":33},
+{"name":"1d8 damage per level", "value":35},
+{"name":"1d10 damage per level", "value":44},
+{"name":"2d4 damage per level", "value":44},
+{"name":"1d12 damage per level", "value":52}
+]},{"id":"maxdmg","title":"Maximum Damage Modifiers","type":"dropdown","add":0,"values":[
+{"name":"Maximum 1d damage","value":0.1},
+{"name":"Maximum 2d damage","value":0.25},
+{"name":"Maximum 3d damage","value":0.33},
+{"name":"Maximum 4d damage","value":0.5},
+{"name":"Maximum 5d damage","value":0.7},
+{"name":"Maximum 6d damage","value":0.8},
+{"name":"Maximum 7d damage","value":0.9},
+{"name":"No maximum damage","value":1}
+]},{"id":"additional","title":"Additional Effects","type":"checkbox","add":1,"values":[
+{"name":"Nausea-inducing (as per stinking cloud)", "value":10},
+{"name":"Gusting (as per gust of wind)", "value":20}
+]},{"id":"modifiers","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Blast is elemental (fire)","value":1},
+{"name":"Blast is elemental (earth)","value":1},
+{"name":"Blast is elemental (water)","value":1},
+{"name":"Blast is elemental (air)","value":1}
+]},{"id":"targeting","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"--Target By Number of Creatures--","value":0},
+{"name":"1 creature","value":1},
+{"name":"1 creature + 1 per 5 additional levels","value":2},
+{"name":"1 creature + 2 per 5 additional levels","value":3},
+{"name":"1 creature + 1 per 2 additional levels","value":4},
+{"name":"1 creature per level within 30' diameter","value":5},
+{"name":"1 creature per level","value":7},
+{"name":"--Target by Area of Effect--","value":0},
+{"name":"5' diameter sphere","value":1},
+{"name":"10' diameter sphere","value":1.25},
+{"name":"10' long x 10' wide x 10' deep cube","value":1.5},
+{"name":"10' diameter x 30' tall cylinder","value":1.5},
+{"name":"15' diameter sphere","value":1.5},
+{"name":"60' long x 5' wide line","value":1.75},
+{"name":"20' diameter sphere","value":2},
+{"name":"20' long x 20' wide x 20' deep cube","value":2.25},
+{"name":"40' long x 20' wide cone","value":2.5},
+{"name":"25' diameter sphere","value":4},
+{"name":"60' long x 10' wide cone","value":4.5},
+{"name":"30' diameter sphere","value":5},
+{"name":"60' long x 30' wide cone","value":6}
+]},{"id":"targetmod","title":"Targeting Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Selective targeting within area of effect","value":3},
+{"name":"Attack throw required to hit target","value":0.35}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"0'/ Touch*","value":0.4},
+{"name":"15'","value":0.5},
+{"name":"30'","value":0.6},
+{"name":"60'","value":0.7},
+{"name":"90'","value":0.8},
+{"name":"120'","value":0.9},
+{"name":"150'","value":1},
+{"name":"180'","value":1.1},
+{"name":"240'","value":1.2},
+{"name":"360'","value":1.5}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Instantaneous","value":1},
+{"name":"1 round","value":1.1},
+{"name":"Concentration or until target makes save","value":2},
+{"name":"1 round per level","value":4},
+{"name":"Concentration","value":4}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted","value":1},
+{"name":"Saving throw reduces spell effect by half","value":0.75},
+{"name":"Saving throw avoids spell effect","value":0.5}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":2.25},
+{"name":"Custom","value":-1}
+]}]}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS Domain Management</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="functions.js"></script>
+<script type="text/javascript" src="party.js"></script>
+<script type="text/javascript" src="domains.js"></script>
+<script type="text/javascript" src="mercs.js"></script>
+<script type="text/javascript" src="/jsonc/jsonc.min.js"></script>
+<script type="text/javascript" src="/jsPDF/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+<link href="domains.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){acks.Domain.Initialize();});
+</script>
+</head>
+<body>
+<div id="outer">
+<div id="header">Buy <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System">ACKS</a> and the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion">Player's Companion</a>! ~ <a href="/spells/index.html">Home</a> ~ <a href="/spells/spells.html">Spell Creator</a> ~ <a href="/spells/character.html">Class Creator</a> ~ <a href="/spells/race.html">Race Creator</a> ~ <a href="/spells/magic.html">Magic Type Creator</a> ~ <a href="/spells/party.html">NPC Party Gen</a></div>
+<div id="wrapper" class="ui-widget ui-widget-content ui-corner-all">
+<div id="info" class="ui-widget-content">
+<div class="roundbox wide">
+ <p>Welcome to ACKS Domain Management, for easy Domain management for the <a style="display:inline" href="http://www.autarch.co/buy-now">Adventurer, Conquerer, King</a> System. The data and formulas used here are straight from the Core rulebook. Note that this only creates domains and cities; you are on your own for hideouts, sanctums, and so forth. I will continue to add classes as I am able; if any part of this tool doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King books - they really are an awesome resource!</p>
+ <fieldset id="sectionSave">
+  <legend> Save to a file </legend>
+  <p>Note that saving to a file only saves up through the previous month; changes are only synchronized when you advance to a new month. If you want to save changes before advancing to the next month (for example, after making garrison changes), click the "Save Without Advancing" at the bottom first.</p>
+  <button id='btnSave'>Save</button>
+ </fieldset>
+ <fieldset id="sectionLoad">
+  <legend> Load or Generate? </legend>
+  <button id="btnNew">Start New Domain</button>
+  <button id='btnQuick'>Quickstart a Domain</button>
+  <label class='fileButton'><input type="file" id="fileLoad" />Load a Domain</label>
+  <p>Or choose a previously saved domain:
+   <ul id="ulLoad"></ul>
+   A note on saved domains: these are domains saved in a cookie in your browser. Some browsers limit the number or length of cookies, clear cookies, or simply don't save cookies across sessions. If you're afraid of losing your domain, PLEASE save it to a file!
+  </p>
+ </fieldset>
+ <fieldset id='sectionQuick'>
+  <p>If you've already started a domain, this is a good way to enter all the details for it. It allows you to quickstart a domain, rather than building it from scratch.</p>
+  <p><label>Domain Name <input type="textbox" id='txtQuickName' /></label></p>
+  <p><label>Your class<select id='selQuickClass'></select></label></p>
+  <p><label>Your alignment <select id='selQuickAlign'><option>Lawful</option><option>Neutral</option><option>Chaotic</option></select></label></p>
+  <p><label><input type="checkbox" id="chkQuickLiege" /> Pay taxes to a liege?</label>
+     <label><input type="checkbox" id="chkQuickBeast" /> Population are beastmen?</label></p>
+  <p><label>Domain funds <input type='number' id='txtQuickCash' /></label></p>
+  <p><label>Stronghold location <select id='selQuickLoc'><option>Civilized</option><option>Borderlands</option><option>Wilderness</option></select></label></p>
+
+  <p><label>Stronghold cost (before discounts)<input type='number' id='txtQuickCost' /></label></p>
+  <p>Land value(s) <button id='btnQuickValue'>Add hexes</button><button id='btnQuickRemHex'>Remove Hex</button>
+     <span id='spQuickValue'><input type='number' min='3' max='9' /></span></p>
+  <p><label>Current population (in families)<input type='number' id='txtQuickPop' /></label></p>
+  <p><label>Lawful (as % of population): <input type='number' id='txtQuickLawful' value='100' /></label></p>
+  <p><label>Neutral (as % of population): <input type='number' id='txtQuickNeutral' value='0' /></label><span id='spQuickPercent'></span></p>
+<p><label>Chaotic (as % of population): <input type='number' id='txtQuickChaotic' value='0' /></label></p>
+  <p><label>Total Garrison (gp) <input type='number' id='txtQuickGarrison' min='0' value='0' /></label></p>
+  <p><label>Garrison away (total gp) <input type='number' id='txtQuickAway' min='0' value='0' /></label></p>
+  <p><label>The date (year/month) <input type='textbox' id='txtQuickDate' placeholder='yyy/mm' /></label></p>
+  <p><label>Date of next season (y/m) <input type='textbox' id='txtQuickSeason' placeholder='yyy/mm' /></label></p>
+  <p><label>Domain morale <input type='number' id='txtQuickMorale' min='-4' max='4' value='0' /></label></p>
+  <p><label>Cities <button id='btnQuickCity'>Add City</button></label>
+     <span id='spQuickCity'></span></p>
+  <p><button id='btnQuickOk'>Quickstart the Domain</button><button id='btnQuickCancel'>Cancel</button></p>
+ </fieldset>
+ <fieldset id="sectionNew">
+  <legend> Creating a New Domain </legend>
+  <p>
+   <label>Your domain name: <input type="textbox" id="txtName" /></label><span class='ui-state-error ui-corner-all' id='errName'>Enter a name for your domain.</span>
+   <label>What year is it? <input type="textbox" id="txtYear" value="1" /></label><span class='ui-state-error ui-corner-all' id='errYear'>Please enter a starting year.</span>
+   <label>What month is it? <input type="textbox" id="txtMonth" value="1" /></label><span class='ui-state-error ui-corner-all' id='errMonth'>Please enter a starting month.</span>
+   <label>Pick your class: <select id="selClass"></select></label><span class='ui-state-error ui-corner-all' id='errClass'>Please select a class, of if you are using a custom class, the class closest to yours.</span>
+   <p id='pClass'></p>
+  </p>
+  <p>Roll 3d3 for the land value of the first 6-mile hex.</p>
+  <p><label>Land value: <input type="textbox" id="txtNewLand" /></label><button id="btnGenNewLand">Auto</button><span class='ui-state-error ui-corner-all thin' id='errNewLand'>Please enter or generate a land value for your stronghold's starting hex.</span></p>
+  <p>
+   <label>Your alignment: <select id="selAlign"><option>Lawful</option><option>Neutral</option><option>Chaotic</option></select></label>
+   <label>Starting cash (gp): <input type="textbox" id="txtCash" value="0" /></label><span class='ui-state-error ui-corner-all' id='errCash'>You don't have enough cash to build the stronghold you are ordering!</span>
+   <label>Starting location: <select id="selLocation"><option>Civilized</option><option>Borderlands</option><option>Wilderness</option></select></label>
+   <label id='liege'><input type='checkbox' id='chkLiege' /> Pay taxes to a liege?</label>
+   <span id='spMinCost'>Minimum stronghold cost (before discounts): <span>15,000</span>gp</span>
+   <label>Cost of first stronghold: <input type="textbox" id="txtCost" /></label><span class='ui-state-error ui-corner-all' id='errCost'>Please enter the initial cost of your stronghold. This must be equal to or higher than the minimum value.</span>
+  </p>
+  <div>
+   <p>Time to build: <span id='spBuildTime'></span> months.</p>
+   <p>Number of engineers required: <span id='spEngineers'>0</span>, costing <span id='spEngineersCost'>0</span>gp per month.</p>
+  </div>
+  <fieldset id="strongholdFaster">
+   <label><input type="radio" name="buildspeed" id="buildNormal" checked="true" />Build at normal speed</label>
+   <label><input type="radio" name="buildspeed" id="buildFaster" />Build 25% faster (50% cost increase)</label>
+   <label><input type="radio" name="buildspeed" id="buildFastest" />Build 50% faster (double cost)</label>
+  </fieldset>
+
+  <fieldset id="fieldChaotic">
+   <label><input type="radio" id="radHuman" name="fieldChaotic" checked="true" />Human</label>
+   <label><input type="radio" id="radBeast" name="fieldChaotic" />Beastmen</label>
+  </fieldset>
+  <p>Current cost to start building a stronghold is <span id='spStrongholdCost'>0</span>, with a monthly cost of <span id='spMonthlyFee'>0</span> over <span id='spBuildTime2'>0</span> months. Total cost: <span id='spTotal'>0</span>gp</p>
+  <p>Generate starting population by rolling <span id="spStartPop">8d6</span> x 10</p>
+  <p><label>Starting pop. (families): <input type="textbox" id="txtStartPop" /></label><button id="btnStartPop">Auto</button><span class='ui-state-error ui-corner-all thin' id='errStartPop'>Please enter or generate a starting population number.</span></p>
+ <p><label><input type="radio" id="radSeason" name="radSeason" checked="true" />Season starts when the stronghold is finished</label>
+ <label><input type="radio" name="radSeason" />Season follows yearly quarters</label></p>
+ <p><label><input type='checkbox' id='chkFollowers' /> Roll followers (this will initiate your garrison with your starting followers)</label></p>
+  <p><button id="btnFastForward">Make My Stronghold</button></p>
+ </fieldset>
+ <div id="sectionDomain">
+  <fieldset>
+   <legend>Domain Information</legend>
+   <table id='tblDomainInfo'>
+    <tr>
+     <td>
+      <p><span id='spDate'></span></p>
+      <p>New season <span id='spNewSeason'></span></p>
+      <p>Population, not counting cities: <span id='spTotalPop'></span> families (<span id='spTotalPopMax'></span> maximum population). <span id='spStronghold'></span></p>
+     </td>
+     <td><p>Current morale:</p><ul id="ulMorale"></ul></td>
+    </tr><tr>
+     <td><p>Expected income:</p><ul id="ulIncome"></ul></td>
+     <td><p>Expected outflow:</p><ul id="ulOutflow"></ul></td>
+    </tr><tr>
+    <tr>
+     <td><p>The people expect the default garrison funds, etc., as follows:</p><ul id='ulDefaults'></ul></td><td></td>
+    </tr>
+    <tr><td colspan="2" id='tdCitiesHolder'>Cities:<div id='divCities'></div></td></tr>
+   </table>
+  </fieldset>
+  <fieldset>
+   <legend> Domain Upkeep and Expansion </legend>
+   <p>Total funds available: <span id='spTotalFunds'></span>gp</p>
+   <p><label>Withdraw from domain fund: <input type="number" id="txtWithdraw" value="0" min="0" /></label>
+   <label>Deposit to domain fund: <input type="number" id="txtDeposit" value="0" min="0" /><label>
+   </p>
+   <p><label>Agricultural investment: <input type='number' id='txtLandInvest' value='0' min='0' step='1000' /></p>
+   <fieldset>
+    <label>Stronghold improvement cost: <input type="number" id='txtStrongholdImprove' min='0' value='0' /></label>
+    <label><input type="radio" name="buildspeed2" id="radNormal" checked="true">Build at normal speed</label>
+    <label><input type="radio" name="buildspeed2" id="radFaster">Build 25% faster (50% cost increase)</label>
+    <label><input type="radio" name="buildspeed2" id="radFastest">Build 50% faster (double cost)</label>
+    <span id='spImproveStronghold'></span>
+   </fieldset>
+   <p><label>Current taxes (gp/family): <input type="number" id="txtTaxes" min="0" value="2" /></label></p>
+   <p><label>Current garrison (<span id='spGarrisonFam'></span>gp/family): <input type="number" id="txtGarrison" min="0" /></label></p>
+   <p><label>Garrison away (total gp): <input type="number" id="txtGarrisonAway" min="0" value="0" /></label></p>
+   <p><button id='btnGarrisonSimple'>Switch to Simple Garrison</button> <button id='btnAddUnits'>Add Units</button></p>
+   <table id='tblUnits'></table>
+   <div id='pLiege'>
+    <p><label><span></span>gp owed to liege; paying: <input type='number' id='txtLiegeTax' disabled='disabled' class='disabled' /></label><label class='thin'><input type='checkbox' id='chkLiegePay' checked='true' /> Pay full amount?</label>
+    <ul></ul>
+   </div>
+   <p><label><input type="checkbox" id="chkFestival" />Festival this month (5gp per family)</label>
+   <label><input type="checkbox" id="chkTithe" /> Pay domain tithe?</label>
+   <label><input type="checkbox" id="chkReligion" /> Change the domain's religion?</label>
+   <label><input type="checkbox" id="chkWar" /> Domain was attacked this month!</label></p>
+   <p><button id='btnNewHex'>Add New 6-mile Hex</button> <button id='btnRemLand'>Abandon/Gift Land</button></p>
+   <p><button id="btnFound">Found City</button></p>
+   <p><button id="btnProceed">Advance Month</button> <button id="btnDomainSave">Save Without Advancing</button></p>
+  </fieldset>
+ </div>
+ <fieldset id='sectionFound'>
+  <p><label>Settlement Name:<input type='textbox' id='txtCityName' /></label></p>
+  <p><label>Population to move into settlement: <input type='number' id='txtCityPop' min='75' max='250' value='75' /></label></p>
+  <p><label>Initial investment (gp):<input type='number' id='txtCityInvest' min='0' value='0' /></p>
+  <p><button id='btnFoundConfirm'>Confirm Settlement</button><button id='btnFoundCancel'>Cancel</button></p>
+ </fieldset>
+ <fieldset id="sectionGiveLand">
+  <p>Select which pieces of land you wish to give away, below.</p>
+  <div></div>
+  <p><label>How many families? <input type='number' id='txtGiveFam' min='0' value='0' /></label></p>
+  <p><button id='btnLandOk'>Ok</button> <button id='btnLandCancel'>Cancel</button></p>
+ </fieldset>
+</div>
+</div></div></div></div>
+
+<div id="footer"><a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2016 Autarch LLC</div>
+</body>

@@ -1,0 +1,69 @@
+{"name":"Illusion Spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"Create illusion, non-visual mono-sensory","value":3},
+{"name":"Create illusion, visual mono-sensory","value":9},
+{"name":"Create illusion, bi-sensory","value":12},
+{"name":"Create illusion, multi-sensory","value":15}
+]},{"id":"effectmods","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Illusion limited to 1 obviously fake, harmless category","value":0.2},
+{"name":"Illusion limited to 1 category (e.g. terrain)","value":0.7},
+{"name":"Illusion static","value":0.7},
+{"name":"Illusion dynamic (animated/moving)","value":1}
+]},{"id":"effects2","title":"Effect","type":"checkbox","add":1,"values":[
+{"name":"Target becomes completely inaudible","value":22},
+{"name":"Target becomes complete invisible","value":24},
+{"name":"Target surrounded by mirror images","value":24},
+{"name":"Send phantasmal killer against target","value":130}
+]},{"id":"control","title":"Control","type":"checkbox","add":0,"values":[
+{"name":"Illusion under control of caster for duration","value":2}
+]},{"id":"targeting","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"--Target by Number of Creatures--","value":0},
+{"name":"1 creature","value":1},
+{"name":"1 or more creatures within 10' radius","value":1.5},
+{"name":"1-100 creatures within 120' radius","value":4.5},
+{"name":"--Target by Area of Effect--","value":0},
+{"name":"1' x 1' x 1' cube","value":1},
+{"name":"10' x 10' x 10' cube","value":2},
+{"name":"15' x 15' x 15' cube","value":2.1},
+{"name":"20' x 20' x 20' cube","value":2.2},
+{"name":"30' x 30' x 30' cube","value":2.3},
+{"name":"40' x 40' x 40' cube","value":2.4},
+{"name":"480' diameter sphere","value":8.5}
+]},{"id":"","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"Self","value":0.33},
+{"name":"0'","value":0.5},
+{"name":"30'","value":0.75},
+{"name":"60'","value":1},
+{"name":"10'per level","value":1},
+{"name":"240'","value":1.2}
+]},{"id":"","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"1 round per level","value":1},
+{"name":"Concentration","value":1},
+{"name":"Concentration plus 1 round","value":1.1},
+{"name":"Concentration plus 2 rounds","value":1.2},
+{"name":"Concentration plus 3 rounds","value":1.3},
+{"name":"Concentration plus 4 rounds","value":1.4},
+{"name":"1 turn","value":1.75},
+{"name":"2 turns","value":2},
+{"name":"3 turns","value":2.25},
+{"name":"6 turns","value":2.5},
+{"name":"1 day","value":3},
+{"name":"Indefinite (permanent until disbelieved/expires)","value":3.25}
+]},{"id":"","title":"Duration Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Expires if illusion successfully attacked","value":0.75},
+{"name":"Expires if illusion touched by intelligent creature","value":0.75},
+{"name":"Expires if target creature speaks","value":0.9},
+{"name":"Expires if target creature successfully attacked","value":0.9},
+{"name":"Expires if target creature casts spell","value":0.75},
+{"name":"Expires if target creature attacks","value":0.75},
+{"name":"Expires if target creature moves","value":0.5},
+{"name":"Duration does not begin until triggered","value":2.75}
+]},{"id":"","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"Beneficial effect*","value":1},
+{"name":"No saving throw permitted (e.g. cannot disbelieve)","value":1},
+{"name":"Saving throw avoids spells effect (e.g. disbelieved)","value":0.5}
+]},{"id":"","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":1.5},
+{"name":"Custom","value":-1}
+]}]}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shifting Horizon Item List</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/shifting/shifting.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="/shifting/stars.css" rel="stylesheet">
+<style type="text/css">
+body{background-color:#000}
+#wrapper{width:60em;margin:0 auto}
+#header,#planet,#items,#staroff{background-color:#999;width:60em;border-radius:1em;padding:1em;margin:1em;overflow:auto;opacity:1}
+#header{text-align:center}
+#planet p{display:block;float:left;width:45%;text-align:center;font-size:125%}
+#tables{background-color:#999;padding:1em}
+#tables table{table-layout:fixed;border-collapse:collapse;font-size:75%}
+#tables table td{text-align:left;vertical-align:top;padding:0 5px}
+#tables table td:first-child{width:4em;text-align:right}
+#tables table td:nth-child(2){width:10em;text-align:left}
+#tables table td:nth-child(3){width:3em;text-align:center}
+#tables table td:nth-child(4){width:20em;text-align:left}
+#tables table td:nth-child(5){width:3em;text-align:center}
+#tables table td:nth-child(6){width:8em;text-align:center}
+#planet p#result{background-color:#aaa;border-radius:1em;padding:1em;display:block;font-size:175%;width:auto;float:none;margin:0 auto;clear:both}
+#staroff{text-align:center}
+</style>
+<script type="text/javascript">
+startme();
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id='header'><a href="/index.html">Home</a><a href="weapons.html">Weapons</a><a href="index.html">SH Home</a></div>
+<div id="planet">
+Select the system you are currently in. To get jumpspace travel time to another system, select and ending system.
+<p>Current system<br><select id='pstart'></select></p>
+<p>Ending system<br><select id='pend'></select></p>
+<p id='result'></p>
+</div>
+<div id='items'>Select your current system above for a price list of items in that system.</div>
+<div id='staroff'><button>Toggle Starfield</button></div>
+</div>
+<div id="space"><div class="stars"></div><div class="stars"></div><div class="stars"></div><div class="stars"></div><div class="stars"></div></div>
+</body>

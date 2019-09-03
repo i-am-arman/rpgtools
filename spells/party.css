@@ -1,0 +1,70 @@
+
+.wide{width:95%}
+#radios label{margin:0}
+#dvCore,#dvPHB,#dvCust{width:100%;padding:.5em;clear:left}
+.classholder{width:100%}
+#dvCore>label:first-child,#dvPHB>label:first-child,#dvCust>label:first-child{float:left;width:35%;margin-right:0}
+.classholder div{height:2em;width:95%;border-bottom:1px dotted #333;float:left;width:45%;margin-right:2em}
+input[type=textbox]{width:2em;float:right;text-align:center}
+input[type=textbox]:disabled{background-color:#333}
+#other label{display:block;width:45%;float:left}
+#other h3{clear:both}
+#results div p{font-size:75%;margin:0;padding:.5em}
+.npc{border:1px solid #33a;border-radius:5px;padding:5px}
+.spellholder{border:1px solid #333;border-radius:5px;padding:5px;font-size:75%;position:relative;height:auto}
+.spellholder table{border-collapse: collapse;margin:0 auto}
+.spellholder table td,.spellholder table th{border:1px solid #333;padding:5px}
+.spellholder .spellmin{display:block;width:1em;height:1em;border:1px solid #333;text-align:center;position:absolute;right:0;top:0;margin:-1px -1px 0 0;background-color:#222}
+.spellholder.minimized{height:1.2em;overflow:hidden;width:15em}
+
+.icon:before{display:inline-block;content:"";width:1.1em;height:1.1em;margin-right:.25em;margin-bottom:-0.2em;font-size:normal}
+.icon.noicon:before{display:none}
+.icon.noicon svg{display:none}
+.icon.notext span{font-size:0}
+
+.lawful:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/village.svg") no-repeat}
+.neutral:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/barracks-tent.svg") no-repeat}
+.chaotic:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/arson.svg") no-repeat}
+
+.classprof:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/graduate-cap.svg") no-repeat}
+.genprof:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/medallist.svg") no-repeat}
+.sexmale:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/male.svg") no-repeat}
+.sexfemale:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/female.svg") no-repeat}
+.health:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/life-bar.svg") no-repeat}
+.armor:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/visored-helm.svg") no-repeat}
+.shield:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/checked-shield.svg") no-repeat}
+.weapons:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/crossed-swords.svg") no-repeat}
+.equipment:before {background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/backpack.svg") no-repeat}
+.language:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/conversation.svg") no-repeat}
+.divine:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/angel-wings.svg") no-repeat}
+.arcane:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/pointy-hat.svg") no-repeat}
+.library:before {background: url("/img/icons/lorc/originals/svg/ffffff/transparent/book-storm.svg") no-repeat}
+
+.req1:before{background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/toolbox.svg") no-repeat}
+.req2:before{background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/blacksmith.svg") no-repeat}
+.req3:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/enlightenment.svg") no-repeat}
+.req4:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/holy-symbol.svg") no-repeat}
+.req5:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/tinker.svg") no-repeat}
+.req6:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/guitar.svg") no-repeat}
+.req7:before{background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/spell-book.svg") no-repeat}
+.req8:before{background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/lockpicks.svg") no-repeat}
+.req9:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/robot-golem.svg") no-repeat}
+.gem:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/cut-diamond.svg") no-repeat}
+.jewelry:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/gem-pendant.svg") no-repeat}
+.scroll:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/scroll-unfurled.svg") no-repeat}
+.tmap:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/treasure-map.svg") no-repeat}
+.potion:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/potion-ball.svg") no-repeat}
+.ring:before{background: url("/img/icons/delapouite/originals/svg/ffffff/transparent/globe-ring.svg") no-repeat}
+.wand:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/fairy-wand.svg") no-repeat}
+.mmisc:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/lightning-spanner.svg") no-repeat}
+.msword:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/sparkling-sabre.svg") no-repeat}
+.mweapon:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/all-for-one.svg") no-repeat}
+.marmor:before{background: url("/img/icons/lorc/originals/svg/ffffff/transparent/lightning-shield.svg") no-repeat}
+.cp svg{fill:#B87333}
+.sp svg{fill:#E6E8FA}
+.ep svg{fill:#2F2F4F}
+.gp svg{fill:#D9D919}
+.pp svg{fill:#fff}
+.cp:before,.sp:before,.ep:before,.gp:before,.pp:before{display:none}
+svg{fill:currentColor;width:1.1em;height:1.1em}
+object{width:100%;height:30em}

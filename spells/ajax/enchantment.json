@@ -1,0 +1,79 @@
+{"name":"Enchantment spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"Target confused for duration of spell","value":11},
+{"name":"Target asleep for duration of spell","value":15},
+{"name":"Target mesmerized for duration of spell","value":30},
+{"name":"Target charmed for duration of spell","value":30},
+{"name":"Target feebleminded fur duration of spell","value":30},
+{"name":"Target held for duration of spell","value":36},
+{"name":"Target flees in panic for 30 rounds","value":40},
+{"name":"Target commanded for duration of spell","value":60}
+]},{"id":"target","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"--Target by HD of Creatures--","value":0},
+{"name":"1 creature of up to 4+1 HD","value":1},
+{"name":"1 creature of any HD","value":1.1},
+{"name":"1d4 creatures of up to 4 HD","value":1.2},
+{"name":"1d4 creatures of any HD","value":1.5},
+{"name":"6 HD worth of creatures","value":1.75},
+{"name":"2d8 (or 3d6) HD of creatures of up to 4 HD","value":2.25},
+{"name":"1 creature up to 4+1 HD or 2d8 HD of creatures of 4 HD","value":2.3},
+{"name":"1 creature of any HD or 3d6 HD of creatures of 4 HD-","value":2.5},
+{"name":"2d8 (or 3d6) HD worth of creatures of any HD","value":3},
+{"name":"24 HD worth of creatures","value":4},
+{"name":"3d6 creatures","value":5},
+{"name":"--Target by Area of Effect--","value":0},
+{"name":"60' long x 30' wide cone","value":5},
+{"name":"480' diameter sphere","value":8}
+]},{"id":"targetmods1","title":"Targeting Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Only target undead creatures","value":0.75},
+{"name":"Only target living creatures","value":0.75},
+{"name":"Only target animals and giant animals","value":0.5},
+{"name":"Only target humanoids","value":0.5},
+{"name":"Only target plants","value":0.5},
+{"name":"Attack throw required to target spell","value":0.4},
+{"name":"Creatures with fewest HD are affected first*","value":0.5}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"0'/ Touch*","value":0.4},
+{"name":"15'","value":0.6},
+{"name":"30'","value":0.8},
+{"name":"60'","value":1},
+{"name":"120'","value":1.1},
+{"name":"180'","value":1.25},
+{"name":"240'","value":1.5},
+{"name":"360'","value":1.75}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Concentration, must remain stationary","value":0.8},
+{"name":"Concentration, maximum 1 round per level","value":0.9},
+{"name":"Concentration","value":1},
+{"name":"Instantaneous","value":1},
+{"name":"1 round per level","value":1.1},
+{"name":"12 rounds","value":1.15},
+{"name":"1 turn per level","value":1.2},
+{"name":"2d8 or 4d4 turns","value":1.2},
+{"name":"6 turns","value":1.2},
+{"name":"9 turns","value":1.25},
+{"name":"Until saving throw succeeds*","value":1.33},
+{"name":"Indefinite (permanent until dispelled)","value":2.2}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted (initially)","value":1},
+{"name":"Saving throw avoids spell effect","value":0.5},
+{"name":"Saving throw avoids spell effect (intelligent only)","value":0.6},
+{"name":"Saving throw avoids spell effect (more than 2 HD)","value":0.75}
+]},{"id":"savemods","title":"Saving Throw Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Saving throw is at -4 if target is arcane caster","value":1.1},
+{"name":"Saving throw is at -2 if only 1 creature targeted","value":1.1}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane enchantment other than hold","value":1},
+{"name":"Arcane hold","value":1.5},
+{"name":"Divine charm, command, confusion, feeblemind, sleep","value":1.5},
+{"name":"Divine fear","value":1.33},
+{"name":"Divine hold","value":1}
+]},{"id":"sourcemods","title":"Source Modifier","type":"dropdown","add":0,"values":[
+{"name":"Arcane enchantment (any) exclusively affecting undead","value":1.25},
+{"name":"Arcane enchantment (any) exclusively affecting animals","value":2},
+{"name":"Divine charm affecting exclusively humanoids","value":2},
+{"name":"Divine command affecting exclusively humanoids","value":1.33},
+{"name":"Divine enchantment (any) exclusively affecting undead","value":0.66},
+{"name":"Other divine or archane enchantment","value":1},
+{"name":"Custom","value":-1}
+]}]}

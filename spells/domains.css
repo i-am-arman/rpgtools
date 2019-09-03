@@ -1,0 +1,35 @@
+.roundbox{margin:0.5em auto}
+#sectionQuick,#sectionNew,#customClass,#fieldChaotic,#sectionDomain,#sectionFound,#sectionGiveLand{display:none}
+#ulLoad{list-style:none}
+#ulLoad .btnLoad{width:15em}
+#ulLoad .btnLoad .ui-button-icon{float:left}
+#sectionQuick select,#sectionNew select{width:15em;float:right}
+#sectionQuick label,#sectionNew label,#sectionDomain label{display:inline-block;clear:left;width:25em}
+#spQuickValue{display:inline-block;clear:left;width:25em;padding:0.5em;border:1px solid #004}
+#spQuickValue input{margin:0.4em}
+#spQuickCity{display:block;border:1px solid #004;border-radius:5px}
+#spQuickCity div{padding:5px;border:1px solid #008;border-radius:5px;margin:5px}
+#tblDomainInfo,#tblDomainInfo td{border:1px solid #777;border-radius:5px}
+#tblDomainInfo td{border-radius:0px 5px 5px 0px;padding:0.5em}
+#tblDomainInfo tr td:first-child{border-radius:5px 0px 0px 5px;width:50%}
+#tblDomainInfo tr #tdCitiesHolder{border-radius:5px}
+#spImproveStronghold{display:block}
+.wide{width:95%}
+input[type=textbox]{width:10em;float:right;text-align:center}
+input[type=number]{width:5em;float:right;text-align:right}
+input[type=textbox]:disabled{background-color:#333}
+p{position:static}
+.fileButton input{width:0.1px;height:0.1px;opacity:0;overflow:hidden;position:absolute;z-index:-1}
+#spMinCost{display:inline-block;margin:1em 0}
+.ui-state-error{display:inline-block;width:17em;padding:5px;margin-left:1em;vertical-align:middle}
+.ui-state-error.thin,#sectionDomain .thin{width:12em}
+.popup .ui-dialog.content{background-color:rgba(0,0,0,0.75);padding: 0.5em;border-radius: 5px}
+.minimized{height:0.5em;overflow:hidden}
+.fieldCity legend{cursor:pointer}
+.fieldCity table tr td:first-child{width:50%}
+#sectionDomain .fieldCity li>label{width:auto}
+#tblUnits{width:90%;margin:1em auto;font-size:80%}
+#tblUnits,#tblUnits th,#tblUnits td{border:1px solid #777;border-collapse:collapse}
+#pLiege ul{width:45%;display:inline-block;margin-top:-1em}
+.popup input[type=textbox]{width:18em}
+.popup input[type=number]{width:10em}

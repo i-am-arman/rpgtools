@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Shifting Horizon Weapon List</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="/shifting/stars.css" rel="stylesheet">
+<style type="text/css">
+body{background-color:#000}
+#wrapper{width:60em;margin:0 auto}
+#header,#planet,#items,#staroff{background-color:#999;width:60em;border-radius:1em;padding:1em;margin:1em;overflow:auto;opacity:1}
+#header{text-align:center}
+#planet p{display:block;float:left;width:45%;text-align:center;font-size:125%}
+#tables{background-color:#999;padding:1em}
+#tables table{table-layout:fixed;border-collapse:collapse;font-size:75%}
+#tables table td{text-align:center;vertical-align:top;padding:0 5px;width:3em}
+#tables table td:first-child{width:8em;text-align:left}
+#tables table td:nth-child(2){width:6em}
+#tables table td:nth-child(7){width:8em;text-align:center}
+#tables table td:nth-child(8){width:20em;text-align:left}
+#planet p#result{background-color:#aaa;border-radius:1em;padding:1em;display:block;font-size:175%;width:auto;float:none;margin:0 auto;clear:both}
+#staroff{text-align:center}
+</style>
+<script type="text/javascript">
+var myitems;
+$(function(){
+ $('#staroff button').button().click(function(){
+  $('#space').toggle();
+ });
+ $('a').button();
+ getWeapons();
+});
+
+function getWeapons(){
+ $.getJSON('/shifting/weapons.json',function(data){
+  myitems=data;
+  $('#items').append('<div id="tables"></div>');
+  for(var i=0;i<data.weapons.length;i++){
+   $('#tables').append('<h2>'+data.weapons[i].category+'</h2><div id="tbl'+i+'"><table><th>Name</th><th>Damage</th><th>Range</th><th>RoF</th><th>Weight</th><th>Shots</th><th>Ammo</th><th>Notes</th></table></div>');
+   for(var j=0;j<data.weapons[i].items.length;j++){
+    var itm=data.weapons[i].items[j];
+    $('#tbl'+i+' table').append('<tr><td>'+itm.name+'</td><td>'+itm.damage+'</td><td>'+itm.range+'</td><td>'+itm.rof+'</td><td>'+itm.weight+'</td><td>'+itm.shots+'</td><td>'+itm.ammo+'</td><td>'+itm.notes+'</td></tr>');
+   }
+  }
+  $('#tables').accordion({collapsible: true,heightStyle: "content"});
+ });
+}
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id='header'><a href="/index.html">Home</a><a href="index.html">SH Home</a><a href="items.html">Items and Distances</a></div>
+<div id='items'>
+<b>Notes</b>: 3RB=Three Round Burst, AP=Armor Piercing, HW=Heavy Weapon, SA=Semi-Auto (may fire single shots and double-tap). Burst Templates are Small (SBT), Medium (MBT), Large (LBT), or Cone.<br>
+Rof=Rate of Fire (maximum shots per round), Str=Strength die roll<br>
+Weapons with damage of (*) use special ammunition that has different damage/effects for each type.
+</div>
+<div id='staroff'><button>Toggle Starfield</button></div>
+</div>
+<div id="space"><div class="stars"></div><div class="stars"></div><div class="stars"></div><div class="stars"></div><div class="stars"></div></div>
+</body>

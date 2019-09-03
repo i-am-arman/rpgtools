@@ -1,0 +1,56 @@
+{"name":"Detection Spells","values":[
+{"id":"effects","title":"Effect(s) Base Cost","type":"checkbox","add":1,"values":[
+{"name":"Detect evil/good in range","value":5},
+{"name":"Detect ritual magic in range","value":5},
+{"name":"Detect danger in range","value":8},
+{"name":"Detect known object in range","value":8},
+{"name":"Detect invisible in range","value":10},
+{"name":"Detect magic in range","value":10},
+{"name":"Detect poison in range","value":10},
+{"name":"Detect undead in range","value":10},
+{"name":"Detect treasure in range","value":15},
+{"name":"Detect charm in range","value":20},
+{"name":"Detect secret doors in range","value":20},
+{"name":"Detect trap in range","value":20},
+{"name":"Detect curse in range","value":30}
+]},{"id":"effectmods","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Spell takes 1 turn to cast","value":0.8},
+{"name":"Spell can only be performed once per week","value":0.2}
+]},{"id":"target","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"All areas/creatures/objects within range","value":1},
+{"name":"1 small area/object/creature within range","value":0.7}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"Self","value":0.2},
+{"name":"0'/ Touch*","value":0.5},
+{"name":"30'","value":0.8},
+{"name":"60'","value":1},
+{"name":"120'","value":1.5},
+{"name":"240'","value":2},
+{"name":"360'","value":3},
+{"name":"1/2 mile","value":4},
+{"name":"1 mile","value":5},
+{"name":"5 miles","value":6},
+{"name":"25 miles","value":7},
+{"name":"100 miles","value":8}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Concentration","value":1},
+{"name":"1 round per level","value":0.25},
+{"name":"1 turn","value":0.5},
+{"name":"2 turns","value":1},
+{"name":"3 turns","value":1.2},
+{"name":"4 turns","value":1.5},
+{"name":"5 turns","value":1.7},
+{"name":"6 turns","value":2},
+{"name":"1 turn per level","value":2},
+{"name":"1 Day","value":8}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted","value":1},
+{"name":"Saving throw avoids spell effect","value":0.5}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Divine detecting invisibility or known objects","value":1.5},
+{"name":"Divine detecting secret doors or treasure","value":2},
+{"name":"Arcane detecting evil or traps","value":2},
+{"name":"Arcane detect charm, curse, or danger","value":3},
+{"name":"Other divine or archane enchantment","value":1},
+{"name":"Custom","value":-1}
+]}]}

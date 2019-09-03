@@ -1,0 +1,97 @@
+{"name":"Protection Spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"--Armor--","value":0},
+{"name":"AC 5 v. missiles and melee","value":5},
+{"name":"AC 7 v. missiles and AC 5 v. melee","value":10},
+{"name":"AC 7 v. melee and AC 5 v. missiles","value":10},
+{"name":"AC 7 v. missiles and melee","value":20},
+{"name":"--Enhancements--","value":0},
+{"name":"+1 bonus to armor class or saving throws","value":5},
+{"name":"+2 bonus to armor class or saving throws","value":10},
+{"name":"+3 bonus to armor class or saving throws","value":20},
+{"name":"+4 bonus to armor class or saving throws","value":33},
+{"name":"--Magic Invulnerabilities--","value":0},
+{"name":"Invulnerability to specific level 1 spell","value":5},
+{"name":"Invulnerability to specific level 2 spell","value":10},
+{"name":"Invulnerability to specific level 3 spell","value":15},
+{"name":"Invulnerability to specific level 4 spell","value":20},
+{"name":"Invulnerability to specific level 5 spell","value":25},
+{"name":"Invulnerability to specific level 6 spell","value":30},
+{"name":"Invulnerability to specific level 7 spell","value":35},
+{"name":"Invulnerability to 1 effect of spell type (e.g. charm)*","value":25},
+{"name":"Invulnerability to 1 type of spell (e.g. death spells)","value":55},
+{"name":"Invulnerability to all 1st level spells","value":25},
+{"name":"Invulnerability to all 1st – 2nd level spells","value":35},
+{"name":"Invulnerability to all 1st – 3rd level spells","value":55},
+{"name":"Invulnerability to all 1st - 4th level spells","value":85},
+{"name":"Invulnerability to all 1st – 5th level spells","value":125},
+{"name":"Invulnerability to all 1st – 6th level spells","value":175},
+{"name":"--Resistances and Immunities--","value":0},
+{"name":"Resistance to normal missiles or normal melee","value":10},
+{"name":"Resistance to damage type (e.g. acid, cold, fire)","value":15},
+{"name":"Immunity to normal missiles or normal melee","value":15},
+{"name":"Resistance to all normal weapons","value":20},
+{"name":"Immunity to all normal weapons","value":40},
+{"name":"Immunity to damage type (e.g. acid, cold, fire)","value":36},
+{"name":"--Wards--","value":0},
+{"name":"Ward v. certain monsters (e.g. elementals)","value":3},
+{"name":"Ward v. monster type (e.g. enchanted creatures)","value":6},
+{"name":"Ward v. magic","value":25}
+]},{"id":"effectmods","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Saving throw bonus limited to 4 of 5 categories","value":0.7},
+{"name":"Saving throw bonus limited to 3 of 5 categories","value":0.5},
+{"name":"Protection only applies v. “evil”","value":0.9}
+]},{"id":"targeting","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"1 creature","value":1},
+{"name":"1 creature + 1 per 5 additional levels","value":2},
+{"name":"1 creature + 2 per 5 additional levels","value":3},
+{"name":"1 creature + 1 per 2 additional levels","value":4},
+{"name":"1 creature per level within 30' diameter","value":5},
+{"name":"1 creature per level","value":7},
+{"name":"--Target by Area of Effect--","value":0},
+{"name":"10' diameter sphere","value":1.1},
+{"name":"10' long x 10' wide x 10' deep cube","value":1.25},
+{"name":"15' diameter sphere","value":1.33},
+{"name":"20' diameter sphere","value":1.5},
+{"name":"20' long x 20' wide x 20' deep cube","value":1.75},
+{"name":"25' diameter sphere","value":3},
+{"name":"30' diameter sphere","value":5}
+]},{"id":"creature","title":"Creature Targeting Modifiers*","type":"dropdown","add":0,"values":[
+{"name":"Protection in 5' radius sphere around target","value":1.25},
+{"name":"Protection in 7.5' radius sphere around target","value":1.5},
+{"name":"Protection in 10' radius sphere around target","value":1.75},
+{"name":"Protection in 12.5' radius sphere around target","value":2.5},
+{"name":"Protection in 15' radius sphere around target","value":3},
+{"name":"Protection in 30' radius sphere around target","value":10},
+{"name":"Target by Area of Effect","value":1}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"Self","value":0.75},
+{"name":"0'","value":1},
+{"name":"30'","value":1.1},
+{"name":"60'","value":1.2},
+{"name":"90'","value":1.3},
+{"name":"120'","value":1.4},
+{"name":"150'","value":1.5},
+{"name":"180'","value":1.6}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"Instantaneous","value":0.5},
+{"name":"1 round per level","value":0.75},
+{"name":"Concentration","value":1},
+{"name":"1 turn","value":1},
+{"name":"3 turns","value":1.2},
+{"name":"6 turns","value":1.33},
+{"name":"1 turn per level","value":1.33},
+{"name":"12 turns","value":1.75}
+]},{"id":"durationmod","title":"Duration Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Caster must remain stationary for duration","value":0.5},
+{"name":"Concentration required to sustain to max duration","value":0.6}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"Beneficial effect","value":1},
+{"name":"No saving throw permitted","value":4},
+{"name":"Saving throw avoids spell effect","value":0.5}
+]},{"id":"savemods","title":"Saving Throw Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Saving throw is at -2 if only 1 creature targeted*","value":1.1}
+]},{"id":"multiplier","title":"Multiplier","type":"dropdown","add":0,"values":[
+{"name":"Arcane/Divine","value":1},
+{"name":"Custom","value":-1}
+]}]}

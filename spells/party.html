@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS NPC Party Generator</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="party.js"></script>
+<script type="text/javascript" src="namegen.js"></script>
+<script type="text/javascript" src="treasuregen.js"></script>
+<script type="text/javascript" src="magicgen.js"></script>
+<script type="text/javascript" src="spellgen.js"></script>
+<script type="text/javascript" src="/jsPDF/jsPDF-1.3.2/dist/jspdf.min.js"></script>
+<script type="text/javascript" src="partypdf.js"></script>
+<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+<link href="party.css" rel="stylesheet">
+<script type="text/javascript">
+$(function(){arman.NPCGenerator.Initialize();});
+</script>
+</head>
+<body>
+<div id="outer">
+<div id="header">Buy <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System">ACKS</a> and the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion">Player's Companion</a>! ~ <a href="/spells/index.html">Home</a> ~ <a href="/spells/spells.html">Spell Creator</a> ~ <a href="/spells/character.html">Class Creator</a> ~ <a href="/spells/race.html">Race Creator</a> ~ <a href="/spells/magic.html">Magic Type Creator</a> ~ <a href="/spells/party.html">NPC Party Gen</a> <label><input type="radio" name="radShow" id="radShowIcon" />Icons</label><label><input type="radio" name="radShow" id="radShowText" />Text</label> <label><input type="radio" name="radShow" id="radShowBoth" checked="true" />Both</label></div>
+<div id="wrapper" class="ui-widget ui-widget-content ui-corner-all">
+<div id="info" class="ui-widget-content">
+<div class="roundbox wide">
+ <p>Welcome to Party Generator, an interactive NPC party generating tool for the <a style="display:inline" href="http://www.autarch.co/buy-now">Adventurer, Conquerer, King</a> System. The data here is a combination of the Core rulebook and the Player's Companion, along with a few of my own custom classes. I will continue to add classes as I am able. If any part of this tool doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King books - they really are an awesome resource!</p>
+ <p>The generator below has the ability to create PDFs, but it's all new territory for me; I can't promise it will work. Good luck, though! And happy randomizing!</p>
+ <div id="selectors">
+  <fieldset id="radios">
+    <legend>Select classes to use</legend>
+    <label><input type="radio" name="radClass" id="radAll" checked="true"/>All</label>
+    <label><input type="radio" name="radClass" id="radFigt" myclass='fighter' />Fighters</label>
+    <label><input type="radio" name="radClass" id="radMage" myclass='mage' />Mages</label>
+    <label><input type="radio" name="radClass" id="radCler" myclass='cleric' />Clerics</label>
+    <label><input type="radio" name="radClass" id="radThief" myclass='thief' />Thieves</label>
+    <label><input type="radio" name="radClass" id="radBarb" myclass='barbarian' />Barbarians</label>
+    <label><input type="radio" name="radClass" id="radSelect" />As Below</label>
+  </fieldset>
+  <fieldset>
+   <legend>Or, manually select classes below</legend>
+   <div id="dvCore">
+    <label title="Selects or deselects all classes from the core manual."><input type="checkbox" id="chkCore" checked="true" /> Core classes</label><label><input type="checkbox" id="chkForceCore"/>Lock</label>
+    <div class="classholder"></div>
+   </div>
+   <div id="dvPHB">
+    <label title="Selects or deselects all classes from the Player's Companion"><input type="checkbox" id="chkPHB" checked="true" /> Player's Companion classes</label><label><input type="checkbox" id="chkForcePHB"/>Lock</label>
+    <div class="classholder"></div>
+   </div>
+   <div id="dvCust">
+    <label title="Selects or deselects all custom classes."><input type="checkbox" id="chkCust" checked="true"/>Custom Classes</label><label><input type="checkbox" id="chkForceCust"/>Lock</label>
+    <div class="classholder"></div>
+   </div>
+  </fieldset>
+  <fieldset id="other">
+   <legend>Select party details and generated groups</legend>
+   <h3>Party Details</h3>
+   <label> Number of Party Members (1-6) <input type="textbox" id="txtCount" value="1" disabled="true" /></label>
+   <label><input type="checkbox" checked="true" id="chkCount"/>Random count</label>
+   <label style="clear:left;"> NPC Party level (1-14) <input type="textbox" id="txtLvl" value="1" /></label>
+   <label><input type="checkbox" checked="true" id="chkLevel"/>Vary level</label>
+   <label><input type="checkbox" checked="true" id="chkReplace"/>Replace some NPCs with 'henchmen'</label>
+   <label><input type="checkbox" checked="true" id="chkAlign"/>Random Alignment</label>
+    <label><input type="checkbox" checked="true" id="chkAlignRespect"/>Respect Class Alignment</label>
+
+   <h3>Randomly Generate</h3>
+   <label><input type="checkbox" checked="true" id="chkName"/>Name and Gender</label>
+   <label><input type="checkbox" checked="true" id="chkStats"/>Stats and Hitpoints</label>
+   <label><input type="checkbox" checked="true" id="chkWeapons"/>Weapons, Armor, and Shield</label>
+   <label><input type="checkbox" checked="true" id="chkReq"/>Required equipment</label>
+   <label><input type="checkbox" checked="true" id="chkEquip"/>Misc. equipment</label>
+   <label><input type="checkbox" checked="true" id="chkMagic"/>Magical items</label>
+   <label><input type="checkbox" checked="true" id="chkMoney"/>Money</label>
+   <label><input type="checkbox" checked="true" id="chkProfs"/>General and Class Proficiencies</label>
+   <label><input type="checkbox" checked="true" id="chkLanguage"/>Languages Spoken</label>
+   <label><input type="checkbox" checked="true" id="chkSpellbook"/>Fill Spellbook</label>
+   <h3>Misc. Variables</h3>
+   <label><input type="checkbox" checked="true" id="chkLanguageDIY"/>Use DIY languages</label>
+   <label><input type="checkbox" checked="true" id="chkLibrarian"/>Use Librarian spells</label>
+  </fieldset>
+  <input type="button" id="btnGo" value="Go!" title="Generate an NPC party!"/>
+  <input type="button" id="btnPDF" value="Create PDF" title="Generate a PDF from the results" />
+  <div id='generated'></div>
+ </div>
+</div>
+</div></div></div></div>
+
+<div id="footer"><a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2016 Autarch LLC</div>
+</body>

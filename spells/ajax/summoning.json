@@ -1,0 +1,65 @@
+{"name":"Summoning Spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"Summon a creature","value":65},
+{"name":"Summon creatures totaling up to caster’s level in HD","value":75},
+{"name":"Summon 1d4 creatures","value":100},
+{"name":"Summon 4 creatures","value":150},
+{"name":"Summon 2d4 creatures","value":250},
+{"name":"Summon 3d4 creatures","value":500}
+]},{"id":"hd","title":"Maximum Hit Dice","type":"dropdown","add":0,"values":[
+{"name":"Creature may have up to 1 HD","value":0.15},
+{"name":"Creature may have up to 2 HD","value":0.25},
+{"name":"Creature may have up to 4 HD","value":0.4},
+{"name":"Creature may have up to 6 HD","value":0.6},
+{"name":"Creature may have up to 10 HD","value":0.8},
+{"name":"Creature may have up to 14 HD","value":1},
+{"name":"Creature may have up to 18 HD","value":1.33},
+{"name":"Creature may have up to 25 HD","value":2},
+{"name":"Creature may have up to 36 HD","value":2.5}
+]},{"id":"ability","title":"Maximum Special Ability","type":"dropdown","add":0,"values":[
+{"name":"Creature may have up to 3 special abilities (***)","value":2.33},
+{"name":"Creature may have up to 2 special abilities (**)","value":1.66},
+{"name":"Creature may have up to 1 special ability (*)","value":1}
+]},{"id":"effectmod","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Summoning may of any type and species","value":1.25},
+{"name":"Summoning restricted to general type (e.g. animals)","value":1},
+{"name":"Summoning restricted to certain monsters (e.g. djinni)","value":0.7},
+{"name":"Summoned creature(s)s passively hostile to caster","value":0.8},
+{"name":"Summoned creature(s) actively hostile to caster","value":0.5},
+{"name":"Caster must concentrate to control creature(s)","value":0.5},
+{"name":"Spell takes one turn to cast","value":0.8},
+{"name":"Spell can only be performed once per week","value":0.8},
+{"name":"Spell can only be performed once per day","value":0.9}
+]},{"id":"targeting","title":"Targeting","type":"dropdown","add":0,"values":[
+{"name":"Targets summoned only from within spell’s range","value":0.66},
+{"name":"Targets summoned from thin air (alternative plane, etc.)","value":1}
+]},{"id":"range","title":"Range","type":"dropdown","add":0,"values":[
+{"name":"10'","value":1},
+{"name":"30'","value":1.1},
+{"name":"60'","value":1.15},
+{"name":"120'","value":1.25},
+{"name":"240'","value":1.33},
+{"name":"360'","value":1.4},
+{"name":"480'","value":1.6}
+]},{"id":"duration","title":"Duration","type":"dropdown","add":0,"values":[
+{"name":"1 turn","value":0.5},
+{"name":"3 turns","value":0.6},
+{"name":"1 turn per level","value":0.6},
+{"name":"6 turns","value":0.75},
+{"name":"6 turns plus 1 turn per level","value":1},
+{"name":"12 turns","value":1},
+{"name":"1 day","value":1.25},
+{"name":"33 1/3 days","value":1.75},
+{"name":"Until one specific task is completed","value":2},
+{"name":"Indefinite (permanent until dispelled)","value":2.5}
+]},{"id":"durmod","title":"Duration Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Creature can be dismissed at will while controlled","value":1.1},
+{"name":"Creature freed if performs exceptional task","value":0.66}
+]},{"id":"saves","title":"Saving Throw","type":"dropdown","add":0,"values":[
+{"name":"No saving throw permitted","value":1},
+{"name":"Saving throw avoids spell effect","value":0.5}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":1.2},
+{"name":"Custom","value":-1}
+]}]}

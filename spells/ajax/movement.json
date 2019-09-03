@@ -1,0 +1,69 @@
+{"name":"Movement Spells","values":[
+{"id":"effects","title":"Effect(s)","type":"checkbox","add":1,"values":[
+{"name":"Target’s normal movement rate doubled","value":5},
+{"name":"Target can climb sheer surfaces at 20' per round","value":12},
+{"name":"Target can walk on water at normal rate","value":15},
+{"name":"Target’s attack routine doubled","value":20},
+{"name":"Target can fly (as fly spell)","value":35},
+{"name":"Target can fly and carry others (as broom of flying)","value":45},
+{"name":"Target can fly and carry others (as magic carpet)","value":50},
+{"name":"Caster can move target vertically 20' per round","value":20},
+{"name":"Caster can move target any direction 20'/round","value":40},
+{"name":"Caster teleports target any place within 360'","value":300},
+{"name":"Caster teleports target any place within 1 mile","value":450},
+{"name":"Caster teleports target any place within 10 miles","value":600},
+{"name":"Caster teleports target any place within 100 miles","value":900},
+{"name":"Caster teleports target any place in same plane","value":1250},
+{"name":"Caster teleports target any place in existence","value":2500}
+]},{"id":"effectmod","title":"Effect Modifiers","type":"checkbox","add":0,"values":[
+{"name":"All willing targets of spell aged 1 to 5 years","value":0.3},
+{"name":"Teleport effect has chance of error","value":0.5},
+{"name":"Teleport effect limited to one specific destination","value":0.66},
+{"name":"Willing target unstable while affected (as levitation)","value":0.66},
+{"name":"Unwilling target unstable while affected","value":1.5},
+{"name":"Willing target cannot carry anything while affected","value":0.66},
+{"name":"Unwilling target cannot carry anything if affected","value":1.5},
+{"name":"Target has normal carrying capacity while affected","value":1}
+]},{"id":"targeting","title":"Targeting Factor","type":"dropdown","add":0,"values":[
+{"name":"1 creature or object","value":1},
+{"name":"1 creature/object + 1 per 5 additional levels","value":1.5},
+{"name":"1 creature/object + 2 per 5 additional levels","value":2.5},
+{"name":"1 creature/object + 1 per 2 additional levels","value":3},
+{"name":"1 creature/object per level","value":4}
+]},{"id":"targetmod","title":"Target Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Attack throw required (versus unwilling target only)","value":0.66},
+{"name":"Only objects can be targeted","value":0.8},
+{"name":"Only creatures can be targeted","value":0.8},
+{"name":"Target must weigh 2 stone/caster level or less","value":0.8},
+{"name":"Unwilling targets permitted (must affect creatures)","value":1.5},
+{"name":"Caster can designate new target to affect","value":2}
+]},{"id":"range","title":"Range Factor","type":"dropdown","add":0,"values":[
+{"name":"Self","value":0.75},
+{"name":"0'/Touch*","value":1},
+{"name":"10'","value":1.1},
+{"name":"30'","value":1.2},
+{"name":"60'","value":1.33},
+{"name":"120'","value":1.66},
+{"name":"180'","value":1.75},
+{"name":"240'","value":2}
+]},{"id":"duration","title":"Duration Factor","type":"dropdown","add":0,"values":[
+{"name":"1 round (instantaneous)","value":0.1},
+{"name":"6 rounds","value":0.6},
+{"name":"1 turn","value":0.75},
+{"name":"3 turns","value":0.9},
+{"name":"6 turns","value":1},
+{"name":"1 turn per level","value":1},
+{"name":"6 turns plus 1 turn per level","value":1.5},
+{"name":"12 turns","value":2},
+{"name":"8 hours","value":4}
+]},{"id":"durationmod","title":"Duration Modifiers","type":"checkbox","add":0,"values":[
+{"name":"Concentration required to sustain spell","value":0.6}
+]},{"id":"saves","title":"Saving Throw Factor","type":"dropdown","add":0,"values":[
+{"name":"Beneficial effect","value":1},
+{"name":"Saving throw permitted for unwilling targets","value":1},
+{"name":"No saving throw permitted for unwilling targets","value":4}
+]},{"id":"source","title":"Source Factor","type":"dropdown","add":0,"values":[
+{"name":"Arcane","value":1},
+{"name":"Divine","value":1.25},
+{"name":"Custom","value":-1}
+]}]}
