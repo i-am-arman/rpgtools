@@ -29,146 +29,151 @@
 		<button id="saveit">Save Class</button>
 		<button id="displayit">Display Printable Page</button>
 	</div>
-	<div class="roundbox over">
-		<div>Name: <input id='name' type='text' />
-			<br />Points: <span id="points">0</span>
-			<br />XP: <span id="xp">0</span>
-			<br />Custom Powers: <span class="custpowers">0</span>
-			<br />Saves <span id="saves">as Fighter</span>
-			<br />Max level: <span id="level">14</span>
-			<br />Minimums: <span id="minimums">None</span>
-			<br />Prime: <span id="prime">INT</span>
-			<br />Weapons (choose <span id='weaponcount'>3</span>): <span id="weaponwarning">**</span><div id='weapons'></div>
-			<br />Armor: <span id='armor'></span>
-		</div>
-		<table id="levels">
-			<thead><tr><td>Lvl</td><td>XP</td><td>Title</td></tr></thead>
-			<tbody></tbody>
-		</table>
-	</div>
-	<div class="roundbox over">
-		<div id="powerholder">
-			<p>Custom Powers available: <span class="custpowers"></span></p>
-			<div class="tradeoffs"></div>
-			<ul><li lvl="1">1: <div></div></li></ul>
-		</div>
-		<div id="racepowers"></div>
-	</div>
-	<div class="roundbox over">
-		<p>Description</p>
-		<textarea id="desc" class="ui-corner-all" placeholder="Enter a description..."></textarea>
-	</div>
-	
-	<div class="roundbox">
-		<div id="hd">
-			<div>
-				Hit dice:
-				<select id="hdsel"><option value="0">0: 0 XP</option><option value="500">1: 500 XP</option><option value="1000">2: 1000 XP</option><option value="1500">3: 1500 XP*</option><option value="2000">4: 2000 XP*</option></select>
+	<div id="tabs">
+		<ul>
+			<li><a href="#tab-points">Points</a></li>
+			<li><a href="#tab-powers">Powers</a></li>
+		</ul>
+		<div id="tab-points">
+			<div class="roundbox over">
+				<div>Name: <input id='name' type='text' />
+					<br />Points: <span id="points">0</span>
+					<br />XP: <span id="xp">0</span>
+					<br />Custom Powers: <span class="custpowers">0</span>
+					<br />Saves <span id="saves">as Fighter</span>
+					<br />Max level: <span id="level">14</span>
+					<br />Minimums: <span id="minimums">None</span>
+					<br />Prime: <span id="prime">INT</span>
+					<br />Weapons (choose <span id='weaponcount'>3</span>): <span id="weaponwarning">**</span><div id='weapons'></div>
+					<br />Armor: <span id='armor'></span>
+				</div>
+				<table id="levels">
+					<thead><tr><td>Lvl</td><td>XP</td><td>Title</td></tr></thead>
+					<tbody></tbody>
+				</table>
 			</div>
-			<span id="hdspan">d4</span>
-		</div>
-		<div id="fighter">
-			<div>
-				Fighting:
-				<select id='fightsel'><option value="0">0: 0 XP</option><option value="500">1: 500 XP</option><option value="1000">2: 1000 XP</option><option value="1500">3: 1500 XP*</option><option value="2000">4: 2000 XP*</option></select>
+			<div class="roundbox over">
+				<p>Description</p>
+				<textarea id="desc" class="ui-corner-all" placeholder="Enter a description..."></textarea>
 			</div>
-			<div id="fighterSel">
-				<label><input name="fighter" id="radCleric" type="radio" />Cleric</label>
-				<label><input name="fighter" id="radThief" type="radio" />Thief</label>
+
+			<div class="roundbox">
+				<div id="hd">
+					<div>
+						Hit dice:
+						<select id="hdsel"><option value="0">0: 0 XP</option><option value="500">1: 500 XP</option><option value="1000">2: 1000 XP</option><option value="1500">3: 1500 XP*</option><option value="2000">4: 2000 XP*</option></select>
+					</div>
+					<span id="hdspan">d4</span>
+				</div>
+				<div id="fighter">
+					<div>
+						Fighting:
+						<select id='fightsel'><option value="0">0: 0 XP</option><option value="500">1: 500 XP</option><option value="1000">2: 1000 XP</option><option value="1500">3: 1500 XP*</option><option value="2000">4: 2000 XP*</option></select>
+					</div>
+					<div id="fighterSel">
+						<label><input name="fighter" id="radCleric" type="radio" />Cleric</label>
+						<label><input name="fighter" id="radThief" type="radio" />Thief</label>
+					</div>
+					<ul>
+						<li>Hero</li>
+						<li>Atk: +2 per 6 levels</li>
+						<li>Weapons: <span id="fightWeapons">Restricted</span></li>
+						<li>Armor: <span id="fightArmor">Forbidden</span></li>
+						<li>Fighting Styles: <span id="fightStyles">
+								<label><input type="checkbox"/>Two Weapons</label>
+								<label><input type="checkbox"/>Two-handed</label>
+								<label><input type="checkbox"/>Weapon and Shield</label>
+							</span></li>
+							<li>Damage Bonus: <span id="fightDamage">None</span></li>
+							<li>Cleaves: <span id="fightCleaves">None</span></li>
+					</ul>
+				</div>
+				<div id="thief">
+					<div>
+						Thief:
+						<select id='thiefsel'><option value="0">0 XP</option><option value="200">200 XP</option><option value="500">500 XP</option><option value="700">700 XP*</option><option value="1100">1100 XP*</option></select>
+					</div>
+					<span id="thiefspan">0</span> thief powers
+					<div>
+						<label><input type="checkbox" id="thiefOpenLocks"/>Open Locks</label><label><input type="checkbox" id="thiefFindTraps"/>Find Traps</label><label><input type="checkbox" id="thiefRemoveTraps"/>Remove Traps</label><label><input type="checkbox" id="thiefPick"/>Pick Pockets</label><label><input type="checkbox" id="thiefSilent"/>Move Silently</label><label><input type="checkbox" id="thiefClimb"/>Climb Walls</label><label><input type="checkbox" id="thiefHide"/>Hide in Shadows</label><label><input type="checkbox" id="thiefHear"/>Hear Noise</label><label><input type="checkbox" id="thiefBackstab"/>Backstab</label><label><input type="checkbox" id="thiefLanguages"/>Read Languages</label><label><input type="checkbox" id="thiefScrolls"/>Read/Cast Magic Scrolls</label>
+					</div>
+				</div>
+				<div id="divine">
+					<div>
+						Divine:
+						<select id="divinesel"><option value="0">0 XP</option><option value="250">250 XP</option><option value="500">500 XP</option><option value="1000">1000 XP</option><option value="2000">2000 XP</option></select>
+					</div>
+					<div>
+						<span>1/2 cleric</span>
+						<span>full cleric, 100% spells</span>
+						<span>full cleric, 133% spells</span>
+						<span>full cleric, 150% spells</span>
+						<label><input type="checkbox" checked="checked" id="chkturn"/>Turn undead</label>
+					</div>
+				</div>
+				<div id="arcane">
+					<div>
+						Arcane:
+						<select id="arcanesel"><option value="0">0 XP</option><option value="625">625 XP</option><option value="1250">1250 XP</option><option value="1875">1875 XP</option><option value="2500">2500 XP</option></select>
+					</div>
+					<span id="magespan"></span>
+					<label><input type="checkbox" id="chktradeac"/>Trade slow progression for starting at a later level</label>
+				</div>
+				<div id="custommagic">
+					<div>
+						<span id="magicname"></span>: <select id="custommagicsel"><option></option></select>
+					</div>
+					<span id="custommagicspan"></span>
+					<label><input type="checkbox" checked="checked" id="chkturncustom"/>Turn undead</label>
+					<label><input type="checkbox" id="chktradecm"/>Trade slow progression for starting at a later level</label>
+				</div>
+				<div id="racename">
+					<div>
+						Race:
+						<select save="" id="racenamesel"><option>None</option><option>Dwarf</option><option>Elf</option><option>Gnome</option><option>Nobirus</option><option>Thrassian</option><option>Zaharan</option></select>
+					</div>
+				</div>
+				<div id="racepoints">
+					<div>
+						<span id="racenamespan">[race]</span>: <select id="racepointssel"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+					</div>
+				</div>
 			</div>
-			<ul>
-				<li>Hero</li>
-				<li>Atk: +2 per 6 levels</li>
-				<li>Weapons: <span id="fightWeapons">Restricted</span></li>
-				<li>Armor: <span id="fightArmor">Forbidden</span></li>
-				<li>Fighting Styles: <span id="fightStyles">
-						<label><input type="checkbox"/>Two Weapons</label>
-						<label><input type="checkbox"/>Two-handed</label>
-						<label><input type="checkbox"/>Weapon and Shield</label>
-					</span></li>
-				<li>Damage Bonus: <span id="fightDamage">None</span></li>
-				<li>Cleaves: <span id="fightCleaves">None</span></li>
-			</ul>
-		</div>
-		<div id="thief">
-			<div>
-				Thief:
-				<select id='thiefsel'><option value="0">0 XP</option><option value="200">200 XP</option><option value="500">500 XP</option><option value="700">700 XP*</option><option value="1100">1100 XP*</option></select>
-			</div>
-			<span id="thiefspan">0</span> thief powers
-			<ul>
-				<li><label><input type="checkbox" id="thiefOpenLocks"/>Open Locks</label></li>
-				<li><label><input type="checkbox" id="thiefFindTraps"/>Find Traps</label></li>
-				<li><label><input type="checkbox" id="thiefRemoveTraps"/>Remove Traps</label></li>
-				<li><label><input type="checkbox" id="thiefPick"/>Pick Pockets</label></li>
-				<li><label><input type="checkbox" id="thiefSilent"/>Move Silently</label></li>
-				<li><label><input type="checkbox" id="thiefClimb"/>Climb Walls</label></li>
-				<li><label><input type="checkbox" id="thiefHide"/>Hide in Shadows</label></li>
-				<li><label><input type="checkbox" id="thiefHear"/>Hear Noise</label></li>
-				<li><label><input type="checkbox" id="thiefBackstab"/>Backstab</label></li>
-				<li><label><input type="checkbox" id="thiefLanguages"/>Read Languages</label></li>
-				<li><label><input type="checkbox" id="thiefScrolls"/>Read/Cast Magic Scrolls</label></li>
-			</ul>
-		</div>
-		<div id="divine">
-			<div>
-				Divine:
-				<select id="divinesel"><option value="0">0 XP</option><option value="250">250 XP</option><option value="500">500 XP</option><option value="1000">1000 XP</option><option value="2000">2000 XP</option></select>
-			</div>
-			<div>
-				<span>1/2 cleric</span>
-				<span>full cleric, 100% spells</span>
-				<span>full cleric, 133% spells</span>
-				<span>full cleric, 150% spells</span>
-				<label><input type="checkbox" checked="checked" id="chkturn"/>Turn undead</label>
-			</div>
-		</div>
-		<div id="arcane">
-			<div>
-				Arcane:
-				<select id="arcanesel"><option value="0">0 XP</option><option value="625">625 XP</option><option value="1250">1250 XP</option><option value="1875">1875 XP</option><option value="2500">2500 XP</option></select>
-			</div>
-			<span id="magespan"></span>
-			<label><input type="checkbox" id="chktradeac"/>Trade slow progression for starting at a later level</label>
-		</div>
-		<div id="custommagic">
-			<div>
-				<span id="magicname"></span>: <select id="custommagicsel"><option></option></select>
-			</div>
-			<span id="custommagicspan"></span>
-			<label><input type="checkbox" checked="checked" id="chkturncustom"/>Turn undead</label>
-			<label><input type="checkbox" id="chktradecm"/>Trade slow progression for starting at a later level</label>
-		</div>
-		<div id="racename">
-			<div>
-				Race:
-				<select save="" id="racenamesel"><option>None</option><option>Dwarf</option><option>Elf</option><option>Gnome</option><option>Nobirus</option><option>Thrassian</option><option>Zaharan</option></select>
-			</div>
-		</div>
-		<div id="racepoints">
-			<div>
-				<span id="racenamespan">[race]</span>: <select id="racepointssel"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+			<div class="roundbox">
+				<div id="profs">
+					<h3>Class Proficiencies</h3>
+					<span id="profcount">0</span> of <span id="profof">0</span> chosen <button id="loadprof">Load Base Proficiencies</button>
+					<div class="ui-widget-content ui-corner-bottom"></div>
+				</div>
 			</div>
 		</div>
-		<div><h3>Custom Powers</h3>
-			<div id="powertrade">
-				<h3>Tradeoffs</h3>
-				<div id="tradelist"><p></p></div>
+		<div id="tab-powers">
+			<div class="roundbox over">
+				<div id="powerholder">
+					<p>Custom Powers available: <span class="custpowers"></span></p>
+					<div class="tradeoffs"></div>
+					<ul><li lvl="1">1: <div></div></li></ul>
+				</div>
+				<div id="racepowers"></div>
+			</div>
+			<div class="roundbox">
 				<h3>Custom Powers</h3>
-				<div id="powerlist"></div>
-				<h3>Proficiency-as-Power</h3>
-				<div id="profpowerlist"></div>
-				<h3>Spell-as-power</h3>
-				<div><span class='power addspell' cost='1'>Spell-as-power</span></div>
-				<h3>DIY Power</h3>
-				<div><span class='power addpower'>DIY Power</span></div>
-			</div>
-			<div id="profs"><h3>Class Proficiencies</h3><span id="profcount">0</span> of <span id="profof">0</span> chosen <button id="loadprof">Load Base Proficiencies</button>
-				<div class="ui-widget-content ui-corner-bottom"></div>
+				<div id="powertrade">
+					<h3>Tradeoffs</h3>
+					<div id="tradelist"><p></p></div>
+					<h3>Custom Powers</h3>
+					<div id="powerlist"></div>
+					<h3>Proficiency-as-Power</h3>
+					<div id="profpowerlist"></div>
+					<h3>Spell-as-power</h3>
+					<div><span class='power addspell' cost='1'>Spell-as-power</span></div>
+					<h3>DIY Power</h3>
+					<div><span class='power addpower'>DIY Power</span></div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div></div>
+</div></div></div>
 
 <div id="footer"><a href="http://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2019 Autarch LLC ~ <span id="lastupdate"></span></div>
 </body>

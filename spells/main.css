@@ -13,7 +13,7 @@ body{font:75% "Trebuchet MS",sans-serif;background-color:#333}
 #holder select{width:90%}
 
 div.roundwide{width:25em}
-.roundbox{border:.15em solid #888;border-radius:10px;width:25em;background-color:#111;padding:.5em}
+.roundbox{border:.15em solid #888;border-radius:10px;width:45%;background-color:#111;padding:.5em}
 .roundwide label{width:24em;margin:0 auto;text-align:left}
 .roundwide .selectbox{width:24em}
 .buttonbox{margin-bottom:.5em;text-align:center}
@@ -42,8 +42,8 @@ table{border-collapse:collapse}
 
 #popload input[type="text"]{padding-left:2em;margin:.5em auto}
 
-#info{border-style:none;width:60em;overflow:auto;padding:2.5em 1em;margin:0}
-#wrapper{margin:0 auto;width:62em;padding:0;height:100%;border-top:none;border-bottom:none}
+#info{border-style:none;width:65em;overflow:auto;padding:2.5em 1em;margin:0}
+#wrapper{margin:0 auto;width:67em;padding:0;height:100%;border-top:none;border-bottom:none}
 #powertrade{height:40em}
 #profs{height:20em;overflow:auto}
 
@@ -75,6 +75,7 @@ span.helper{width:15em;cursor:copy}
 
 #profs>div{overflow:auto;height:15em}
 #weaponwarning{color:#f00}
+#thief>div:last-child{text-align:center}
 
 div div.raceholder{border:2px solid #777;height:34em;overflow:auto;padding:.5em;margin:0}
 .raceholder textarea{float:right;height:1.5em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#000 linear-gradient(#333,#000,#444);color:#fff;padding:.3em 5em .3em 1em;outline:none;border:1px solid #444444;resize:none;}

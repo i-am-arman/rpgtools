@@ -254,6 +254,12 @@ window.acksCreator.Register("class",function(){
 				$('#popprof_select').selectmenu();
 			});
 
+			$('#tabs').tabs({
+				activate: function(event, ui) {
+					$("#powertrade").accordion('refresh');
+				}
+			});
+			$("#powertrade").accordion({ heightStyle: "fill" });
 			$('#racepowers').hide();
 			$('#custommagic select').show();
 			$('.roundbox select').addClass('select').selectmenu({
@@ -279,9 +285,9 @@ window.acksCreator.Register("class",function(){
 				cl.pointsAndPowers();
 			});
 			$('#fightStyles').addClass('ui-controlgroup-vertical').controlgroup();
-			$('#thief ul input').change(function(){
+			$('#thief input').checkboxradio({icon:false}).change(function(){
 				if($('#thief input:checked').length > $('#thiefspan').text()*1)
-					$('#thief input:checked').not(this).filter(':first').prop('checked',false);
+					$('#thief input:checked').not(this).filter(':first').prop('checked',false).checkboxradio('refresh');
 				cl.data.raw.thiefSkills = [];
 				$('#thief input:checked').each(function(){
 					cl.data.raw.thiefSkills.push($(this).parent().text());
@@ -302,7 +308,6 @@ window.acksCreator.Register("class",function(){
 				cl.data.raw.name = $('#name').val();
 			});
 			$('input[type="text"]').addClass('ui-corner-all ui-state-default ui-widget');
-			$("#powertrade").accordion({ heightStyle: "fill" });
 			for(let c = 0; c<window.acksCreator.race.powervals.length;c++){
 				let val = window.acksCreator.race.powervals[c];
 				let spn = $('<span/>');
@@ -387,9 +392,9 @@ window.acksCreator.Register("class",function(){
 			},
 			thief: function() {
 				let idx = window.acksCreator.class.data.getval('thief');
-				$('#thief ul').toggle(idx>0);
+				$('#thief>div:last-child').toggle(idx>0);
 				$('#thiefspan').text(['0', '3', '5', '10', '15'][idx]);
-				$('#thief ul input:first').trigger('change');
+				$('#thief input:first').trigger('change');
 			},
 			fighter: function() {
 				let cl = window.acksCreator.class;
@@ -1144,11 +1149,15 @@ window.acksCreator.Register("class",function(){
 			if(cs.selectedWeapons) cs.selectedWeapons.forEach(function(el){
 				$('#weapons label:contains("'+el+'") input').prop('checked',true).checkboxradio('refresh');
 			});
+			console.log($('#weaponcount').text()*1,$('#weapons input:checked').length);
+			$('#weaponwarning').toggle($('#weapons input:checked').length != $('#weaponcount').text()*1);
+			$('#weaponwarning').hide();
 
 			$('#thief label input').prop('checked',false);
 			if(cs.thiefSkills) cs.thiefSkills.forEach(function(el){
 				$('#thief label:contains("'+el+'") input').prop('checked',true);
 			});
+			$('#thief input').checkboxradio('refresh');
 			$('#chkturn').prop('checked',cs.turn);
 			$('#chkturncustom').attr('checked',cs.turncustom);
 			$('#chktradeac').prop('checked',cs.tradearcane);
