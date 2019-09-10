@@ -12,6 +12,22 @@ window.acksCreator.Register("race",function(){
 			magic: null, //link to magictype.data
 			race: []
 		},
+		toString: function(){
+			let rac = window.acksCreator.race.data;
+			let str = '<p>Minimum Stats:'
+			if(rac.minimums.length > 0)
+				str += rac.minval + ' in ' + rac.minimums.join(', ');
+			else
+				str += "None";
+			str += '</p>';
+			if(rac.saves)
+				str += '<p>Additional XP at level 8:'+rac.additionalxp.fighter+'</p>'
+			else {
+				str += '<p>Additional XP at level 8 when saving as...<ul><li>Fighter: '+rac.additionalxp.fighter+'</li><li>Thief: '+rac.additionalxp.thief+'</li><li>Cleric: '+rac.additionalxp.cleric+'</li><li>Mage: '+rac.additionalxp.mage+'</li></ul>'
+			}
+			str += '<p>Uses a custom magic type? '+(rac.magic ? 'Yes' : 'No')+'</p>';
+			return str;
+		},
 		powervals: [[1,1,[2,12]],[1,1,[3,11]],[1,1,[4,10]],[1,1,[5,9]],[1,1,[6,8]],[1,1,[7,7]],[2,1,[3,5,7]],[2,1,[2,4,9]],[2,1,[5,5,5]],[1,7,[8,14]],[1,7,[9,13]],[1,8,[9,14]],[1,8,[10,13]],[1,9,[10,14]],[1,9,[11,13]],[1,9,[12,12]],[1,10,[11,14]],[1,10,[12,13]],[1,11,[12,14]],[1,11,[13,13]],[1,12,[13,14]]],
 		getCount: function(thing, lvl){
 			let val = 0;
@@ -20,54 +36,43 @@ window.acksCreator.Register("race",function(){
 					val++;
 			return val;
 		},
-
 		start: function() {
 			let rac = window.acksCreator.race;
 			$('#popup').dialog({autoOpen: false});
 			$('#about').button().click(function(){
-				$('#popup').dialog({
-					width: '30em',
-					title: 'About',
-					modal: true,
-					buttons:[{text:"Ok",click:function(){$(this).dialog('close');}}]
-				}).html("<h3>Race Creator</h3><div><p>Welcome to Race Creator, an interactive race creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from <a href='http://www.autarch.co/comment/6770#comment-6770'>this comment</a> at the ACKS Forums, as well as the player's companion and the guide. Without the guide and the player's companion, this tool won't be much use to you, so if you haven't bought them already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div>").dialog('open');
+				window.acksCreator.popup(
+					'Race Creator',null,[{text:"Ok",click:function(){$(this).dialog('close');}}],
+					"<p>Welcome to Race Creator, an interactive race creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from <a href='http://www.autarch.co/comment/6770#comment-6770'>this comment</a> at the ACKS Forums, as well as the player's companion and the guide. Without the guide and the player's companion, this tool won't be much use to you, so if you haven't bought them already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p>"
+				);
 			});
 			$('#saveit').button().click(function(){
-				$('#popup').dialog({
-					width: '30em',
-					title: 'Copy to Save',
-					modal: true,
-					buttons:[{text:"Ok",click:function(){$(this).dialog('close');}}]
-				}).html('<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything between (and including) the square brackets:</p><p><button id="btncopy">Copy to Clipboard</button><button id="btnstorage">Save to Local Storage</button></p><textarea id="txtcopy">'+window.acksCreator.save(rac.data)+'</textarea>').dialog("open");
-				$('#btncopy').button().click(function(){
-					$('#popup textarea').select();
-					document.execCommand("copy");
-				});
-				$('#btnstorage').button().click(function(){
-					let name = $('#name').val();
-					if (name == '')
-						name == 'Custom Race';
-					localStorage.setItem('r'+name, $('#popup textarea').text());
-				});
+				let buttons = [
+					{text:'Cancel',click:function(){$(this).dialog('close')}},
+					{text: 'Copy to Clipboard', click:function(){
+						$('#popsave_text').select();
+						document.execCommand("copy");
+					}},
+					{text:'Save Locally',click: function(){
+						let name = $('#name').val();
+						if(!name)
+							name = 'Custom Race';
+						localStorage.setItem('r'+name, $('#popsave_text').text());
+						$(this).dialog('close');
+					}}
+				];
+				window.acksCreator.popup('Copy to Save',null,buttons,
+					'<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything between (and including) the square brackets:</p><textarea id="popsave_text">r' + window.acksCreator.save(window.acksCreator.race.data) + '</textarea>'
+				);
 			});
 			$('#classlist p span:last').hide();
 			$('#loadit').button().click(function () {
-				var str = '<option>Load from string below</option>';
-				Object.keys(localStorage).forEach(function (obj) {
-					let typ = '';
-					if(obj[0] == 'm')
-						typ = 'Magic';
-					else if(obj[0] = 'r')
-						typ = 'Race';
-					if(typ)
-						str += '<option value="'+obj+'">'+typ+': '+obj.slice(1)+'</option>';
+				window.acksCreator.popload('mr',function(obj){
+					if(window.acksCreator.race.load(obj)) {
+						window.acksCreator.race.calc();
+						return true;
+					} else
+						return false;
 				});
-				$('#storagelist').empty().append(str).selectmenu({
-					change: function(){
-						$('#popload input').toggle($('#storagelist')[0].selectedIndex == 0);
-					}
-				}).selectmenu('refresh');
-				$('#popload').dialog("open");
 			});
 			$('#displayit').button().click(function(){
 				rac.displayPdf();
@@ -108,26 +113,6 @@ window.acksCreator.Register("race",function(){
 				});
 				items.appendTo('#proflist');
 				rac.makepower('.power');
-			});
-			$('#popload').dialog({
-				modal:true,
-				autoOpen:false,
-				buttons:[{
-					text:"Ok",
-					click: function(){
-						let str = ($('#storagelist')[0].selectedIndex > 0 ? localStorage.getItem($('#storagelist').val()) : $('#popload input').val());
-						if (rac.load(str)) {
-							$(this).dialog('close');
-							rac.calc();
-						} else
-							alert("Something went wrong. The save data may be corrupt, or not a custom Race or Magic type.");
-					}
-				},{
-					text: "Cancel",
-					click: function(){
-						$(this).dialog("close");
-					}
-				}]
 			});
 			$("#popask").dialog({
 				modal: true,
@@ -686,10 +671,10 @@ window.acksCreator.Register("race",function(){
 				);
 			}
 
-			$('#popup').dialog({
-				title: 'Download Your Class',
-				width: '50%',
-			}).html('<p>See below!</p><iframe class="preview-pane" type="application/pdf" width="100%" height="200px" frameborder="0" style="position:relative;z-index:999"></iframe>').dialog("open");
+			window.acksCreator.popup(
+				'Download Your Race','75%',null,
+				'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
+			);
 			$('.preview-pane').attr('src', doc.output('bloburi'));
 		},
 		pdf: function(doc){

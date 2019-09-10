@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ACKS Creator Manager</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/jquery-ui/jquery.ui.touch-punch.min.js"></script>
+<script type="text/javascript" src="pako.min.js"></script>
+<script type="text/javascript" src="/jsPDF/jspdf.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+<script type="text/javascript" src="local.js"></script>
+<script type="text/javascript" src="class.js"></script>
+<script type="text/javascript" src="race.js"></script>
+<script type="text/javascript" src="magic.js"></script>
+<script type="text/javascript" src="https://www.google-analytics.com/ga.js"></script>
+<link href="/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="/jquery-ui/main.css" rel="stylesheet">
+<link href="main.css" rel="stylesheet">
+</head>
+<body>
+<div id="outer">
+<div id="header">Buy <a href="http://www.drivethrurpg.com/product/99123/Adventurer-Conqueror-King-System">ACKS</a> and the <a href="http://www.drivethrurpg.com/product/108830/ACKS-Players-Companion">player's companion</a>! ~ <a href="index.html">Home</a> ~ <a href="spells.html">Spell Creator</a> ~ <a href="class.html">Class Creator</a> ~ <a href="race.html">Race Creator</a> ~ <a href="magic.html">Magic Type Creator</a> ~ <a href="party.html">NPC Party Gen</a></div>
+<div id="wrapper" class="ui-widget ui-widget-content ui-corner-all">
+	<div id="info" class="ui-widget-content">
+		<div class="buttonbox">
+			<button id="about">About</button>
+			<button id="loadit">Load Selected</button>
+			<button id="delete">Delete Selected</button>
+			<button id="displayit">Display Printable Page</button>
+		</div>
+		<div class="roundbox over" id="viewer"></div>
+		<div class="roundbox">
+			<p>Current list of saved Classes, Races, and Magic Types:</p>
+			<ul id="cookies"></ul>
+		</div>
+	</div>
+</div></div>
+<div id="popup"></div>
+<div id="footer"><a href="https://www.autarch.co/">Adventurer, Conqueror, King</a>™ (ACKS) ©2011-2016 Autarch LLC</div>
+</body>

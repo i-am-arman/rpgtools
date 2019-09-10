@@ -30,3 +30,22 @@ In future, I would like to add breakout multipliers to Magic Type (like Divine M
 
 Once I have the Creators working correctly, I want to build a Generator. Click a button, and get your stats; pick a class, do stat tradeoffs, pick General and Class Proficiencies, choose a name, roll your HP, and save the result - not to forget trading off gold for magical items, of course! And once I can do that, repeat the whole thing with the NPC generator, using the Character Creator code, so I can roll up whole characters automatically!
 
+Future updates:
+	The ability to register on the site with an email address and password, and save your classes, etc., for later retrieval
+	Magic Type:
+		breakout multipliers for each spell type, similar to Divine's treatment of undead vs living
+	Spell Creator:
+		Load a Magic Type's multiplier list, and thus set the multiplier automatically
+		Save spells (name, description, range, duration, full description) to a spell list
+	Spell List Manager:
+		Load spells from Spell Creator
+		Put those spells into a list, either a giant list like Arcane, or specific lists like Shaman or Cleric
+		Add, remove, and update spells in the list
+		Import existing spells from ACKS or other lists
+		...as long as they match the multipliers (this iwll be fairly hard)
+	Class Creator:
+		Import spell lists matching the Spell List
+	The ability to update the NPC generator to accept (multiple!) customizations
+		Custom classes
+		Custom languages
+		Custom spell lists

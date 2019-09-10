@@ -73,9 +73,9 @@ window.acksCreator.Register("class",function(){
 					case 'Zaharan':
 						return 'INT, WIS, CHA 9';
 					default:
-						if(this.race)
-							return window.acksCreator.race.data.minimums();
-						else
+						if(this.raw.race) {
+							return window.acksCreator.race.data.minimums.sentance();
+						} else
 							return 'None';
 				}
 			},
@@ -174,6 +174,11 @@ window.acksCreator.Register("class",function(){
 						return true;
 				}
 				return false;
+			},
+			toString: function(){
+				//TODO: print this stuff
+				let cl = window.acksCreator.class.data;
+				return 'Hit Die: '+cl.hd();
 			}
 		},
 		start: function() {
@@ -182,61 +187,51 @@ window.acksCreator.Register("class",function(){
 			$('#desc').change(function(){
 				cl.data.raw.description = $(this).val();
 			});
-			$('#popup').dialog({autoOpen: false});
 			$('#about').button().click(function(){
-				$('#popup').dialog({
-					modal: true,
-					buttons: [{text: "Ok", click: function(){ $(this).dialog('close'); }}],
-					width: '30em',
-					title: 'Class Creator'
-				}).html("<h3>Class Creator</h3><div><p>Welcome to Class Creator, an interactive character class creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from the player's companion, though I've left almost all other information out; this tool won't be much good without the player's companion. If you haven't bought it already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div>").dialog('open');
+				window.acksCreator.popup('Class Creator',null,
+					[{text: "Ok", click: function(){ $(this).dialog('close'); }}],
+					"<h3>Class Creator</h3><div><p>Welcome to Class Creator, an interactive character class creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from the player's companion, though I've left almost all other information out; this tool won't be much good without the player's companion. If you haven't bought it already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div>"
+				);
 			});
 			$('#saveit').button().click(function () {
-				$('#popup').dialog({width: '30em', title: 'Copy to Save'}).html('<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything between (and including) the square brackets:</p><p><button id="btncopy">Copy to Clipboard</button><button id="btnsavestorage">Save to local storage</button></p><textarea id="txtcopy">c' + window.acksCreator.save(window.acksCreator.class.data.raw) + '</textarea>').dialog("open");
-				$('#btncopy').button().click(function () {
-					$('#popup textarea').select();
-					document.execCommand("copy");
-				});
-				$('#btnsavestorage').button().click(function () {
-					let name = $('#name').val();
-					if(!name)
-						name = 'Custom Class';
-					localStorage.setItem('c'+name, $('#popup textarea').text());
-					$('#popup').dialog('close');
-				});
+				let buttons = [
+					{text:'Cancel',click:function(){$(this).dialog('close');}},
+					{text: 'Copy to Clipboard', click:function(){
+						$('#popsave_text').select();
+						document.execCommand("copy");
+					}},
+					{text:'Save Locally',click: function(){
+						let name = $('#name').val();
+						if(!name)
+							name = 'Custom Class';
+						localStorage.setItem('c'+name, $('#popsave_text').text());
+						$(this).dialog('close');
+					}}
+				];
+				window.acksCreator.popup('Copy to Save',null,buttons,
+					'<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything between (and including) the square brackets:</p><textarea id="popsave_text">c' + window.acksCreator.save(window.acksCreator.class.data.raw) + '</textarea>'
+				);
 			});
 			$('#loadit').button().click(function () {
-				var str = '<option>Load from string below</option>';
-				Object.keys(localStorage).forEach(function (obj) {
-					var val = '';
-					if (obj[0] == 'c')
-						val = 'Class';
-					else if (obj[0] == 'm')
-						val = 'Magic';
-					else if (obj[0] == 'r')
-						val = 'Race';
-					if(val)
-						str += '<option value="'+obj+'">'+val+': '+obj.slice(1)+'</option>';
+				window.acksCreator.popload('mrc',function(obj){
+					if(cl.load(obj)) {
+						cl.calcAll();
+						return true;
+					} else
+						return false;
 				});
-				$('#storagelist').empty().append(str).selectmenu({
-					change: function(){
-						$('#popload input').toggle($('#storagelist')[0].selectedIndex == 0);
-					}
-				}).selectmenu('refresh');
-				$('#popload').dialog("open");
 			});
 			$('#displayit').button().click(function () {
-				cl.displayPdf();
+				cl.preDisplayPdf();
 			});
-			$('#loadprof').button();
 			$.getJSON("ajax/classprofs.json", function(data) {
 				cl.profs = data.class;
-				$('#loadprof').click(function(){$('#popup').dialog({
-					modal: true,
-					width: '30em',
-					title: 'Class Creator',
-					buttons: [{text: "Ok", click: function(){
-						cl.data.raw.profs = Array.from(cl.profs[$('#popup select').val().toLowerCase()]);
+			});
+			$('#loadprof').button().click(function(){
+				let buttons = [
+					{text: "Cancel", click: function(){$(this).dialog('close');}},
+					{text: "Ok", click: function(){
+						cl.data.raw.profs = Array.from(cl.profs[$('#popprof_select').val().toLowerCase()]);
 						$('.chkprof').prop('checked',false);
 						cl.data.raw.profs.forEach(function(el){
 							let specialized = el.indexOf(': (');
@@ -249,10 +244,14 @@ window.acksCreator.Register("class",function(){
 							obj.find('label input').prop('checked',true);
 						});
 						$(this).dialog('close');
-					}},{text: "Cancel", click: function(){$(this).dialog('close');}}]
-				}).html("<h3>Load Base Proficiency</h3><p>This will load the proficiency list from one of the four basic classes: Cleric, Fighter, Mage, and Thief. It will <b>replace</b> the existing proficiency list!</p><select><option>Cleric</option><option>Fighter</option><option>Mage</option><option>Thief</option></select>").dialog('open');
-					$('#popup select').selectmenu();
-				});
+					}}
+				];
+
+				window.acksCreator.popup(
+					'Class Creator',null,buttons,
+					"<h3>Load Base Proficiency</h3><p>This will load the proficiency list from one of the four basic classes: Cleric, Fighter, Mage, and Thief. It will <b>replace</b> the existing proficiency list!</p><select id='popprof_select'><option>Cleric</option><option>Fighter</option><option>Mage</option><option>Thief</option></select>"
+				);
+				$('#popprof_select').selectmenu();
 			});
 
 			$('#racepowers').hide();
@@ -287,6 +286,7 @@ window.acksCreator.Register("class",function(){
 				$('#thief input:checked').each(function(){
 					cl.data.raw.thiefSkills.push($(this).parent().text());
 				});
+				cl.pointsAndPowers();
 			});
 			$('#chkturn').change(function(){
 				cl.calc('divine');
@@ -356,119 +356,6 @@ window.acksCreator.Register("class",function(){
 				$('<p/>').html(items.join('')).appendTo('#powerlist');
 				cl.makepower($('#powerlist .power'));
 			});
-			$('#popload').dialog({
-				modal: true,
-				autoOpen: false,
-				buttons: [{
-					text: "Ok",
-					click: function(){
-						let str = ($('#storagelist')[0].selectedIndex > 0 ? localStorage.getItem($('#storagelist').val()) : $('#popload input').val());
-						if (cl.load(str)) {
-							$(this).dialog('close');
-							cl.calcAll();
-						} else {
-							alert('Something went wrong loading the data!');
-						}
-					}
-				}, {
-					text: "Cancel",
-					click: function(){
-						$(this).dialog('close');
-					}
-				}]
-			});
-			$('#popask').dialog({
-				modal: true,
-				autoOpen: false,
-				dialogClass: "no-close",
-				buttons: [{
-					text: "Ok",
-					click: function () {
-						let target = $('.waitvalue');
-						let cost = $(this).children('select').val();
-						let name = $('.waitvalue .name').text();
-						$('.powers:not(.waitvalue) .name:contains("'+name+'")').parent().remove();
-						target.attr('cost', cost).children('.mycost').text(cost);
-						if(name == 'Inhumanity') {
-							let alt = target.clone();
-							alt.attr('cost',-cost).children('.mycost').attr('cost',-cost).text(-cost);
-							alt.children('.remove').remove();
-							target.insertAfter(alt);
-						}
-						$('.waitvalue').removeClass('waitvalue');
-						$(this).children('select').empty();
-						$(this).dialog("close");
-						cl.pointsAndPowers();
-					}
-				}, {
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}]
-			});
-			$("#popspell").dialog({
-				modal: true,
-				autoOpen: false,
-				buttons: [{
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}, {
-					text: "Ok",
-					click: function () {
-						var list = ['at will', '1/hr', '1/8hr', '1/day', '1/week', '1/month', '1/year'];
-						var castwait = $('#popspell input[type="number"]').val() * 1;
-						if ($('#popspell input:radio:checked').val() == 'turn') {
-							castwait -= 1;
-						}
-						let name = $('#popspell input[type="text"]').val() +
-							' (1 ' + $('#popspell input:radio:checked').val() +
-							', ' + list[castwait] + ')';
-						let pow = $('.waitvalue');
-						pow.empty().attr('cost', 1).removeClass('addspell')
-							.html('<span class="mycost" cost="1">1</span> ' + name);
-						$('.powers:not(.waitvalue) .name:contains("'+name+'")').parent().remove();
-						cl.addRemove(pow.removeClass('waitvalue'));
-
-						$('#popspell input[type="text"]').val('');
-						$('#popspell input[type="number"]').val('');
-						$('#popspell input:radio').prop('checked', false);
-						$(this).dialog("close");
-						cl.pointsAndPowers();
-					}
-				}]
-			});
-			$("#casttime").buttonset();
-			$('#poppower').dialog({
-				modal: true,
-				autoOpen: false,
-				buttons: [{
-					text: "Ok",
-					click: function () {
-						let cost = $('#poppower input[type="number"]').val();
-						let name = $('#poppower input[type="text"]').val();
-						let pow = $('.waitvalue');
-						pow.attr('cost', cost);
-						pow.children('.mycost').attr('cost',cost).text(cost);
-						pow.children('.name').text(name);
-						$('.powers:not(.waitvalue) .name:contains("'+name+'")').parent().remove();
-						$('.waitvalue').removeClass('waitvalue');
-						$('#poppower input').val('');
-						$(this).dialog("close");
-						cl.pointsAndPowers();
-					}
-				}, {
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}]
-			});
 			this.calcAll();
 		},
 		calcAll: function() {
@@ -520,7 +407,9 @@ window.acksCreator.Register("class",function(){
 					cl.data.raw.fightStyles.push($(this).parent().text());
 				});
 				['fightWeapons','fightArmor','fightDamage'].forEach(function(str){
-					cl.data.raw[str] = $('span#'+str+',#'+str+' option:selected').text();
+					let newval = $('span#'+str+',#'+str+' option:selected').text();
+					if(newval)
+						cl.data.raw[str] = newval;
 				});
 				cl.updateWeapons();
 			},
@@ -585,7 +474,9 @@ window.acksCreator.Register("class",function(){
 				$("#racenamespan").html(name);
 				$('#racepowers').html('<p>Racial powers:</p><div></div><ul><li lvl="1">1: <div></div></li></ul>');
 				$('#racepoints,#racepowers').toggle(name != 'None');
-				$("#racepoints select").val(0).selectmenu('refresh');
+				if(name == 'None')
+					$("#racepoints select").val(0).selectmenu('refresh');
+				$('#racepoints select').change();
 				cl.selections('racepoints');
 				//cl.pointsAndPowers();
 			},
@@ -593,52 +484,68 @@ window.acksCreator.Register("class",function(){
 				let cl = window.acksCreator.class;
 				let raw = cl.data.raw;
 				let idx = raw.racepoints;
-				['hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
-					if(cl.data.getval(el) != raw[el])
-						cl.makeSel(el,0);
-				});
+				let clears = [];
 				switch(raw.racename) {
 					case 'Gnome':
 					case 'Elf':
 					case 'Zaharan':
 						cl.makeSel('arcane',idx);
+						clears = ['hd','fighter','thief','divine','custommagic'];
 						break;
 					case 'Thrassian':
 						cl.makeSel('fighter',[0,0,1,1,2][idx]);
+						clears = ['hd','thief','divine','arcane','custommagic'];
 						break;
 					case 'Nobirus':
 						cl.makeSel('divine',idx);
+						clears = ['hd','fighter','thief','arcane','custommagic'];
 						break;
 					case 'Dwarf':
 					case 'None':
+						clears = ['hd','fighter','thief','divine','arcane','custommagic'];
 						break;
 					default:
 						if(!raw.race)
 							return;
-						let rc = window.acksCreator.race;
 						['hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
+							let rc = window.acksCreator.race;
 							if(rc.getCount(el,4) > 0)
 								cl.makeSel(el,rc.getCount(el,idx));
 						});
 						break;
 				}
+				//Set everything back to parity
+				clears.forEach(function(el){
+					cl.makeSel(el,raw[el]);
+				});
 				let levels = [];
 				if(raw.racename != 'None') {
 					let racepowers = cl.races[raw.racename];
 					let powers = [];
 					for(let lvl = 0; lvl <= idx; lvl++) {
-						if(racepowers[lvl].powers)
-							racepowers[lvl].powers.forEach(function(obj){
-								if(!levels.includes(obj.level))
-									levels.push(obj.level);
-								let p = powers.findIndex(function(el){return el.name == obj.name});
-								if(p >= 0)
-									powers[p].cost = obj.cost;
-								else
-									powers.push(jQuery.extend(true, {}, obj));
-							});
+						if(racepowers[lvl].powers) racepowers[lvl].powers.forEach(function(obj){
+							if(!levels.includes(obj.level))
+								levels.push(obj.level);
+							let p = powers.findIndex(function(el){return el.name == obj.name});
+							if(p >= 0)
+								powers[p].cost = obj.cost;
+							else
+								powers.push(jQuery.extend(true, {}, obj));
+						});
 					}
 					cl.data.racepowers = powers;
+					//Check each racial power, and update custom powers' cost
+					powers.forEach(function(pow){
+						let custpow = $('#powerholder ul li[lvl="1"] .powers .name:contains("'+pow.name+'")');
+						if(custpow.length > 0) {
+							custpow = custpow.parent();
+							let cost = custpow.children('.mycost').text();
+							if(cost-pow.cost <= 0)
+								custpow.remove();
+							else
+								custpow.attr('cost',cost-pow.cost);
+						}
+					});
 				} else {
 					cl.data.racepowers = [];
 				}
@@ -654,8 +561,8 @@ window.acksCreator.Register("class",function(){
 			}
 		},
 		updateFighter: function(lastidx){
-			let idx = this.data.fighter();
-			let cl = this;
+			let cl = window.acksCreator.class;
+			let idx = cl.data.fighter();
 			let raw = cl.data.raw;
 			$('#fighterSel').toggle(idx == 1);
 			$('#fighter ul li:first').text(['Mage','Cleric/Thief','Fighter','Hero','Monster'][idx]);
@@ -740,7 +647,7 @@ window.acksCreator.Register("class",function(){
 			}
 		},
 		updateWeapons: function(){
-			let raw = this.data.raw;
+			let raw = window.acksCreator.class.data.raw;
 			raw.selectedWeapons = raw.selectedWeapons || [];
 			let weapons = [...raw.selectedWeapons];
 			let wlist = $('#weapons');
@@ -759,6 +666,7 @@ window.acksCreator.Register("class",function(){
 				$('#weapons label:contains("'+el+'") input').prop('checked',true);
 			});
 			$('#weapons input').checkboxradio({icon:false}).change(function(){
+				let raw = window.acksCreator.class.data.raw;
 				if ($('#weapons input:checked').length > $('#weaponcount').text() * 1) {
 					$('#weapons input:checked').not(this).filter(':first').prop('checked',false);
 					$('#weapons input').checkboxradio('refresh');
@@ -793,12 +701,12 @@ window.acksCreator.Register("class",function(){
 			this.selections(sel);
 		},
 		pointsAndPowers: function() {
-			let cl = this;
+			let cl = window.acksCreator.class;
 			let raw = cl.data.raw;
 			let xp = 0;
 			let pow = 0;
 			//Total class points used
-			$("div:not(#racename,#racepoints,#popask):visible>div>.select").each(function () {
+			$("div:not(#racename,#racepoints):visible>div>.select").each(function () {
 				xp += $(this).children("option:selected").val() * 1;
 			});
 			//Power points from fighter tradeoffs
@@ -1091,25 +999,17 @@ window.acksCreator.Register("class",function(){
 							$(this).addClass('waitvalue');
 							$(this).removeClass('target').addClass("powers").html('<span class="mycost" cost="'+pow.cost+'"></span> <span class="name">'+pow.name+'</span>');
 							cl.addRemove($(this));
-							if(ui.helper.hasClass('addspell')){
-								$('#popspell').dialog("open");
-							} else if(ui.helper.hasClass('addpower')) {
-								$('#poppower').dialog("open");
-							} else if(ui.helper.hasClass('multi')) {
-								$('#popup').dialog({
-									modal: true,
-									width: '30em',
-									title: 'Select Specialization',
-									buttons: [{text: "Ok", click: function(){
-										$(this).dialog('close');
-										let obj = $('.waitvalue');
-										let pow = {
-											name: obj.text(),
-											cost: obj.attr('cost')
-										};
-										cl.dropped(pow);
-									}},{text: "Cancel", click: function(){$(this).dialog('close');}}]
-								}).html("<h3>Select Specialization</h3><p>Please enter a specialization below:<br /><input type='text' />").dialog('open');
+							if(ui.helper.hasClass('addspell'))
+								window.acksCreator.popspell(cl.pointsAndPowers);
+							else if(ui.helper.hasClass('addpower'))
+								window.acksCreator.poppower(cl.pointsAndPowers);
+							else if(ui.helper.hasClass('multi')) {
+								window.acksCreator.popmulti(function(pow){
+									cl.dropped({
+										name: pow.children('.name').text(),
+										cost: pow.attr('cost')
+									});
+								});
 							} else
 								cl.dropped(pow);
 						}
@@ -1150,13 +1050,8 @@ window.acksCreator.Register("class",function(){
 				cl.pointsAndPowers();
 			} else if (vals.length < 1)
 				target.remove();
-			else {
-				vals.forEach(function(el){
-					$('#popask select').append('<option>'+el+'</option>');
-				});
-				$('#popask div p').text("Select value for '"+pow.name+"':");
-				$('#popask').dialog('open');
-			}
+			else
+				window.acksCreator.popask(pow.name,vals,cl.pointsAndPowers);
 		},
 		addRemove: function(obj) {
 			let cl = this;
@@ -1212,7 +1107,8 @@ window.acksCreator.Register("class",function(){
 			return true;
 		},
 		loadClass: function(cs) {
-			let cl = this;
+			//TODO: if at all possible, keep from running pointsAndPowers so many times while loading...
+			let cl = window.acksCreator.class;
 			//make a deep copy
 			cl.data.raw = JSON.parse(JSON.stringify(cs))
 			if(cs.race)
@@ -1220,12 +1116,15 @@ window.acksCreator.Register("class",function(){
 			if(cs.magic)
 				this.loadMagic(cl.data.raw.magic);
 
+			//Name, description
 			$('#name').val(cs.name);
 			$('#desc').val(cs.description);
+			//Race
 			$('#racename>div>select').val(cs.racename).selectmenu('refresh');
 			$("#racenamespan").html(cs.racename);
 			$('#racepoints').toggle(cs.racename != 'None');
 
+			//Race points, hit dice, thief, divine, arcane, and custommagic selections
 			['racepoints','hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
 				$('#'+el+'>div>select')[0].selectedIndex = cs[el];
 				$('#'+el+'>div>select').selectmenu('refresh');
@@ -1239,7 +1138,7 @@ window.acksCreator.Register("class",function(){
 			$('.select#fightWeapons').val(cs.fightWeapon);
 			$('.select#fightArmor').val(cs.fightArmor);
 			$('#fightStyles label input').each(function(){
-				$(this).attr('checked',cs.fightStyles.indexOf($(this).parent().text()) > -1).change();
+				$(this).prop('checked',cs.fightStyles.indexOf($(this).parent().text()) > -1).change();
 			});
 			$('.select#fightDamage').val(cs.fightDamage);
 			if(cs.selectedWeapons) cs.selectedWeapons.forEach(function(el){
@@ -1255,16 +1154,19 @@ window.acksCreator.Register("class",function(){
 			$('#chktradeac').prop('checked',cs.tradearcane);
 			$('#chktradecm').prop('checked',cs.tradecustom);
 			
+			//Prof list
 			if(cs.profs) cs.profs.forEach(function(el){
 				let specialized = el.indexOf(': (');
 				let name = (specialized > -1 ? el.slice(0,specialized) : el);
-				let obj = $('#profs div:contains("'+name+'")');
+				let obj = $('#profs .prof:contains("'+name+'")');
 				if(specialized > -1) {
 					let special = el.slice(specialized+3,el.length-1);
-					obj.children('input').val(special);
+					obj.find('input').val(special);
 				}
 				obj.find('label input').prop('checked',true);
 			});
+
+			//Tradeoffs
 			$('#powerholder .tradeoffs').empty();
 			if(cs.tradeoffs) cs.tradeoffs.forEach(function(trade){
 				let t = window.acksCreator.race.powervals[trade];
@@ -1300,6 +1202,47 @@ window.acksCreator.Register("class",function(){
 
 			return true;
 		},
+		preDisplayPdf: function(){
+			let cl = window.acksCreator.class;
+			let err = "";
+			if($('#weaponwarning:visible').length > 0)
+				err += '<p>Make sure you select the useable weapons!</p>';
+			if(cl.data.classpoints() > 4)
+				err += '<p>Too many class points spent!</p>';
+			if($('.custpowers').text()*1 < 0)
+				err += '<p>Too man custom powers!</p>';
+			else if($('.custpowers').text()*1 > 0)
+				err += '<p>Add some more custom powers, or remove a tradeoff.</p>';
+			$('.remaining').each(function(){
+				if($(this).text()*1 < 0)
+					err += '<p>Tradeoff at level '+$(this).parent().attr('lvl')+' contains too many custom powers!</p>';
+				else if($(this).text()*1 > 0)
+					err += '<p>Tradeoff with level '+$(this).parent().attr('lvl')+' can have more custom powers.</p>';
+			});
+			if(cl.data.raw.divine > 0)
+				err += '<p>Remember to choose a spell list with '+cl.data.divine*5+' Divine spells per spell level.</p>';
+			if(cl.data.raw.custommagic > 0 && cl.data.raw.magic.acquisition == 'Prayerful')
+				err += '<p>Remember to choose a spell list with '+window.acksCreator.magic.data.spelllist()[cl.data.raw.custommagic]+' '+cl.data.raw.magic.name+' spells per spell level.</p>';
+			err += '<p>';
+			if(cl.data.raw.custommagic > 0)
+				err += '<label><input type="checkbox" /> Print custom magic summary sheet?</label>';
+			if(cl.data.race && cl.data.raw.racename == cl.data.race.name)
+				err += '<label><input type="checkbox" /> Print custom race summary sheet?</label>';
+			if(cl.data.raw.powers.length > 0)
+				err += '<label><input type="checkbox" /> Print custom powers? (in case you want to summarize the custom powers yourself)</label>';
+			if(cl.data.raw.divine > 0 || cl.data.raw.custommagic > 0 && cl.data.raw.magic.acquisition == 'Prayerful')
+				err += '<label><input type="checkbox" /> Print spells?</label>';
+			err += '</p>';
+			let buttons = [
+				{text: 'Cancel', click:function(){$(this).dialog('close');}},
+				{text: 'Go!', click:function(){
+					//Read all the inputs, then send all that on to make the pdf
+					$(this).dialog('close');
+					window.acksCreator.class.displayPdf(['inputs']);
+				}}
+			];
+			window.acksCreator.popup('Display PDF',null,buttons,err);
+		},
 		displayPdf: function() {
 			var doc = new jsPDF();
 			
@@ -1314,15 +1257,6 @@ window.acksCreator.Register("class",function(){
 				);
 			}
 			
-			/*TODO: add reminders if something didn't pass muster:
-			 * weapons not chosen
-			 * too many points spent
-			 * too many or not enough custom powers
-			 * tradeoffs with blank spots, or overspent
-			 * 
-			 * also, "choose N spells for the spell list" if prayerful
-			 */
-
 			/*TODO: Build a checklist for creating a pdf:
 			 * Print custom magic summary sheet?
 			 * Print custom race summary sheet?
@@ -1330,10 +1264,10 @@ window.acksCreator.Register("class",function(){
 			 * Print spells? <-- this would be in case you created a custom spell sheet...
 			 */
 
-			$('#popup').dialog({
-				title: 'Download Your Class',
-				width: '50%',
-			}).html('<p>See below!</p><iframe class="preview-pane" type="application/pdf" width="100%" height="200px" frameborder="0" style="position:relative;z-index:999"></iframe>').dialog("open");
+			window.acksCreator.popup(
+				'Download Your Class','75%',null,
+				'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
+			);
 			$('.preview-pane').attr('src', doc.output('bloburi'));
 		},
 		pdf: function(doc){

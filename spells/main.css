@@ -1,5 +1,5 @@
+html,body,#outer{height:100%;padding:0;margin:0}
 body{font:75% "Trebuchet MS",sans-serif;background-color:#333}
-#outer{}
 #header,#footer{position:fixed;width:90%;padding:.5em;z-index:99;background-color:#555;border-radius:10px;border:1px solid #000;text-align:center;left:5%}
 #header{top:0px}
 #footer{bottom:0px}
@@ -35,14 +35,15 @@ table{border-collapse:collapse}
 .ui-tabs-vertical .ui-tabs-nav li a{display:block}
 .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active{padding-bottom:0;padding-right:.1em;border-right-width:1px}
 .ui-tabs-vertical .ui-tabs-panel{padding:1em;float:right;width:40em}
+.ui-button:disabled, .ui-button:disabled:hover {border: 1px solid #444; background: #222 url(/jquery-ui/images/ui-bg_highlight-soft_35_222222_1x100.png) 50% 50% repeat-x; font-weight: normal; color: #999}
 
-#popup textarea{width:90%;margin:0 auto;height:5em;border:.1em solid #333;border-radius:.3em;padding:.3em}
+#popsave_text {width:90%;margin:0 auto;height:5em;border:.1em solid #333;border-radius:.3em;padding:.3em}
 .no-close .ui-dialog-titlebar-close{display:none;}
 
 #popload input[type="text"]{padding-left:2em;margin:.5em auto}
 
-#info{border-style:none;width:60em;overflow:auto}
-#wrapper{margin:2.5em auto;width:50em}
+#info{border-style:none;width:60em;overflow:auto;padding:2.5em 1em;margin:0}
+#wrapper{margin:0 auto;width:62em;padding:0;height:100%;border-top:none;border-bottom:none}
 #powertrade{height:40em}
 #profs{height:20em;overflow:auto}
 
@@ -71,6 +72,9 @@ span.helper{width:15em;cursor:copy}
 .ui-controlgroup.ui-controlgroup-vertical>.ui-button {text-align: center;}
 
 .scrolldn{height:2em;position:relative;width:100%;z-index:10;margin-top:-3em}
+
+#profs>div{overflow:auto;height:15em}
+#weaponwarning{color:#f00}
 
 div div.raceholder{border:2px solid #777;height:34em;overflow:auto;padding:.5em;margin:0}
 .raceholder textarea{float:right;height:1.5em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#000 linear-gradient(#333,#000,#444);color:#fff;padding:.3em 5em .3em 1em;outline:none;border:1px solid #444444;resize:none;}

@@ -131,7 +131,6 @@ window.acksCreator.Register("magic",function(){
 			let mag = this;
 			let raw = mag.data.raw;
 
-                        $('#popup').dialog({autoOpen: false});
 			$('#desc').blur(function(){
 				window.acksCreator.magic.data.raw.description = $('#desc').val();
 				$('#desc').removeClass('focus');
@@ -140,137 +139,40 @@ window.acksCreator.Register("magic",function(){
 			});
 
 			$('#about').button().click(function(){
-				$('#popup').dialog({
-					width: '30em',
-					title: 'About',
-					modal: true,
-					buttons: [{text:"Ok",click:function(){$(this).dialog('close');}}]
-				}).html("<h3>Custom Magic Class Creator</h3><div><p>Welcome to the Custom Magic Class, an interactive magic class creation service, to be used with character class and race creation. It's based on the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System, using guidelines in <a href='http://www.drivethrurpg.com/product/179660/Axioms-Issue-1'>Axioms Issue 1</a>. If you haven't bought it already, you should! The player's companion will also help with determining the magic type values.</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase Axioms Issue 1 and the Adventurer, Conquerer, King player's companion - they really are awesome resources!</p></div>").dialog('open');
+				window.acksCreator.popup(
+					"About",null,null,
+					"<h3>Custom Magic Class Creator</h3><div><p>Welcome to the Custom Magic Class, an interactive magic class creation service, to be used with character class and race creation. It's based on the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System, using guidelines in <a href='http://www.drivethrurpg.com/product/179660/Axioms-Issue-1'>Axioms Issue 1</a>. If you haven't bought it already, you should! The player's companion will also help with determining the magic type values.</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase Axioms Issue 1 and the Adventurer, Conquerer, King player's companion - they really are awesome resources!</p></div>"
+				);
 			});
 
 			$('#saveit').button().click(function(){
-				$('#popup').dialog('option','width','30em').dialog('option','title','Copy to Save').html('<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything!</p><p><button id="btncopy">Copy to Clipboard</button><button id="btnsavestorage">Save to Local Storage</button></p><textarea id="txtcopy">'+window.acksCreator.save(window.acksCreator.magic.data.raw)+'</textarea>').dialog("open");
-				$('#popup button').button().click(function(){
-					$('#popup textarea').select();
-					document.execCommand("copy");
-				});
-				$('#btnsavestorage').button().click(function(){
-					let raw = window.acksCreator.magic.data.raw;
-					if(raw.name=='')
-						raw.name = 'Custom Magic';
-					localStorage.setItem('m'+raw.name, $('#popup textarea').val());
-					$('#popup').dialog('close');
-				});
+				window.acksCreator.popup(
+					'Copy to Save','30em',[
+						{text: 'Copy to Clipboard',click:function(){
+							$('#popsave_text').select();
+							document.execCommand("copy");
+						}},
+						{text: 'Save to Local',click:function(){
+							let raw = window.acksCreator.magic.data.raw;
+							if(raw.name=='')
+								raw.name = 'Custom Magic';
+							localStorage.setItem('m'+raw.name, $('#popsave_text').val());
+							$(this).dialog('close');
+						}},
+						{text: 'Cancel',click:function(){$(this).dialog('close');}}
+					], '<p>Click the button below to copy the text to the clipboard; alternatively, copy the code below manually. Make sure to get everything!</p><textarea id="popsave_text">m'+window.acksCreator.save(window.acksCreator.magic.data.raw)+'</textarea>');
 			});
-			$('#loadit').button().click(function () {
-				var str = '<option>Load from string below</option>';
-				Object.keys(localStorage).forEach(function (obj) {
-					if(obj[0] == 'm')
-						str += '<option value="'+obj+'">Magic: '+obj.slice(1)+'</option>';
+			$('#loadit').button().click(function(){
+				window.acksCreator.popload('m',function(obj){
+					if(window.acksCreator.magic.load(obj)) {
+						window.acksCreator.magic.calc();
+						return true;
+					} else
+						return false;
 				});
-				$('#storagelist').empty().append(str).selectmenu({
-					change: function(){
-						$('#popload input').toggle($('#storagelist')[0].selectedIndex == 0);
-					}
-				});
-				$('#popload').dialog("open");
-			});
-			$('#loadit input').bind('input propertychange', function(){
-				if(loadme[0]!='m'){
-					$('#loaderror').text('Error: save data may be corrupt.').show();
-				}else{
-					$('#loaderror').hide();
-				}
 			});
 			$('#displayit').button().click(function(){
 				mag.displayPdf();
-			});
-			$("#popspell").dialog({
-				modal: true,
-				autoOpen: false,
-				buttons: [{
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}, {
-					text: "Ok",
-					click: function () {
-						var list = ['at will', '1/hr', '1/8hr', '1/day', '1/week', '1/month', '1/year'];
-						var castwait = $('#popspell input[type="number"]').val() * 1;
-						if ($('#popspell input:radio:checked').val() == 'turn') {
-							castwait -= 1;
-						}
-						let name = $('#popspell input[type="text"]').val() +
-							' (1 ' + $('#popspell input:radio:checked').val() +
-							', ' + list[castwait] + ')';
-						let pow = $('.waitvalue');
-						pow.empty().attr('cost', 1).removeClass('addspell')
-							.html('<span class="mycost" cost="1">1</span> ' + name);
-						$('.powers:not(.waitvalue) .name:contains("'+name+'")').parent().remove();
-						mag.addRemove(pow.removeClass('waitvalue'));
-						
-						$('#popspell input[type="text"]').val('');
-						$('#popspell input[type="number"]').val('');
-						$('#popspell input:radio').prop('checked', false);
-						$(this).dialog("close");
-						mag.calc();
-					}
-				}]
-			});
-			$('#popask').dialog({
-				modal: true,
-				autoOpen: false,
-				dialogClass: "no-close",
-				buttons: [{
-					text: "Ok",
-					click: function () {
-						let target = $('.waitvalue');
-						let cost = $(this).children('select').val();
-						let name = $('.waitvalue .name').text();
-						target.attr('cost', cost).children('.mycost').text(cost);
-						if(name == 'Inhumanity') {
-							let alt = target.clone();
-							alt.attr('cost',-cost).children('.mycost').attr('cost',-cost).text(-cost);
-							alt.children('.remove').remove();
-							target.insertAfter(alt);
-						}
-						$('.waitvalue').removeClass('waitvalue');
-						$(this).children('select').empty();
-						$(this).dialog("close");
-						mag.calc();
-					}
-				}, {
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}]
-			});
-			$('#poppower').dialog({
-				modal: true,
-				autoOpen: false,
-				buttons: [{
-					text: "Ok",
-					click: function () {
-						let name = $('#poppower input[type="text"]').val();
-						let pow = $('.waitvalue');
-						pow.children('.mycost').attr('cost',cost).text(cost);
-						pow.children('.name').text(name);
-						$('.waitvalue').removeClass('waitvalue');
-						$('#poppower input').val('');
-						$(this).dialog("close");
-						mag.calc();
-					}
-				}, {
-					text: "Cancel",
-					click: function () {
-						$('.waitvalue').remove();
-						$(this).dialog("close");
-					}
-				}]
 			});
 
 			$.getJSON("ajax/custompowers.json", function(data) {
@@ -320,25 +222,6 @@ window.acksCreator.Register("magic",function(){
 					mag.calc();
 				}
 			});
-			$('#popload').dialog({
-				modal:true,
-				autoOpen:false,
-				buttons: [{
-					text:"Ok",
-					click: function(){
-						let str = ($('#storagelist')[0].selectedIndex > 0 ? localStorage.getItem($('#storagelist').val()) : $('#popload input').val());
-						if(mag.load(str))
-							$(this).dialog('close');
-						else
-							alert("Something went wrong. This may be corrupt, or not a Magic type.");
-					}
-				},{
-					text: "Cancel",
-					click: function(){
-						$(this).dialog("close");
-					}
-				}]
-			});
 
 			//Load the default mage type
 			if(!mag.load("H4sIAAAAAAAAA0WPMU8DMQyF/wryHFWtBAy3dmZjQwxu4t65SuwSO5wqxH8nd23p9qz3+fn5B/Rwer+cCQYoOHKEAGedqRoMH58BBMti7Zu5lqe3O1F1rGTGKt00R0lYUzcOGc1h2AVIhD7dlFP0Fd1tngOQxAnFC8lCbl4DTISZZVymlwCcc7sm9+Wi33Qj17OPqADWSlG5LgbwimKl9+IjR/yHZsx5FRi/Ghv7vXNLrM1656ipv3jEbNQfqDQT1nyBYfv7Byx/d1odAQAA"))
@@ -369,13 +252,16 @@ window.acksCreator.Register("magic",function(){
 								.removeClass("target")
 								.addClass("powers")
 								.html('<span class="mycost" cost="'+ui.draggable.attr('cost')+'"></span> <span class="name">'+ui.draggable.text()+'</span>');
-							if(ui.draggable.hasClass('addspell'))
-								$('#popspell').dialog("open");
-							else if(ui.draggable.hasClass('addpower'))
-								$('#poppower').dialog("open");
-							else if(ui.draggable.hasClass('multi'))
-								$('#popmulti').dialog('open');
-							else {
+							if(ui.draggable.hasClass('addspell')) {
+								mag.addRemove($('.waitvalue').removeClass('addspell'))
+								window.acksCreator.popspell(mag.calc);
+							} else if(ui.draggable.hasClass('addpower')) {
+								mag.addRemove($('.waitvalue').removeClass('addpower'));
+								window.acksCreator.poppower(mag.calc,false);
+							} else if(ui.draggable.hasClass('multi')) {
+								mag.addRemove($('.waitvalue').removeClass('multi'));
+								window.acksCreator.popmulti(mag.calc);
+							} else {
 								let pow = $('.waitvalue');
 								let costs = pow.children('.mycost').attr('cost').split(',').map(Number);
 								let name = pow.children('.name').text();
@@ -399,13 +285,8 @@ window.acksCreator.Register("magic",function(){
 								else if(costs.length == 1) {
 									pow.removeClass('waitvalue').attr('cost',costs[0]).children('.mycost').text(costs[0]);
 									mag.calc();
-								} else {
-									costs.forEach(function(val){
-										$('#popask select').append('<option value="'+val+'">'+val+'</option>');
-									});
-									$('#popask div p').text("Select value for '"+name+"':");
-									$('#popask').dialog('open');
-								}
+								} else
+									window.acksCreator.popask(name,costs,mag.calc);
 								mag.addRemove($(this));
 								mag.calc();
 							}
@@ -429,7 +310,7 @@ window.acksCreator.Register("magic",function(){
 			});
 		},
 		calc: function(){
-			let mag = this;
+			let mag = window.acksCreator.magic;
 			$('#powers').append((new Array(8)).join('<li />'));
 			$('#powers li:gt('+(mag.data.xplevels().length-1)+')').remove();
 
@@ -465,8 +346,8 @@ window.acksCreator.Register("magic",function(){
 				else
 					$(this).children('td:last').empty();
 			});
-			var zeroes = this.data.zeroes();
-			var fracs = this.data.subone();
+			var zeroes = mag.data.zeroes();
+			var fracs = mag.data.subone();
 			if(zeroes == 0 && fracs > 0) {
 				$('.underdefault').removeClass('underdefault').addClass('error');
 				$('#errors').append('<p>Values must be not less than 1, unless a value is 0.</p>').show();
@@ -476,12 +357,10 @@ window.acksCreator.Register("magic",function(){
 				$('.overdefault').removeClass('overdefault').addClass('error');
 				$('#errors').append('<p>For specialized classes, no value can be larger than the default value.</p>').show();
 			}
-			var total = this.data.sourcefactor();
+			var total = mag.data.sourcefactor();
 			if(total<11-1.125*zeroes){
-				$(this).children('td:nth-child(3)').addClass('error');
 				$('#errors').append('<p>Total value must be greater than '+(11-1.125*zeroes)+'</p>').show();
 			}else if(total>15){
-				$(this).children('td:nth-child(3)').addClass('error');
 				$('#errors').append('<p>Total value must be less than 15</p>').show();
 			}
 			if((zeroes>0)&&(fracs*2>zeroes)){
@@ -540,10 +419,10 @@ window.acksCreator.Register("magic",function(){
 				);
 			}
 			
-			$('#popup').dialog({
-				title: 'Download Your Class',
-				width: '50%',
-			}).html('<p>See below!</p><iframe class="preview-pane" type="application/pdf" width="100%" height="200px" frameborder="0" style="position:relative;z-index:999"></iframe>').dialog("open");
+			window.acksCreator.popup(
+				'Download Your Class','75%',null,
+				'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
+			);
 			$('.preview-pane').attr('src', doc.output('bloburi'));
 		},
 		pdf: function(doc){
