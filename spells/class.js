@@ -151,18 +151,32 @@ window.acksCreator.Register("class",function(){
 				arcane: [0,625,1250,1875,2500,3125,3750,4375,5000],
 				custommagic: []
 			},
-			armor: {
-				Forbidden: 'no armor, nor use a shield',
-				Restricted: 'hide armor',
-				Narrow: 'leather armor or lighter',
-				Broad: 'chain mail or lighter',
-				Unrestricted: 'any armor'
+			armor: function() {
+				let raw = window.acksCreator.class.data.raw;
+				if( raw.fightArmor == 'Forbidden')
+					return 'no armor, nor use a shield';
+				else {
+					let styles = raw.fightStyles || [];
+					return {
+						Restricted: 'hide armor',
+						Narrow: 'leather armor or lighter',
+						Broad: 'chain mail or lighter',
+						Unrestricted: 'any armor'
+					}[raw.fightArmor] +
+						(styles.indexOf('Weapon and Shield') < 0 ? ' but no shield' : '');
+				}
+			},
+			weaponscount: {
+				Restricted: 3,
+				Narrow: 2,
+				Broad: 2,
+				Unrestricted: 1
 			},
 			weapons: {
-				Restricted: [3, ['club', 'dagger', 'bola', 'dart', 'sling', 'sap', 'staff', 'whip']], 
-				Narrow: [2, ['axes', 'bows/crossbows', 'flails/hammers/maces', 'swords/daggers', 'spears/pole arms', 'bolas/darts/nets/slings/saps/staffs', 'any combination of 3 weapons']],
-				Broad: [2, ['any one-handed melee weapons', 'any two-handed melee weapons', 'any axes, flails, hammers, and maces', 'any swords, daggers, spears, and polearms', 'all missile weapons', 'any combination of 5 weapons']],
-				Unrestricted: [1, ['any weapon']]
+				Restricted: ['club', 'dagger', 'bola', 'dart', 'sling', 'staff', 'sap', 'whip'],
+				Narrow: ['axes', 'bows/crossbows', 'flails/hammers/maces', 'swords/daggers', 'spears/pole arms', 'bolas/darts/nets/slings/saps/staffs', 'any combination of 3 weapons'],
+				Broad: ['any one-handed melee weapons', 'any two-handed melee weapons', 'any axes, flails, hammers, and maces', 'any swords, daggers, spears, and polearms', 'all missile weapons', 'any combination of 5 weapons'],
+				Unrestricted: ['any weapon']
 			},
 			turning: function(){
 				if(this.divine() > 1 && this.raw.turn)
@@ -572,13 +586,13 @@ window.acksCreator.Register("class",function(){
 			$('#fighterSel').toggle(idx == 1);
 			$('#fighter ul li:first').text(['Mage','Cleric/Thief','Fighter','Hero','Monster'][idx]);
 			$('#fighter>ul>li:nth-child(2)').text('Attack throw advances '+['+2 per 6','+2 per 4','+2 per 3','+2 per 2','+3 per 2'][idx] + ' levels');
+			$('#armor').text(cl.data.armor());
 			if(idx < 2)
 				$('#fightDamage').replaceWith('<span id="fightDamage">None</span>');
 			if(idx == 0) {
 				$('#fightWeapons').replaceWith('<span id="fightWeapons">Restricted</span>');
 				cl.updateWeapons();
 				$('#fightArmor').replaceWith('<span id="fightArmor">Forbidden</span>');
-				$('#armor').text(cl.data.armor['Forbidden']);
 				$('#fightStyles input:first').prop('checked','true').change();
 				$('#fightStyles label:last').hide();
 			} else {
@@ -612,13 +626,15 @@ window.acksCreator.Register("class",function(){
 					$('#fightArmor').replaceWith(a);
 					$('#fightWeapons').addClass('select').selectmenu({
 						change: function(){
-							raw.fightWeapons = $(this).val();
+							let cl = window.acksCreator.class;
+							cl.data.raw.fightWeapons = $(this).val();
 							cl.updateWeapons();
 							cl.pointsAndPowers();
 						}
 					});
 					$('#fightArmor').addClass('select').selectmenu({
 						change: function(){
+							let raw = window.acksCreator.class.data.raw;
 							raw.fightArmor = $(this).val();
 							if(raw.fightArmor == 'Forbidden') {
 								$('#fightStyles label:last').hide().find('input').prop('checked',false);
@@ -626,7 +642,7 @@ window.acksCreator.Register("class",function(){
 							} else
 								$('#fightStyles label:last').show();
 							$('#fightStyles input').checkboxradio('refresh');
-							$('#armor').text(cl.data.armor[raw.fightArmor]);
+							$('#armor').text(cl.data.armor());
 							cl.pointsAndPowers();
 						}
 					});
@@ -638,7 +654,7 @@ window.acksCreator.Register("class",function(){
 						});
 						$('#fightDamage').addClass('select').selectmenu({
 							change: function(){
-								raw.fightDamage = $(this).val();
+								window.acksCreator.class.data.raw.fightDamage = $(this).val();
 							}
 						});
 					}
@@ -647,7 +663,7 @@ window.acksCreator.Register("class",function(){
 					}
 					$('#fightWeapons,#fightArmor,#fightDamage').find('option:last').attr('selected',true);
 					$('#fightWeapons,#fightArmor,select#fightDamage').selectmenu('refresh');
-					$('#armor').text(cl.data.armor[raw.fightArmor]);
+					$('#armor').text(cl.data.armor());
 				}
 			}
 		},
@@ -662,7 +678,7 @@ window.acksCreator.Register("class",function(){
 				$('#weaponwarning').hide();
 				raw.selectedWeapons = ['Any'];
 			} else if(raw.fightWeapons){
-				this.data.weapons[raw.fightWeapons][1].forEach(function(el){
+				this.data.weapons[raw.fightWeapons].forEach(function(el){
 					wlist.append('<label>'+el+'<input type="checkbox" /></label>');
 				});
 				$('#weaponwarning').show();
@@ -806,9 +822,9 @@ window.acksCreator.Register("class",function(){
 			$(".custpowers").text(pow);
 			
 			if(raw.fightWeapons)
-				$('#weaponcount').text(cl.data.weapons[raw.fightWeapons][0]);
+				$('#weaponcount').text(cl.data.weaponscount[raw.fightWeapons]);
 			if(raw.fightArmor)
-				$('#armor').text(cl.data.armor[raw.fightArmor]);
+				$('#armor').text(cl.data.armor());
 			cl.createXPtable();
 		},
 		getSpellsArray: function() {
@@ -1149,7 +1165,6 @@ window.acksCreator.Register("class",function(){
 			if(cs.selectedWeapons) cs.selectedWeapons.forEach(function(el){
 				$('#weapons label:contains("'+el+'") input').prop('checked',true).checkboxradio('refresh');
 			});
-			console.log($('#weaponcount').text()*1,$('#weapons input:checked').length);
 			$('#weaponwarning').toggle($('#weapons input:checked').length != $('#weaponcount').text()*1);
 			$('#weaponwarning').hide();
 
@@ -1298,7 +1313,7 @@ window.acksCreator.Register("class",function(){
 			y += h();
 			doc.text(20, y, ['Prime Requisite:','Requirements:','Hit Dice:','Maximum Level:','Weapons:','Armor:']);
 			doc.setFontType('normal');
-			doc.text(55, y, [data.prime(),data.minimums(),data.hdType(),data.max().toString(),data.raw.selectedWeapons.join(', '),data.armor[data.raw.fightArmor]]);
+			doc.text(55, y, [data.prime(),data.minimums(),data.hdType(),data.max().toString(),data.raw.selectedWeapons.join(', '),data.armor[data.raw.fightArmor]+(data.raw.fightStyles.indexOf('Weapon and Shield') < 0 ? ' but no shield':'')]);
 			y += h()*7;
 
 			let spellboxCoords = this.makeSpellGrid(doc);
