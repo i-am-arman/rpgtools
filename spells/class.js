@@ -190,9 +190,24 @@ window.acksCreator.Register("class",function(){
 				return false;
 			},
 			toString: function(){
-				//TODO: print this stuff
 				let cl = window.acksCreator.class.data;
-				return 'Hit Die: '+cl.hd();
+				//TODO: fighter stuff
+				let str = `<ul><li>Hit Die (${cl.hd()}): ${cl.hdType()}</li>` +
+					`<li>Fighter (${(cl.fighter()==1?(cl.raw.isCleric?'1/Cleric':'1/Thief'):cl.fighter())}): type; weapons, armor, styles, damage bonus, cleaves</li>` +
+					`<li>Thief (${cl.thief()}): ${['0', '3', '5', '10', '15'][cl.thief()]} skills</li>` +
+					`<li>Divine (${cl.divine()}):</li>` +
+					`<li>Arcane (${cl.arcane()}): </li>`;
+				if(cl.custommagic() > 0) {
+					str += `<li>${cl.raw.magic.name} (${cl.custommagic()}): ${m.rankdata()[cl.custommagic()-1]}, ${(cl.raw.tradecustom?' starting at a later level':'')+(cl.raw.turncustom?'; can turn undead':'')}</li>`;
+				}
+				if(cl.racename == 'None')
+					str += '<li>Race: None</li>';
+				else
+					str += `<li>Race: ${cl.raw.racename} (${cl.raw.racepoints})</li>`;
+				str += '</ul>';
+				//TODO: XP table, spells, custom powers, etc.
+
+				return str;
 			}
 		},
 		start: function() {
@@ -367,7 +382,6 @@ window.acksCreator.Register("class",function(){
 			});
 			$.getJSON("ajax/custompowers.json", function(data) {
 				//TODO: add click-to-change-value
-				//TODO: add stack (Bargaining 3), multi (Art: pottery, Art: painting)
 				var items = [];
 				data.powers.forEach(function(el){
 					items.push('<span class="power" cost="'+el.cost+'">'+el.name+'</span>');
@@ -416,6 +430,7 @@ window.acksCreator.Register("class",function(){
 				let lastidx = ['Mage','Cleric/Thief','Fighter','Hero','Monster'].indexOf($('#fighter ul li:first').text());
 				let lastrad = cl.data.raw.fightCleric;
 				cl.data.raw.fightCleric = $('#radCleric').is(':checked') && idx==1;
+				$('#fightCleaves').text(['None','1 per 2 levels','1 per level','1 per level','1 per level'][idx]);
 				//Only if selections have changed
 				if(idx != lastidx || cl.data.raw.fightCleric != lastrad) {
 					cl.updateFighter(lastidx);
@@ -1028,7 +1043,7 @@ window.acksCreator.Register("class",function(){
 								window.acksCreator.popmulti(function(pow){
 									cl.dropped({
 										name: pow.children('.name').text(),
-										cost: pow.attr('cost')
+										cost: pow.children('.mycost').attr('cost')
 									});
 								});
 							} else
@@ -1121,7 +1136,6 @@ window.acksCreator.Register("class",function(){
 			if($('#racename select option').length > 7)
 				$('#racename select option:last-child').remove();
 			$('#racename select').append('<option>' + obj.name + '</option>').selectmenu('refresh');
-			//TODO: double check this correctly captures races and abilities:
 			cl.races[obj.name] = obj.race;
 			if(obj.magic)
 				this.loadMagic(obj.magic);
@@ -1229,6 +1243,7 @@ window.acksCreator.Register("class",function(){
 		preDisplayPdf: function(){
 			let cl = window.acksCreator.class;
 			let err = "";
+			//Warnings
 			if($('#weaponwarning:visible').length > 0)
 				err += '<p>Make sure you select the useable weapons!</p>';
 			if(cl.data.classpoints() > 4)
@@ -1247,30 +1262,33 @@ window.acksCreator.Register("class",function(){
 				err += '<p>Remember to choose a spell list with '+cl.data.divine*5+' Divine spells per spell level.</p>';
 			if(cl.data.raw.custommagic > 0 && cl.data.raw.magic.acquisition == 'Prayerful')
 				err += '<p>Remember to choose a spell list with '+window.acksCreator.magic.data.spelllist()[cl.data.raw.custommagic]+' '+cl.data.raw.magic.name+' spells per spell level.</p>';
-			err += '<p>';
-			if(cl.data.raw.custommagic > 0)
-				err += '<label><input type="checkbox" /> Print custom magic summary sheet?</label>';
-			if(cl.data.race && cl.data.raw.racename == cl.data.race.name)
-				err += '<label><input type="checkbox" /> Print custom race summary sheet?</label>';
+			//Checkboxes
+			if(cl.data.custommagic() > 0)
+				err += '<p><label><input type="checkbox" class="printchoice" value="magic" /> Print custom magic summary sheet?</label></p>';
+			if(cl.data.raw.race && cl.data.raw.racename == cl.data.raw.race.name)
+				err += '<p><label><input type="checkbox" class="printchoice" value="race" /> Print custom race summary sheet?</label></p>';
 			if(cl.data.raw.powers.length > 0)
-				err += '<label><input type="checkbox" /> Print custom powers? (in case you want to summarize the custom powers yourself)</label>';
-			if(cl.data.raw.divine > 0 || cl.data.raw.custommagic > 0 && cl.data.raw.magic.acquisition == 'Prayerful')
-				err += '<label><input type="checkbox" /> Print spells?</label>';
-			err += '</p>';
+				err += '<p><label><input type="checkbox" class="printchoice" value="powers" /> Print custom powers? (in case you want to summarize the custom powers yourself)</label></p>';
+			if(cl.data.raw.divine > 0 || cl.data.custommagic() > 0 && cl.data.raw.magic.acquisition == 'Prayerful')
+				err += '<p><label><input type="checkbox" class="printchoice" value="spells" /> Print spells?</label></p>';
+			err += '<p><label><input type="checkbox" class="printchoice" value="save" /> Print save information?</label></p>';
 			let buttons = [
 				{text: 'Cancel', click:function(){$(this).dialog('close');}},
 				{text: 'Go!', click:function(){
-					//Read all the inputs, then send all that on to make the pdf
+					let print = {};
+					$('.printchoice:checked').each(function(){
+						print[$(this).val()] = true;
+					});
 					$(this).dialog('close');
-					window.acksCreator.class.displayPdf(['inputs']);
+					window.acksCreator.class.displayPdf(print);
 				}}
 			];
 			window.acksCreator.popup('Display PDF',null,buttons,err);
 		},
-		displayPdf: function() {
+		displayPdf: function(print) {
 			var doc = new jsPDF();
 			
-			doc = this.pdf(doc);
+			doc = this.pdf(doc,print);
 			doc.setFontSize(12);
 			doc.setFontType('normal');
 			for(let p = 1; p<=doc.getNumberOfPages(); p++) {
@@ -1281,20 +1299,15 @@ window.acksCreator.Register("class",function(){
 				);
 			}
 			
-			/*TODO: Build a checklist for creating a pdf:
-			 * Print custom magic summary sheet?
-			 * Print custom race summary sheet?
-			 * Print custom powers? (in case you want to summarize the custom powers yourself)
-			 * Print spells? <-- this would be in case you created a custom spell sheet...
-			 */
-
 			window.acksCreator.popup(
 				'Download Your Class','75%',null,
 				'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
 			);
 			$('.preview-pane').attr('src', doc.output('bloburi'));
 		},
-		pdf: function(doc){
+		pdf: function(doc,print){
+			print = print || {powers:true};
+			console.log(print);
 			let data = this.data;
 			let mag = window.acksCreator.magic;
 
@@ -1313,7 +1326,7 @@ window.acksCreator.Register("class",function(){
 			y += h();
 			doc.text(20, y, ['Prime Requisite:','Requirements:','Hit Dice:','Maximum Level:','Weapons:','Armor:']);
 			doc.setFontType('normal');
-			doc.text(55, y, [data.prime(),data.minimums(),data.hdType(),data.max().toString(),data.raw.selectedWeapons.join(', '),data.armor[data.raw.fightArmor]+(data.raw.fightStyles.indexOf('Weapon and Shield') < 0 ? ' but no shield':'')]);
+			doc.text(55, y, [data.prime(),data.minimums(),data.hdType(),data.max().toString(),data.raw.selectedWeapons.join(', '),data.armor()]);
 			y += h()*7;
 
 			let spellboxCoords = this.makeSpellGrid(doc);
@@ -1325,9 +1338,9 @@ window.acksCreator.Register("class",function(){
 				strDesc += " Turns as a Cleric of their level.";
 
 			//Spell lists and what spells are chosen from where
-			if(data.divine() > 0)
+			if(data.divine() > 0 && !print.spells)
 				strDesc += " Needs a spell list with "+Math.round(10*mag.levelmult(500)[data.divine()-1]*mag.spellsmult(500)[data.divine()-1])+" Divine spells.";
-			if(data.custommagic() > 0) {
+			if(data.custommagic() > 0 && !print.spells) {
 				if(mag.data.raw.acquisition == 'prayerful')
 					strDesc += " Needs a spell list with " + Math.round(10*mag.levelmult(mag.data.basexp())[data.custommagic()-1]*mag.spellsmult(mag.data.basexp())[data.custommagic()-1]) + " " + mag.data.raw.name + " spells.";
 				else
@@ -1340,8 +1353,20 @@ window.acksCreator.Register("class",function(){
 			if(data.raw.thiefSkills.length > 0)
 				strDesc += " Can " + data.raw.thiefSkills.sentance() + ' as a thief of their level.';
 
+			//Fighter skills
+			let fighter = data.fighter();
+			strDesc += " Advances in attack throws as a " + ['Mage, +2 every 6','Cleric/Thief, +2 every 4','Fighter, +2 every 3','Hero, +2 every 2','Monster, +3 every 2 levels'][fighter] + '.';
+			if(fighter == 1)
+				strDesc += ' Cleaves up to once per two levels.';
+			else if(fighter > 1)
+				strDesc += ' Cleaves up to once per level.';
+			else
+				strDesc += ' Cannot cleave.';
+			if(data.raw.fightDamage != 'None')
+				strDesc += ' ' + (data.raw.fightDamage == 'Both' ? 'Missile and melee' : data.raw.fightDamage) + ' damage bonus at levels 1, 3, 6, 9, and 12.';
+
 			//Custom powers
-			if(data.raw.powers.length > 0) {
+			if(data.raw.powers.length > 0 && print.powers) {
 				strDesc += " Custom Powers";
 				let arr = Array.from(data.raw.powers);
 				arr.sort(function(a,b){
@@ -1365,7 +1390,7 @@ window.acksCreator.Register("class",function(){
 							str = ';'+str;
 					} else
 						str = ', ' + str;
-					if(pow.extendable)
+					if(pow.extend)
 						str += ' (' + pow.cost + ')';
 					strDesc += str;
 				});
@@ -1378,9 +1403,6 @@ window.acksCreator.Register("class",function(){
 			//Profs
 			if(data.raw.profs)
 				strDesc += "\n\nClass Proficiencies list: " + data.raw.profs.join(', ');
-
-			//Save file
-			strDesc += "\n\nSave information:\n" + window.acksCreator.save('c'+window.acksCreator.class.data.raw);
 
 			//And now, the actual PDF...
 			let widths = [
@@ -1414,13 +1436,28 @@ window.acksCreator.Register("class",function(){
 				}
 			}
 
+			if(print.save) {
+				let wid = doc.internal.pageSize.getWidth()-40;
+				let hit = doc.internal.pageSize.getHeight()-40;
+				let maxheight = Math.floor(hit/h());
+				doc.setFontSize(8);
+				let txt = doc.splitTextToSize('Save information:\n\nc' + window.acksCreator.save(window.acksCreator.class.data.raw), wid);
+				while(txt.length > 0) {
+					doc.addPage();
+					doc.rect(18,18,wid+4,hit+4);
+					let text = txt.splice(maxheight);
+					doc.text(20,20+h(),txt);
+					txt = text;
+				}
+			}
+
 			//Print custom race, if used
-			if(data.raw.race && data.raw.racename != 'None') {
+			if(print.race) {
 				doc.addPage();
 				window.acksCreator.race.pdf(doc);
 			}
 			//Print custom magic, if used, but not used in race
-			if(!window.acksCreator.race.data.magic && data.raw.custommagic > 0) {
+			if(print.magic) {
 				doc.addPage();
 				window.acksCreator.magic.pdf(doc);
 			}

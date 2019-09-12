@@ -112,7 +112,7 @@ window.acksCreator.Register("local",function(){
 				}
 				if(hasClass) {
 					//print the class stuff, however I want to do that
-					str += window.ackscreator.class.data.toString();
+					str += window.acksCreator.class.data.toString();
 				}
 				if(hasRace) {
 					str += window.acksCreator.race.toString();

@@ -661,6 +661,18 @@ window.acksCreator.Register("race",function(){
 			var doc = new jsPDF();
 			
 			doc = this.pdf(doc);
+
+			if(window.acksCreator.data.magic) {
+				let cm = 0;
+				for(let lvl = 0; lvl <= 4; lvl++) {
+					if(race.custommagic) cm++;
+				}
+				if(cm > 0) {
+					doc.addPage();
+					window.acksCreator.magic.pdf(doc);
+				}
+			}
+
 			doc.setFontSize(12);
 			doc.setFontType('normal');
 			for(let p = 1; p<=doc.getNumberOfPages(); p++) {
@@ -748,7 +760,7 @@ window.acksCreator.Register("race",function(){
 				let div = Math.floor(powers.length/3);
 				let rem = powers.length-div*3;
 
-				let totalheight = h()*(div+(rem>0));
+				let totalheight = h()*(1+div+(rem>0));
 				doc.setFontSize(16);
 				totalheight += h();
 				if(y+totalheight > height) {
@@ -811,12 +823,8 @@ window.acksCreator.Register("race",function(){
 					doc.text(20,y,txt);
 					y += h();
 				});
-				doc.line(20,y,width,y);
+				doc.line(20,y-h()*3/4,width,y-h()*3/4);
 				y += h();
-			}
-			if(data.magic && cm > 0) {
-				doc.addPage();
-				window.acksCreator.magic.pdf(doc);
 			}
 			return doc;
 		}
