@@ -1,6 +1,16 @@
 window.acksCreator.Register("spells",function(){
 	window.acksCreator.spells = {
 		start: function(){
+			//TODO: complete redesign, no more loading from lists
+			/*
+			 * Use the same format/layout as the others
+			 *
+			 * Radio to select arcane, divine, all local custom, and a box to paste a custom magic in
+			 *
+			 * Add a second tab with saved spells
+			 * spells get saved as sName: sObj
+			 * 
+			 */
 			$("#spelltype").tabs({
 				activate: function (event, ui) {
 					var url='ajax/'+$("#spelltype ul>li a").eq($('#spelltype').tabs('option','active')).attr("href").replace('#','')+'.json';
