@@ -74,7 +74,9 @@ window.acksCreator.Register("class",function(){
 						return 'INT, WIS, CHA 9';
 					default:
 						if(this.raw.race) {
-							return window.acksCreator.race.data.minimums.sentance();
+							return window.acksCreator.race.data.minimums.sentance() +
+								' of ' +
+								window.acksCreator.race.data.minval;
 						} else
 							return 'None';
 				}
@@ -219,7 +221,7 @@ window.acksCreator.Register("class",function(){
 			$('#about').button().click(function(){
 				window.acksCreator.popup('Class Creator',null,
 					[{text: "Ok", click: function(){ $(this).dialog('close'); }}],
-					"<h3>Class Creator</h3><div><p>Welcome to Class Creator, an interactive character class creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from the player's companion, though I've left almost all other information out; this tool won't be much good without the player's companion. If you haven't bought it already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div>"
+					"<div><p>Welcome to Class Creator, an interactive character class creation service for the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System. The data has been taken directly from the player's companion, though I've left almost all other information out; this tool won't be much good without the player's companion. If you haven't bought it already, you should!</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase the Adventurer, Conquerer, King player's companion - it really is an awesome resource!</p></div>"
 				);
 			});
 			$('#saveit').button().click(function () {
@@ -394,6 +396,7 @@ window.acksCreator.Register("class",function(){
 		calcAll: function() {
 			let cl = this;
 			['hd','fighter','thief','divine','arcane','custommagic','racename','racepoints'].forEach(function(el){cl.selections(el);});
+			$('#weaponwarning').toggle($('#weapons input:checked').length != $('#weaponcount').text()*1);
 			cl.pointsAndPowers();
 		},
 		calc: function(sel) {
@@ -512,7 +515,6 @@ window.acksCreator.Register("class",function(){
 					$("#racepoints select").val(0).selectmenu('refresh');
 				$('#racepoints select').change();
 				cl.selections('racepoints');
-				//cl.pointsAndPowers();
 			},
 			racepoints: function() {
 				let cl = window.acksCreator.class;
@@ -588,7 +590,10 @@ window.acksCreator.Register("class",function(){
 					$('#racepowers ul').append('<li lvl="'+lvl+'">'+lvl+': <div /></li>');
 				});
 				cl.data.racepowers.forEach(function(pow){
-					$('#racepowers ul li[lvl="'+pow.level+'"]>div').append('<div class="powers" cost="'+pow.cost+'"><span class="mycost">'+pow.cost+'</span> <span class="name">'+pow.name+'</span></div>');
+					let visiblecost = pow.cost;
+					if(pow.cost == 'arcane')
+						visiblecost = '*';
+					$('#racepowers ul li[lvl="'+pow.level+'"]>div').append('<div class="powers" cost="'+pow.cost+'"><span class="mycost" cost="'+pow.cost+'">'+visiblecost+'</span> <span class="name">'+pow.name+'</span></div>');
 				});
 				cl.countProfs();
 				cl.pointsAndPowers();
@@ -606,7 +611,6 @@ window.acksCreator.Register("class",function(){
 				$('#fightDamage').replaceWith('<span id="fightDamage">None</span>');
 			if(idx == 0) {
 				$('#fightWeapons').replaceWith('<span id="fightWeapons">Restricted</span>');
-				cl.updateWeapons();
 				$('#fightArmor').replaceWith('<span id="fightArmor">Forbidden</span>');
 				$('#fightStyles input:first').prop('checked','true').change();
 				$('#fightStyles label:last').hide();
@@ -670,6 +674,7 @@ window.acksCreator.Register("class",function(){
 						$('#fightDamage').addClass('select').selectmenu({
 							change: function(){
 								window.acksCreator.class.data.raw.fightDamage = $(this).val();
+								cl.pointsAndPowers();
 							}
 						});
 					}
@@ -681,6 +686,7 @@ window.acksCreator.Register("class",function(){
 					$('#armor').text(cl.data.armor());
 				}
 			}
+			cl.updateWeapons();
 		},
 		updateWeapons: function(){
 			let raw = window.acksCreator.class.data.raw;
@@ -792,7 +798,7 @@ window.acksCreator.Register("class",function(){
 				$(this).find('.powers').each(function(){
 					let cost = $(this).attr('cost')*1;
 					lvlused[lvl] += cost;
-					if($(this).children('.mycost').attr('cost').indexOf(',') > -1 && $('#racepowers .powers').length > 0) {
+					if($('#racepowers .powers').length > 0) {
 						let name = $(this).children('.name').text();
 						let racepower = $('#racepowers .powers .name:contains("'+name+'")');
 						if(racepower.length > 0)
@@ -826,6 +832,9 @@ window.acksCreator.Register("class",function(){
 				xp += cl.races[raw.racename][raw.racepoints].xp;
 				$('#level').text(cl.data.max());
 				$("#points").text(cl.data.classpoints() + "+" + raw.racepoints);
+				//count the powers with mycost="arcane"
+				if(cl.data.arcane() > 2)
+					xp += 25*$('#racepowers ul li[lvl="1"] .mycost[cost="arcane"]').length;
 			} else {
 				$("#points").text(cl.data.classpoints());
 				$('#level').text("14");
@@ -1166,22 +1175,21 @@ window.acksCreator.Register("class",function(){
 				cl.selections(el);
 			});
 
+			//Fighter sub-sections
 			if (cs.fightCleric)
 				$('#radCleric').prop("checked", true).change();
 			else
 				$('#radThief').prop("checked", true).change();
-			$('.select#fightWeapons').val(cs.fightWeapon);
-			$('.select#fightArmor').val(cs.fightArmor);
-			$('#fightStyles label input').each(function(){
+			$('.select#fightWeapons').val(cs.fightWeapons).selectmenu('refresh');
+			cl.data.raw.fightWeapons = cs.fightWeapons;
+			$('.select#fightArmor').val(cs.fightArmor).selectmenu('refresh');
+			$('.select#fightStyles label input').each(function(){
 				$(this).prop('checked',cs.fightStyles.indexOf($(this).parent().text()) > -1).change();
 			});
-			$('.select#fightDamage').val(cs.fightDamage);
-			if(cs.selectedWeapons) cs.selectedWeapons.forEach(function(el){
-				$('#weapons label:contains("'+el+'") input').prop('checked',true).checkboxradio('refresh');
-			});
-			$('#weaponwarning').toggle($('#weapons input:checked').length != $('#weaponcount').text()*1);
-			$('#weaponwarning').hide();
+			$('.select#fightDamage').val(cs.fightDamage).selectmenu('refresh');
+			cl.data.raw.selectedWeapons = [...cs.selectedWeapons];
 
+			//Thief skills
 			$('#thief label input').prop('checked',false);
 			if(cs.thiefSkills) cs.thiefSkills.forEach(function(el){
 				$('#thief label:contains("'+el+'") input').prop('checked',true);
@@ -1214,6 +1222,7 @@ window.acksCreator.Register("class",function(){
 			});
 			let ul = $('#powerholder ul');
 			ul.empty().append('<li lvl="1">1: <div/></li>');
+			//Powers
 			if(cs.powers) cs.powers.forEach(function(pow){
 				if($(ul).children('li[lvl="'+pow.level+'"]').length<1)
 					$(ul).append('<li lvl="'+pow.level+'">'+pow.level+' (<span class="remaining"></span> of <span class="total"></span>): <div></div></li>');

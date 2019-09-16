@@ -285,9 +285,12 @@ window.acksCreator.Register("race",function(){
 				$(this).find('li').each(function(){
 					let lvl = $(this).attr('lvl')*1;
 					$(this).find('.powers').each(function(){
-						let cost = $(this).attr('cost')*1;
+						let cost = $(this).attr('cost');
+						if(cost != 'arcane')
+							lvlused[lvl] += cost*1;
+						else
+							lvlused[lvl]++;;
 						let extend = $(this).attr('extend') == 'true';
-						lvlused[lvl] += cost
 						race[idx].powers.push({
 							level: lvl,
 							name: $(this).children('.name').text(),
@@ -534,8 +537,7 @@ window.acksCreator.Register("race",function(){
 			let cost = pow.children('.mycost').attr('cost');
 			if(cost == 'arcane') {
 				pow.attr('arcane','true');
-				//TODO: figure out how expensive this is later (an extra 25xp)
-				pow.attr('cost',1);
+				pow.attr('cost','arcane');
 				pow.children('.mycost').text('*');
 				pow.removeClass('waitvalue');
 				rac.calc();
@@ -548,17 +550,19 @@ window.acksCreator.Register("race",function(){
 			let lastpower = 0;
 			let nextpower = 100;
 			let hasLevel = false;
-			this.data.race.forEach(function(r,idx){r.powers.forEach(function(p){
-				if(p.name == name) {
-					if(idx != rlvl && p.level > 1) {
-						hasLevel = true;
-						return;
-					} else if(idx < rlvl)
-						lastpower = Math.max(p.cost,lastpower);
-					else if (idx > rlvl)
-						nextpower = Math.min(nextpower, p.cost);
-				}
-			});});
+			this.data.race.forEach(function(r,idx){
+				r.powers.forEach(function(p){
+					if(p.name == name) {
+						if(idx != rlvl && p.level > 1) {
+							hasLevel = true;
+							return;
+						} else if(idx < rlvl)
+							lastpower = Math.max(p.cost,lastpower);
+						else if (idx > rlvl)
+							nextpower = Math.min(nextpower, p.cost);
+					}
+				});
+			});
 			if(hasLevel) {
 				pow.remove();
 				alert('If a power is in a tradeoff level, it is not allowed at other race levels.');

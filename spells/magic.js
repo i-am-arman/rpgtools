@@ -1,3 +1,4 @@
+//TODO: figure out how to make subsets for costs, like Death for Divine, more expensive for some, less for others
 window.acksCreator.Register("magic",function(){
 	window.acksCreator.magic = {
 		spelltypes: {
@@ -402,6 +403,8 @@ window.acksCreator.Register("magic",function(){
 			$('#magics tr').each(function(el){
 				$(this).find('input').val(obj[$(this).children('td:first').text().toLowerCase()]);
 			});
+			//TODO: load powers
+			$('.powers').remove();
 			this.calc();
 			return true;
 		},
