@@ -1,3 +1,4 @@
+//TODO: Tradeoffs don't take into account earlier levels (ie, 1 Engineering vs 2 Engineering)
 window.acksCreator.Register("class",function(){
 	window.acksCreator.class = {
 		data: {
