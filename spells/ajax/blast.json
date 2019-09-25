@@ -1,5 +1,5 @@
 {"name":"Blast Spells","values":[
-{"id":"effects","title":"Damaging Effects","type":"checkbox","add":1,"values":[
+{"id":"effects","title":"Damaging Effects","type":"dropdown","add":1,"values":[
 {"name":"1d4 damage per level", "value":20},
 {"name":"1d6 damage per level", "value":27},
 {"name":"1d6+1 damage per level", "value":33},

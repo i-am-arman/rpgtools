@@ -1,6 +1,6 @@
 {"name":"Detection Spells","values":[
 {"id":"effects","title":"Effect(s) Base Cost","type":"checkbox","add":1,"values":[
-{"name":"Detect evil/good in range","value":5},
+{"name":"Detect good/evil in range","value":5},
 {"name":"Detect ritual magic in range","value":5},
 {"name":"Detect danger in range","value":8},
 {"name":"Detect known object in range","value":8},

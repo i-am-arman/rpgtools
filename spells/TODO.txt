@@ -1,0 +1,126 @@
+Blast
+6	Target creatures
+6	Target area: sphere
+2	Target area: cube
+1	Target area: cylinder
+1	Target area: line
+3	Target area: cones
+
+Death
+1	Damage
+1	Hold
+1	Mortal wound
+1	Slay
+2	Drain
+1	Disintegrate
+
+1	Imbue
+1	Animate
+1	Deanimate
+
+Detection
+1	good/evil
+1	ritual magic
+1	danger
+1	known object
+1	invisible
+1	magic
+1	poison
+1	undead
+1	treasure
+1	charm
+1	secret doors
+1	trap
+1	curse
+
+Enchantment
+1	Confused
+1	Asleep
+1	Mesmerized
+1	Charmed
+1	Feebleminded
+1	Held
+1	Flees in panic
+1	Commanded
+undead or living or both
+animals, humanoids, plants, or all
+
+Healing
+5	Cure/Cause Damage
+1	Blindness
+1	Disease
+1	Poison
+1	Reincarnation
+1	Restoration of life and limb/death ray
+1	Regeneration / withering
+1	Resurrection / destruction
+Cure or Inflict
+
+Illusion
+4	Create illusion
+1	Inaudible
+1	Invisible
+1	Mirror images
+1	Phantasmal killer
+
+Movement
+1	double move
+1	climb
+1	water-walk
+1	double attack
+1	fly
+1	fly as broom
+1	fly as carpet
+1	move target vertically
+1	move target anywhere
+6	Teleport
+only objects, only creatures, any
+
+Protection
+4	AC Value
+4	AC Bonus
+15	Spell immunity
+6	Damage resistance
+3	Ward
+
+Summoning
+1	Summoning
+
+Transmogrification
+Total transformation
+1	statue
+1	living
+1	undead
+Partial
+1	breathe water
+1	infravision
+1	proficiency-like ability
+1	blend into surroundings
+1	leap in great bounds
+1	climb like a spider
+1	move noiselessly
+1	sight of an eagle
+1	grow / shrink
+1	becomes gaseous
+1	becomes incorporeal
+1	strength of an ogre
+1	flight of a giant hawk
+1	strength of a giant
+1	regenerative powers of troll
+total vs partial
+
+Walls
+3	Attacks
+1	Fear
+1	Cloudkill
+1	Mortal wounds
+1	Death
+1	Disintegration
+2	Damage
+
+Impermeable to
+2	creatures
+1	magic
+1	light
+1	vision
+

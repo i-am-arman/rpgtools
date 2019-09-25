@@ -1,10 +1,156 @@
-//TODO: figure out how to make subsets for costs, like Death for Divine, more expensive for some, less for others
+//TODO: Export the loaded pages, and build a giant html file with everything pre-populated
+//TODO: Make any changes (ie, remove the 0.01 multiplier bit) to fix the flaws it has
+//TODO: Add a save button and a description box at the bottom of the creator
+//TODO: Add a load button, to load a custom Magic class, and add a the multipliers to the select boxes
+//TODO: Once that works:
+/* Recreate Arcane/Divine magic types
+ * Remove the multipliers
+ * Add a radio button at the top of the page
+ * Auto-populate the final multipliers
+ */
+
 window.acksCreator.Register("magic",function(){
 	window.acksCreator.magic = {
 		spelltypes: {
 			standard: [[1,0,0,0,0,0],[2,0,0,0,0,0],[2,1,0,0,0,0],[2,2,0,0,0,0],[2,2,1,0,0,0],[2,2,2,0,0,0],[3,2,2,1,0,0],[3,3,2,2,0,0],[3,3,3,2,1,0],[3,3,3,3,2,0],[4,3,3,3,2,1],[4,4,3,3,3,2],[4,4,4,3,3,2],[4,4,4,4,3,3]],
 			alternate: [[2/5,0,0,0,0],[1,0,0,0,0],[2,0,0,0,0],[2,1,0,0,0],[2,2,0,0,0],[2,2,1,1,0],[2,2,2,1,1],[3,3,2,2,1],[3,3,3,2,2],[4,4,3,3,2],[4,4,4,3,3],[5,5,4,4,3],[5,5,5,4,3],[6,5,5,5,4]],
 			improved: [[2,0,0,0,0,0],[3,0,0,0,0,0],[3,1,0,0,0,0],[3,2,0,0,0,0],[3,2,1,0,0,0],[3,3,2,0,0,0],[4,3,2,1,0,0],[4,3,3,2,0,0],[4,4,3,2,1,0],[4,4,3,3,2,0],[5,4,4,3,2,1],[5,4,4,3,3,2],[5,5,4,4,3,2],[6,5,4,4,3,3]]
+		},
+		breakouts: {
+			blast: [[
+				{mult:6, name:"Target creatures"},
+				{mult:6, name:"Target area: sphere"},
+				{mult:2, name:"Target area: cube"},
+				{mult:1, name:"Target area: cylinder"},
+				{mult:1, name:"Target area: line"},
+				{mult:3, name:"Target area: cone"}
+			]],
+			death: [[
+				{mult:1, name:"Damage"},
+				{mult:1, name:"Hold"},
+				{mult:1, name:"Mortal wound"},
+				{mult:1, name:"Slay"},
+				{mult:2, name:"Drain"},
+				{mult:1, name:"Disintegrate"}
+			],[
+				{mult:1, name:"Imbue"},
+				{mult:1, name:"Animate"},
+				{mult:1, name:"Deanimate"}
+			]],
+			detection: [[
+				{mult: 1, name:"good/evil"},
+				{mult: 1, name:"ritual magic"},
+				{mult: 1, name:"danger"},
+				{mult: 1, name:"known object"},
+				{mult: 1, name:"invisible"},
+				{mult: 1, name:"magic"},
+				{mult: 1, name:"poison"},
+				{mult: 1, name:"undead"},
+				{mult: 1, name:"treasure"},
+				{mult: 1, name:"charm"},
+				{mult: 1, name:"secret doors"},
+				{mult: 1, name:"trap"},
+				{mult: 1, name:"curse"}
+			]],
+			enchantment: [[
+				{mult:1, name:"Confused"},
+				{mult:1, name:"Asleep"},
+				{mult:1, name:"Mesmerized"},
+				{mult:1, name:"Charmed"},
+				{mult:1, name:"Feebleminded"},
+				{mult:1, name:"Held"},
+				{mult:1, name:"Flees in panic"},
+				{mult:1, name:"Commanded"}
+			],[
+				{mult:1, name:"undead"},
+				{mult:1, name:"living"},
+				{mult:1, name:"both"}
+			],[
+				{mult:1, name:"animals"},
+				{mult:1, name:"humanoids"},
+				{mult:1, name:"plants"},
+				{mult:1, name:"all"}
+			]],
+			healing: [[
+				{mult:1, name:"Cure/Cause Damage"},
+				{mult:1, name:"Blindness"},
+				{mult:1, name:"Disease"},
+				{mult:1, name:"Poison"},
+				{mult:1, name:"Reincarnation"},
+				{mult:1, name:"Restoration of life and limb/death ray"},
+				{mult:1, name:"Regeneration / withering"},
+				{mult:1, name:"Resurrection / destruction"},
+			],[
+				{mult:1, name:"Cure"},
+				{mult:1, name:"Inflict"}
+			]],
+			illusion: [[
+				{mult:4, name:"Create illusion"},
+				{mult:1, name:"Inaudible"},
+				{mult:1, name:"Invisible"},
+				{mult:1, name:"Mirror images"},
+				{mult:1, name:"Phantasmal killer"},
+			]],
+			movement: [[
+				{mult:1, name:"Double move"},
+				{mult:1, name:"Climb"},
+				{mult:1, name:"Water-walk"},
+				{mult:1, name:"Double attack"},
+				{mult:1, name:"Fly"},
+				{mult:1, name:"Fly as broom"},
+				{mult:1, name:"Fly as carpet"},
+				{mult:1, name:"Move target vertically"},
+				{mult:1, name:"Move target anywhere"},
+				{mult:6, name:"Teleport"}
+			],[
+				{mult:1, name:"only objects"},
+				{mult:1, name:"only creatures"},
+				{mult:1, name:"objects and creatures"}
+			]],
+			protection: [[
+				{mult:4, name:"AC Value"},
+				{mult:4, name:"AC Bonus"},
+				{mult:15,name:"Spell immunity"},
+				{mult:6, name:"Damage resistance"},
+				{mult:3, name:"Ward"}
+			]],
+			summoning: [[{mult:1, name:"summoning"}]],
+			transmogrification: [[
+				{mult:1, name:"statue"},
+				{mult:1, name:"living"},
+				{mult:1, name:"undead"}
+			],[
+				{mult:1, name:"breathe water"},
+				{mult:1, name:"infravision"},
+				{mult:1, name:"proficiency-like ability"},
+				{mult:1, name:"blend into surroundings"},
+				{mult:1, name:"leap in great bounds"},
+				{mult:1, name:"climb like a spider"},
+				{mult:1, name:"move noiselessly"},
+				{mult:1, name:"sight of an eagle"},
+				{mult:1, name:"grow / shrink"},
+				{mult:1, name:"becomes gaseous"},
+				{mult:1, name:"becomes incorporeal"},
+				{mult:1, name:"strength of an ogre"},
+				{mult:1, name:"flight of a giant hawk"},
+				{mult:1, name:"strength of a giant"},
+				{mult:1, name:"regenerative powers of troll"},
+			]],
+			walls: [[
+				{mult:1, name:"None"},
+				{mult:3, name:"Attacks"},
+				{mult:1, name:"Fear"},
+				{mult:1, name:"Cloudkill"},
+				{mult:1, name:"Mortal wounds"},
+				{mult:1, name:"Death"},
+				{mult:1, name:"Disintegration"},
+				{mult:2, name:"Damage"}
+			],[
+				{mult:2, name:"Impermeable to creatures"},
+				{mult:1, name:"Impermeable to magic"},
+				{mult:1, name:"Impermeable to light"},
+				{mult:1, name:"Impermeable to vision"}
+			]]
 		},
 		levelmult: function(basexp) {
 			if(basexp<1000)
@@ -141,8 +287,8 @@ window.acksCreator.Register("magic",function(){
 
 			$('#about').button().click(function(){
 				window.acksCreator.popup(
-					"About",null,null,
-					"<h3>Custom Magic Class Creator</h3><div><p>Welcome to the Custom Magic Class, an interactive magic class creation service, to be used with character class and race creation. It's based on the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System, using guidelines in <a href='http://www.drivethrurpg.com/product/179660/Axioms-Issue-1'>Axioms Issue 1</a>. If you haven't bought it already, you should! The player's companion will also help with determining the magic type values.</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase Axioms Issue 1 and the Adventurer, Conquerer, King player's companion - they really are awesome resources!</p></div>"
+					"Custom Magic Class CreatorAbout",null,null,
+					"<div><p>Welcome to the Custom Magic Class, an interactive magic class creation service, to be used with character class and race creation. It's based on the <a style='display:inline' href='http://www.autarch.co/buy-now'>Adventurer, Conquerer, King</a> System, using guidelines in <a href='http://www.drivethrurpg.com/product/179660/Axioms-Issue-1'>Axioms Issue 1</a>. If you haven't bought it already, you should! The player's companion will also help with determining the magic type values.</p><p>Importantly, this tool is neither bug-free nor rules-complete. The Judge has the final say; if you're the Judge, make sure you're not doing something silly.</p><p>If any part of it doesn't make sense, or you have more questions about what you can and can't do, please purchase Axioms Issue 1 and the Adventurer, Conquerer, King player's companion - they really are awesome resources!</p></div>"
 				);
 			});
 
@@ -190,7 +336,6 @@ window.acksCreator.Register("magic",function(){
 				mag.makepower();
 			});
 			
-			$('input[type="textbox"]').addClass('ui-corner-all ui-state-default ui-widget');
 			$('#name').change(function(){
 				window.acksCreator.magic.data.raw.name = $(this).val();
 			});
@@ -222,6 +367,70 @@ window.acksCreator.Register("magic",function(){
 					$('#spells').replaceWith(mag.data.getSpellsTable());
 					mag.calc();
 				}
+			});
+
+			$('tr>td>input[type="text"]').addClass('ui-state-default ui-button ui-corner-left ui-widget').after('<button class="ui-button ui-corner-right ui-widget"><span class="ui-icon ui-icon-script"></span></button>');
+			$('tr>td>button').click(function(){
+				let thisname = $(this).parent().parent().attr('id');
+				let oldval = $('#'+thisname+' input').val();
+				let str = '<table id="breakouts"><thead><tr><td>Weight</td><td>Value</td><td>Desc.</td></tr</thead><tbody>';
+				mag.breakouts[thisname].forEach(function(el,idx){
+					let old = window.acksCreator.magic.data.raw[thisname.toLowerCase()+'Breakout'];
+
+					el.forEach(function(x,i){
+						let val = oldval;
+						if(old)
+							val = old[idx][i];
+						str += '<tr class="idx'+idx+'"><td>'+x.mult+'</td><td><input type="text" value="'+val+'" mult="'+x.mult+'" idx="'+idx+'"/></td><td>'+x.name+'</td></tr>';
+					});
+					str += '<tr class="idx'+idx+'"><td colspan="2">Multiplier:</td><td class="submult">1</td></tr>';
+				});
+				str += '</tbody></table>';
+				window.acksCreator.popup('Breakouts for ' + thisname,'30em',[
+					{text: 'Cancel',click:function(){
+						$(this).dialog('close');
+					}},
+					{text: 'Reset',click:function(){
+						window.acksCreator.magic.data.raw[thisname+'Breakout'] = undefined;
+						$('#'+thisname+' input').prop('disabled',false).change();
+						$(this).dialog('close');
+					}},
+					{text: 'Save results',click:function(){
+						window.acksCreator.magic.data.raw[thisname+'Breakout'] = [];
+						let bk = window.acksCreator.magic.data.raw[thisname+'Breakout'];
+						$('#breakouts input').each(function(){
+							if(!bk[$(this).attr('idx')*1])
+								bk[$(this).attr('idx')*1] = [];
+							bk[$(this).attr('idx')*1].push($(this).val());
+						});
+						let sum = 0;
+						$('.submult').each(function(){
+							sum += $(this).text()*1;
+						});
+						let result = sum/$('.submult').length;
+						$('#'+thisname+' input').val(result).prop('disabled',true).change();
+						$(this).dialog('close');
+					}}
+				], str);
+				if($('#breakouts tr .submult').length > 1)
+					$('#breakouts tbody').append('<tr><td colspan="2">Final Multiplier:</td><td class="bigmult"></td>');
+				$('#breakouts tr input').on('blur', function(){
+					$(this).val(0.05*Math.floor($(this).val()/0.05+0.001));
+					if($(this).val() > 2.25)
+						$(this).val(2.25);
+					else if($(this).val() < 0.5)
+						$(this).val(0.5);
+					let idx = 'tr.idx'+$(this).attr('idx');
+					let sum = 0;
+					let weight = 0;
+					$(idx+' td input').each(function(){
+						let w = $(this).attr('mult')*1;
+						sum += $(this).val()*w;
+						weight += w;
+					});
+					let result = (0.05*Math.floor(sum/(weight*.05)+0.001)).toFixed(2);
+					$(idx+' .submult').text(result);
+				});
 			});
 
 			//Load the default mage type

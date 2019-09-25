@@ -1,5 +1,6 @@
 {"name":"Death Spells","values":[
-{"id":"effects","title":"Damage Effect(s)","type":"checkbox","add":1,"values":[
+{"id":"effects","title":"Damage Effect(s)","type":"dropdown","add":1,"values":[
+{"name":"No damage","value":0},
 {"name":"1d4 damage per level","value":27},
 {"name":"1d6 damage per level","value":33},
 {"name":"1d6+1 damage per level","value":35},

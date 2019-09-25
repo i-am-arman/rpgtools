@@ -48,7 +48,8 @@ table{border-collapse:collapse}
 #profs{height:20em;overflow:auto}
 
 .over{float:right;clear:right;width:30em}
-#magics input{width:4em}
+#magics input{width:3em}
+#magics button{width:2em;padding-left:0;padding-right:0}
 #stats,#ranks{width:60%}
 #spells{border-collapse:collapse}
 #spells td{padding:.1em .3em;text-align:center}
