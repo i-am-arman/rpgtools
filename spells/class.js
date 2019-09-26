@@ -1,4 +1,6 @@
 //TODO: Tradeoffs don't take into account earlier levels (ie, 1 Engineering vs 2 Engineering)
+//TODO: Tradeoffs aren't dropping
+//TODO: Races are affecting dropdowns oddly
 window.acksCreator.Register("class",function(){
 	window.acksCreator.class = {
 		data: {
