@@ -665,11 +665,14 @@ window.acksCreator.Register("race",function(){
 			var doc = new jsPDF();
 			
 			doc = this.pdf(doc);
+			doc.setProperties({
+				title: window.acksCreator.race.data.name
+			});
 
-			if(window.acksCreator.data.magic) {
+			if(window.acksCreator.race.data.magic) {
 				let cm = 0;
 				for(let lvl = 0; lvl <= 4; lvl++) {
-					if(race.custommagic) cm++;
+					if(window.acksCreator.race.data.race[lvl].custommagic) cm++;
 				}
 				if(cm > 0) {
 					doc.addPage();

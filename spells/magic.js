@@ -8,6 +8,8 @@
  * Add a radio button at the top of the page
  * Auto-populate the final multipliers
  */
+//TODO: When loading multipliers, make sure to disable boxes that have subdivisions
+//TODO: print the subdivisions
 
 window.acksCreator.Register("magic",function(){
 	window.acksCreator.magic = {

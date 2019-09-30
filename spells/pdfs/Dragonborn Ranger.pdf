@@ -10,7 +10,7 @@
 endobj
 4 0 obj
 <<
-/Length 6977
+/Length 7759
 >>
 stream
 0.57 w
@@ -44,7 +44,21 @@ T* (INT and WIS of 9) Tj
 T* (d6) Tj
 T* (13) Tj
 T* (any one-handed melee weapons, all missile weapons) Tj
-T* (leather armor or lighter but no shield) Tj
+T* (leather armor or lighter) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+448.73 750.48 Td
+(Title) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+493.12 750.48 Td
+(XP) Tj
 ET
 BT
 /F9 12 Tf
@@ -57,15 +71,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-484.73 750.48 Td
-(Title) Tj
+440.00 736.59 Td
+(Vagrant) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
-481.66 736.59 Td
-(Vagrant) Tj
+500.74 736.59 Td
+(100) Tj
 ET
 BT
 /F9 12 Tf
@@ -78,8 +92,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-472.66 722.71 Td
+431.00 722.71 Td
 (Wanderer) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+494.74 722.71 Td
+(2300) Tj
 ET
 BT
 /F9 12 Tf
@@ -92,8 +113,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-480.94 708.82 Td
+439.28 708.82 Td
 (Roamer) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+494.74 708.82 Td
+(4600) Tj
 ET
 BT
 /F9 12 Tf
@@ -106,8 +134,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-477.58 694.93 Td
+435.92 694.93 Td
 (Rambler) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+494.74 694.93 Td
+(9200) Tj
 ET
 BT
 /F9 12 Tf
@@ -120,8 +155,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-483.46 681.05 Td
+441.80 681.05 Td
 (Nomad) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+488.74 681.05 Td
+(18400) Tj
 ET
 BT
 /F9 12 Tf
@@ -134,8 +176,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-478.30 667.16 Td
+436.64 667.16 Td
 (Traveler) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+488.74 667.16 Td
+(36800) Tj
 ET
 BT
 /F9 12 Tf
@@ -148,8 +197,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-491.50 653.27 Td
+449.84 653.27 Td
 (Scout) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+488.74 653.27 Td
+(75000) Tj
 ET
 BT
 /F9 12 Tf
@@ -162,8 +218,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-466.30 639.38 Td
+424.64 639.38 Td
 (Trailblazer) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 639.38 Td
+(150000) Tj
 ET
 BT
 /F9 12 Tf
@@ -176,8 +239,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-484.30 625.50 Td
+442.64 625.50 Td
 (Ranger) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 625.50 Td
+(285000) Tj
 ET
 BT
 /F9 12 Tf
@@ -190,8 +260,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-452.98 611.61 Td
+411.32 611.61 Td
 (Fronteersman) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 611.61 Td
+(420000) Tj
 ET
 BT
 /F9 12 Tf
@@ -204,8 +281,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-482.26 597.72 Td
+440.60 597.72 Td
 (Pioneer) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 597.72 Td
+(555000) Tj
 ET
 BT
 /F9 12 Tf
@@ -218,8 +302,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-476.86 583.84 Td
+435.20 583.84 Td
 (Explorer) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 583.84 Td
+(690000) Tj
 ET
 BT
 /F9 12 Tf
@@ -232,8 +323,15 @@ BT
 /F9 12 Tf
 13.80 TL
 0 g
-468.94 569.95 Td
+427.28 569.95 Td
 (Pathfinder) Tj
+ET
+BT
+/F9 12 Tf
+13.80 TL
+0 g
+482.74 569.95 Td
+(825000) Tj
 ET
 BT
 /F9 12 Tf
@@ -245,66 +343,66 @@ ET
 538.587 761.532 m 
 538.587 567.115 l
 S
-450.150 761.532 m 
-450.150 567.115 l
+408.481 761.532 m 
+408.481 567.115 l
 S
 538.587 761.532 m 
-450.150 761.532 l
+408.481 761.532 l
 S
 538.587 747.645 m 
-450.150 747.645 l
+408.481 747.645 l
 S
 538.587 567.115 m 
-450.150 567.115 l
+408.481 567.115 l
 S
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 653.27 Td
-( Advances in attack throws as a Fighter, +2 every 3. Cleaves up to once per) Tj
+( Advances in attack throws as a Fighter, +2 every 3. Cleaves up to once) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 639.38 Td
-(level. Missile and melee damage bonus at levels 1, 3, 6, 9, and 12.) Tj
+(per level. Missile and melee damage bonus at levels 1, 3, 6, 9, and 12.) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 611.61 Td
-(Dragonborn Rangers are creatures close to nature; as such, they are Difficult to) Tj
+(Dragonborn Rangers are creatures close to nature; as such, they are) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 597.72 Td
-(Spot, able to hide in the wilderness on a 3+, or a 14+ in dungeons. The) Tj
+(Difficult to Spot, able to hide in the wilderness on a 3+, or a 14+ in) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 583.84 Td
-(character's party receives a +5 to Wilderness Evasion, and can evade evn while) Tj
+(dungeons. The character's party receives a +5 to Wilderness Evasion,) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 569.95 Td
-(surprised on a 19+. The character can Speak with Animals, and has a Totem) Tj
+(and can evade evn while surprised on a 19+. The character can Speak) Tj
 ET
 BT
 /F9 12 Tf
 13.80 TL
 0 g
 56.69 556.06 Td
-(Animal similar to a Shaman.) Tj
+(with Animals, and has a Totem Animal similar to a Shaman.) Tj
 ET
 BT
 /F9 12 Tf
@@ -528,7 +626,7 @@ endobj
 endobj
 6 0 obj
 <<
-/Length 4372
+/Length 4388
 >>
 stream
 0.57 w
@@ -542,42 +640,42 @@ BT
 56.69 775.94 Td
 (Save information:) Tj
 T* () Tj
-T* (cH4sIAAAAAAAAA+1aS3PcNhL+KyheYpcpxZLtZDM6SZG8ca3luDSq+BD7gCHBISIQ4ALgjMau/Pf9ugHOQ5pKpFQOu1u+JCKAbjT6+XWPv) Tj
-T* (xRWdqqYFOdezp2dOW/FlbRz5YuycLPfrlc97VZGhoCVTs51VUy+bG2lpbKY4UgsJkdlUSsZ22JyfHj8ij6iqqJ2Flu8oGzVShs7ZeO41CpptJ3TJ760) Tj
-T* (MUNIBLjQLdR4FHu9dxt2ZRGGrnN2Qxq9tKFzc68bXcn1saU0hk58nzjMvQrpgiJEaWvpa8hfuRrPiX5QeItXSyW9WRWT5+WuhsRlfq+s/j3ooNMl) Tj
-T* (hbat8joq4lSrUHnd553zUQETUbNiS6HtApQzo0rB2itF9EqGwWMhqMqrKGrnfCgFpBPV4IMS0itxdCu6wUTdG638ibixbmkFLAH+IR2AOnfPqIU) Tj
-T* (2386dq0sB8QZpxht7p4OzpRgszIVdGMV36UJosR/57bA7/GgvNtabCKMX0L3QAZKNnNZ0J6IdOmmdrjOvW+KuO2m2ZIUcBuw2t+GKj/Zna1Yi) Tj
-T* (tg7PXurYitrLCmauxMzgJXAVFUQlrRhwYL3H7zqE+nu3VD4Uk18//V4W2FXkr/e8fMe9+RRMWtdsT2lueyJq9LyNiITJixfPn8MRYqtVs/6qDCxer) Tj
-T* (T9xv8ofv38NlK+B8j8ZKL9+2ax+KYxaKMOOkS371sEuCx1X7AbZi9VtVLYuJg0EVr+Xe8je2MZLsqSza8IXDyG8uO2Vj+JM+rnEY/zjrv2XUlZcr) Tj
-T* (FR4HNmZs0MQb+GCA0L6D4g/cRzVyjUNa7EsKG0cUzLY9ezrVrHbyArZBI6ruiC8Mog7XL1K5ofNe4m3Nt51Qgr4Tn0Q9GdVi5n2se2kvxEIqtg) Tj
-T* (q7eEEHXy+gclK4byICAGXXRJXzTwyg4a3iMoZbLsmkynoAn6zVepDr+SNOM+uUYrzpfRNKS5Ms2YHuqp1ulLEZ4boi5BWmKyew4J0+Ec+s8/) Tj
-T* (4nIP+3BI5kVypoCn/cI5ODI4fQX7mOc2OpC8fZsYXr/7YjN8EgRi7CbDUAklHLOR8IGPWfOmB0TcK6asxA9K4ChOciBoWiS7rNNxo2LyVZE0o) Tj
-T* (mkzDxrtjssRO0OND9KtkFWRuh2jvZaxakOFwsPJGpUtDJQ0tjr7ym9OcN0bnkNXNhj25WTgUeNlqfMj2A/xa8yQ4zK4MF5nRObzChu5wHegkpK) Tj
-T* (Nkg8JRDxWxmrHmhYyRLo2tpHSNw0f1Sxyngkl5HY+g5JgEQpbLnkZeP6Ekd+kGGxH+QTw5gzqfToR3K+TnGT5IrGol7QlSLGo1VTj4twqUNc) Tj
-T* (YXux5pAHwTB49SABaBd52YDR5WcZ4KzgmSqK2RVSuF6sj0BmoF1VRJolFSoCSCGwitXKxYhBNRGTfUbIWoZPfRXiPBeymefGhR50Cnq9V) Tj
-T* (a2CWtnSDKlfpMr17I3vmP9idEbLqx27z2StWgXilj3PIgiUgsaqV6WKYGF+3VR/vawUzZwr8Ndk7Wf/JPkhPUDqWHqRo+leQ/yUVtvH26lF2fGCx) Tj
-T* (VNOQTpGsY7SnVYmSe9bNntHoiZKWhqKm2N60zyQWpgOLNK9+BqHMxGspd6Xijoq7FXIItAshFVCGH0vWUzHtqzK6jpJI1U1S1ajH0KWY2) Tj
-T* (roaSkJyN5JUiDBViIzSDgVHx1kUQZ4SwYExwhp7IF5O3iRl5uWkOxWtojuk/wOJcHiUizypx/PwbENZ89CX+Nqh4J+k4SRWAODqYV+IoDNlxn) Tj
-T* (JEZSrKsUYkfqu8yIEqBptIpYIqhaUhRPZWULLpdRfZ8vCHqpmHvgxSDqREmh+Lt6NF8+hQaz4JSXRffZeF481USOsMgyNkpA0FVRJggm5CTf1) Tj
-T* (vrEJyBgpaABqTTlAUhYBBQnhF1DvVDMSU/LsXr0Ul/ITdJzN8nx2lIt5K1VQ0zODST8IldKkhDQne4nNQzWlhzdhIWMiCahxyLtA+uB0eH4o2l) Tj
-T* (YEpRJRk8LZCnkmHhymtUNpo8yfXtOfnRX6tJDyopp7bSyH/iPWrAo5HBD3+CDFBSqKQTTAyczlBOFNlYAi4n9UP1yDaBSgtKN6PlcqugEClYA) Tj
-T* (b2CNFWJ8n5tKLkUIbayFe6XnAQUx6LD9WELwKTwnGtOCFH24JPKmmBwT/phjEksUzUJaxYc+wlFIKF4Vbm5BcrhxzXoJJgNmy4LNFZAwrej) Tj
-T* (vKMkh4eMgt+5LeEYB293IGsAfE4gXG3gbzWE6LrcqFE785e85r8JyewjfW1W1PaNNA+S9o1lSLqN8w8eCPQfQLg/OI6O9wEuN8zbdXtU7lofqT) Tj
-T* (zsc+4Nbp25ekUh4WYL7YaAmPAKvAkbn1BJk1Qk7BxcgFmGjL1zNLWUh+EK7LlYyDz2tFhizuUadB0BJgpLITtKzQg/iLmB20k2KM2OcVEiN8f) Tj
-T* (0wFR/E0mtOp0Wy3T8uvUSGXT3lNGf0ZEjjlBe1Bx/Jhk4AjiWENWhwr0cJdebNlESlDnIgcXtOBVH6IbBV/KYdHK61F1HXy+S7PRUtoKcQY1x) Tj
-T* (xWmbvVJxW+uXMnL7u9Nl3CnvUDtiGfiZ3AelDnjwO0poY8LfwMO/lskf1FpO4S0r8ROq5mPT+NH39z31EuhqzFTAuXbs6UgvnGFQiNM2kjx7T) Tj
-T* (oLDDSOFu3kNZxaKfGoO8EYZnQBObh1EcIOvlCdfXGdZWt/oe39y+0RTIGAnlmyc38C2Cwm9/MB/6m7o6KHFm3fX4PHhzbQYRwP75me03nN) Tj
-T* (3wbpra/7femh2nP/+Mc/JWKd5bRpXiFW66nrpxAcFqGCpnuLrgHoSVRefyj2GL46KTVIEZtLVYLipmvYuPqTN32bwQVOEW9LtxULuNqgP43Dt) Tj
-T* (gO7EKQ9rHks75daboywxeDyeID9kzsSStfmLnKNPIE18IC16HplcOWzzH7KbGf7rneskTeCuETwqLU2BPGNa0ga4/XMmyb8FvPYOmAHmIO8pi) Tj
-T* (/fQluKNi9se8IH/fI8obzTdS9YLYAxvrkfrQjxAXkAYlU1MKBWofrm2PuHlESmOq5+yx6y5FGjhWHZePvWdg68V76RHZzeunss0jS3OHNfLPLgd) Tj
-T* (R7jTG2q3kiJrRgVpDzB57abSAzfkdVL9+J23d+JrPJMW12eI350l1Bm2YHEKpUdyPUh32s2G0KYqnVxB/DSEGXTkV+jknm6WyTbcEaTVM8JR) Tj
-T* (ANyApDUY9Lzk0fzeKD+XzO/MUFPxmpSSLvgxoenE4Eeju1led90MCelKoU255alXXrlG8ILfagIAFaTv9u2gBUXhOEN237f7xlayR8cYURv27f+) Tj
-T* (8UN4P5FUXth48jxuSfKPcgvMFFi5zLr0cAs+WL2Xfb55zqTtdrXX2TsIA0ujQrRcWes7D7rzwHvhToyhOWyDlpIYrXW/4XQ3WpmV4jIdnZiNNB7) Tj
-T* (/QCw55tM6hnQ3VjUlbyU2hcLKt2lpw8ARy5jsz77u/uqUBb0UFc/A0vWW0z/MGWkDnHajjbbm0rPjwvTyIUo0wp6+WOtlcXZabbEcDJfHiGc8Op) Tj
-T* (Th6+YzO1APu34bq61pEc0mCTpVK5Ug8e0XM76fPTf+pFggH/NfmtjgMvvea+nm+++iHZ/uaivspMXEkoCfFdrIVAaY21C447ExbxPuIcr7O6NKM) Tj
-T* (TjyB6qt2xBDi2THtU7+ML4asEb1/EhY9G2HdhB8J0sGc1XrQkYcnGR0jdPMNT/+2MSDPdLiS/flA8Os48P94HPh1GPh1GPg3DwPHGfNWqaWqi) Tj
-T* (b52sBwKc2r1qcihIUQqTU/jOCHtNujopd3xOdK08lt93k52fgn9b3Wl2by48e6PmfB+meoJoUJNg8Vq9TSzIrulfxGw80M3l08r/rFdu5ctYtG6SJO/9INi) Tj
-T* (ILRK3pSZPfZXPrn3d77/AFc4cQwrJAAA) Tj
+T* (cH4sIAAAAAAAAA+1aS3MbNxL+K6i5xC6PFEuykzV1kixp41rLcYmq+BD7AM6AHFgYYBbAkKJd/u/7dQPDh8RKpFQOu1u+JBoA3Wj08+um) Tj
+T* (vxZWtqoYFWdezpydOG/FlbQz5YuycJPP18uOdisjQ8BKK2e6KkZfN7bSUllMcCQWo4OyqJWMTTE63D98SR9RVVE7iy1eULZqpI2tsnFYapQ02s) Tj
+T* (7oE1/amD4kAlzo5mo4ir3OuzW7sgh92zq7Jo1e2tC6mddTXcnVsYU0hk78nDjMvArpgiJEaWvpa8hfuRrPib5XeItXCyW9WRaj5+W2hsRlfq+s/t3ro) Tj
+T* (NMlhbaN8joq4lSrUHnd5Z2zQQEjUbNiS6HtHJQTo0rB2itF9EqG3mMhqMqrKGrnfCgFpBNV74MS0itxcCva3kTdGa38sbixbmEFLAH+IR2AOrfP) Tj
+T* (qLk2P86cq0sB8Xpphhs7p4OzpegtzIVdGMW36UJosRv4bbHb/2jP19YbCaPn0L3QAZINnFZ0x6LpW2mdrjOvW+KuW2k2ZIUcBuzWt+GKj/ZXa5) Tj
+T* (YiNg7PXujYiNrLCmauxMTgJXAVFUQlrehxYLXH79qH+ju3UD4Uo98/fSsL7Cry13tevuXefAomrWu2pzS3HRFN9ayJiITR0dHz53CE2Gg1XX1V) Tj
+T* (BhavVp+4X+WPb98D5Xug/E8Gyu9f16tfC6PmyrBjZMu+dbDLXMclu0H2YnUbla2L0RQCq2/lDrI3duolWdLZFeHRQwjPbzvloziVfibxGP+4a/+ll) Tj
+T* (BXnSxUeR3bqbB/EW7hgj5D+A+JPHEe1ctMpa7EsKG0cUjLY9uzrRrHbyArZBI6r2iC8Mog7XL1M5ofNO4m3Tr1rhRTwnXov6C+qFhPtY9NKfy) Tj
+T* (MQVLFR2sMJWvj8FCYrhfMiIgRcdklcNfHIDBreIipnsO2mmUxBF/CbjVIfOiVvxFl2jVKcLaSfluLcTFfsQFc1TleK+EwQfRHSCpPVs1+QDv/IZ3) Tj
+T* (YZn3PQn1siJ5IrFTTlH87RicHhI8hPPafZgfTFw8x49PKPzfhDEIixmwBLzZF0xFzOejJmzZfuGX2jkL6mpkcaV2GEE1HDItFlnYYbDZs3kqwJRZN) Tj
+T* (p2Hh3TJbYCXp8iH6ZrILM7RDtnYxVAzIcDlbeqHRpqKShxcFXPjvNeWNwDlndrNmTm4V9gZcth4dsPsCvNE+Cw+zKcJEZnMMrbOgW14FOQj) Tj
+T* (pKNigcdV8RqwlrXsgY6dLYSErXOHxQv8BxKpiU1/EISo5JIGS57Gnk9SNKcpeutxHhH8STU6jz6Uh4t0R+nuCDxKqW0h4jxaJWU4WDf6tAWW) Tj
+T* (N4seuQBsA3cfAoBWAReNeJSe9hFeep4BwjidoaWbVSqI5Mb6BWUI2VJBolBUoiuIHQyvmSRTgWlXF9zVaISrYf7TUSvJfiyYcGdQ50ulquhF3Q2) Tj
+T* (jGiXKkv9Oq57Jz/aH9BxKYb2/Vrr1QN6qUyxi32kojEolaqg2VqcNFefbQXDmbKFv7c2xlZ/8k/SU5QO5QeppryqST/cS5qw+3jhWy7xGChoiGfIF3D) Tj
+T* (aE+pFiPzrJ49odVjISsNRY21vWmcSS5IBRRvXvoWRK2L0VDuSsenKupazCTYIoBcRBVyKF1Pybwnxmw7SipZE0VVqxZ9l2Jm7WooCcnZSF4p) Tj
+T* (Ql8hNsK0NzAq3joP4pQQFowJztAT+WLyNjEhLzfTfXEBzTH9B1icy6NE5FklDp//AMKaj77A3wYV7zgdJ6kCEEcL80ochSFbjjMyQ0mWNSrxQ/) Tj
+T* (VdBEQp0FQ6BUzRT6ekqI5KShbdLiN7Pt4Q9XTK3gcpelMjTPbF28Gj+fQJNJ4FpboufsrC8ebLJHSGQZCzVQaCqogwQTYhJ/+x1iE4AwUtAA1Ip) Tj
+T* (ykLQsAgoDwj6hzq+2JMflyKi8FJfyM3SczfJ8eZkm4la6vqJ3BoJuET21SQhoRucTmpZ7Cw5uwkLGRANPc5FmkfXPcO9sUbS8GUokoyeJojTyXD) Tj
+T* (wpVXqGwweZLrxzPyo79Wkx5UUk5spZH/xHvUgEcjg1d/ggxQUqikE0wMnM5QThTZWAIuJ/VD9cg2gUoLSjej5XKjoBApWAG9gjRVifJ+bSi5F) Tj
+T* (CG2shXul5wEFIeiw/VhA8Ck8JxpTghRduCTyppgcE/6YYxJLFM1CSsWHPsJRSCheFW5mQXK4cdN0UkwGzZdFmiogIRvB3kHSfb3GQW/cxvC) Tj
+T* (MQ7e7EBWAPiMQLhaw9+qD9G1uVGjduYvec1/E5LZRXphltT2DTQPkvaNZUi6ifP3Hgj0H0C4OzgODncBLtfPmlV7VG5bH6k87HLuNW6duHp) Tj
+T* (JIeEmc+36gJjwCrwJGx9TSZNUJOwMXIBZ+oy9czQ1lIfhCuy5WMg8drRYYsblGnQtASYKSyFbSs0IP4i5httJNijNDnFRIjfH9MBUfxNJrVqdFst0/) Tj
+T* (LrxEhl0+5TRX9CRI45QXtQMfyYZOAI4lhDVocK9HCXX6zZREpTZy4HF7TgVR+iGwVfymHRyvNBtS19HSXZ6KltBTqDGuOS0zV6puK31Cx) Tj
+T* (m5/d3qMu6Ud6gdsQz8TO6DUgc8+BMltCHhr+HhX8vkD2otx/CWpfgFVfOxafzg5/ueegl0NWQq4Fw79HSkF84wKMRpG0mePSfB4Skjhbt5DWf) Tj
+T* (minxqBvBGGZ0ATm4dRHC9r5QnX1xlWVpf63t3cvtEUyBgJ5ZsmN/AtnMJvbziP3Xbt/TQ4s27a/D48GZcDKOBXfMzWu+4u2DdNTX/bzU0O8x/) Tj
+T* (v85zMtZpXhvHJWKVrrpeOPFBASpYqqf42qOehMdDaZn9btxoZeriU7nDGYqDYp0ogaN01RtutMadiw9p/TcZfNAU9Zb0fT6X203rwzhcOyA+ccI) Tj
+T* (DnMfSjrkd58hLDB4/fTgikMGsiSer+Dc5Q/NAqvhAqvU8R7ly2OY/ZDsx/Nc710rS+zUiSqWlMeBoTEvaAMx/yST5B4IL7wAkYA9yqbJ4D3Up3ji/) Tj
+T* (7YAp+M/3CP2ppnvJfAGM4eL1YHKIBxwMXKOy3Qm6AuovVi5BIHqAj8Pqp+xGKy4F+jqWnZdPfOvggMU76dHuDatnMo1oi1PHRTRPc4e57vi) Tj
+T* (GerCkyZqhQtoDdl75rvQAE3mddD985+2toBvOpMXVGeJ3ZwnFh01YnEDpkXwP0p20kz40qXQnXxC/9GECHfkl2run62WyDbcJafWUwBVQOH) Tj
+T* (BqDQYdL3l0xDfKzyTzOzXUaVyQUtIFrxPETgxeG91O8rprJ8hSVwq9yy2PwvLKNSIa/JYjoKogfbtrB30pqskpUv6u3Te2kh3ayIiCsWv/17nyvievOr) Tj
+T* (d173kGkeQb5BacRLBwmRPsZR944Hwpu279nEvd6mqls3cSBpBGh3a1MNcznoDnhfcApRqVctwAPic1XOl6ze+qtzYtw2M8PDMbadz7uZ5zzKOf) Tj
+T* (Ds2kr25M2sqJ7ILmsUFtLDh4AjnznUH43Z/i0tS3oiraexrpcgvAQwhaQDseqA1uuN4s+fC9RIj6jTCnr4ba21xyFut0R5lWHD3jgaIUBy+e0Zm6x/2b+) Tj
+T* (H1VoGhYSXiqUqlGiWcvifn9/LluStUc4YD/2twrh953XlOTz3cfvHq2q9O4nxMTR0J/UmxmWxFgakM9hMPOuEG8D9Dn++AuDe7EE6i+agZgIZ4) Tj
+T* (d0j410fhiHBuFzuM9NHIEgBOoJJwHc1ar6UeeqGTIjNDNNzz922aDPOjhSvbnU8LvM8L/4xnh9wnh9wnh3zwhHAbPG6WWqiaa3d5yKMyo/6cihy) Tj
+T* (4RqTQ9jeOEtDtFmy/tls+RppXfaP62svML6H+jVc3mxY13f+GE98tUTwgVapo2VsunmRXZLf0zga1fv7l8WvGPzdq9aBCL1kUaB6ZfGQOhVfKmz) Tj
+T* (OyxP/3JnT/+/QfMHbsRQCQAAA==) Tj
 ET
 BT
 /F9 12 Tf
@@ -758,7 +856,7 @@ endobj
 21 0 obj
 <<
 /Producer (jsPDF 1.5.3)
-/CreationDate (D:20190926145416-05'00')
+/CreationDate (D:20190930120602-05'00')
 >>
 endobj
 22 0 obj
@@ -772,35 +870,35 @@ endobj
 xref
 0 23
 0000000000 65535 f 
-0000011686 00000 n 
-0000013511 00000 n 
+0000012484 00000 n 
+0000014309 00000 n 
 0000000015 00000 n 
 0000000124 00000 n 
-0000007153 00000 n 
-0000007262 00000 n 
-0000011749 00000 n 
-0000011874 00000 n 
-0000012004 00000 n 
-0000012137 00000 n 
-0000012275 00000 n 
-0000012399 00000 n 
-0000012528 00000 n 
-0000012660 00000 n 
-0000012796 00000 n 
-0000012924 00000 n 
-0000013051 00000 n 
-0000013180 00000 n 
-0000013313 00000 n 
-0000013415 00000 n 
-0000013761 00000 n 
-0000013847 00000 n 
+0000007935 00000 n 
+0000008044 00000 n 
+0000012547 00000 n 
+0000012672 00000 n 
+0000012802 00000 n 
+0000012935 00000 n 
+0000013073 00000 n 
+0000013197 00000 n 
+0000013326 00000 n 
+0000013458 00000 n 
+0000013594 00000 n 
+0000013722 00000 n 
+0000013849 00000 n 
+0000013978 00000 n 
+0000014111 00000 n 
+0000014213 00000 n 
+0000014559 00000 n 
+0000014645 00000 n 
 trailer
 <<
 /Size 23
 /Root 22 0 R
 /Info 21 0 R
-/ID [ <B1292D7D4074AD51DF86BFBFF77B5037> <B1292D7D4074AD51DF86BFBFF77B5037> ]
+/ID [ <34EE12595F30E7AA163F41A658320858> <34EE12595F30E7AA163F41A658320858> ]
 >>
 startxref
-13951
+14749
 %%EOF

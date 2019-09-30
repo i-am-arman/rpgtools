@@ -1307,6 +1307,9 @@ window.acksCreator.Register("class",function(){
 		},
 		displayPdf: function(print) {
 			var doc = new jsPDF();
+			doc.setProperties({
+				title: window.acksCreator.class.data.raw.name
+			});
 			
 			doc = this.pdf(doc,print);
 			doc.setFontSize(12);
