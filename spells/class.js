@@ -148,6 +148,25 @@ window.acksCreator.Register("class",function(){
 					add += 120000;
 				return add;
 			},
+			levelxp: function(){
+				let cl = window.acksCreator.class;
+				let lvlXP;
+				let result = [];
+				for(let lvl = 1; lvl <= cl.data.max(); lvl++) {
+					if (lvl == 1)
+						lvlXP = 100;
+					else if (lvl == 2)
+						lvlXP = cl.data.raw.xp;
+					else if (lvl == 7)
+						lvlXP = Math.round(lvlXP / 2500) * 5000;
+					else if ((lvl > 8) && (cl.data.raw.racename != 'Thrassian'))
+						lvlXP += cl.data.additionalxp();
+					else
+						lvlXP *= 2;
+					result.push(lvlXP);
+				}
+				return result;
+			},
 			classxp: {
 				hd: [0,500,1000,1500,2000],
 				fighter: [0,500,1000,1500,2000],
@@ -932,25 +951,14 @@ window.acksCreator.Register("class",function(){
 					});
 				}
 			});
-			let lvlXP;
+			let lvlXP = cl.data.levelxp();;
 			for(let lvl = 1; lvl <= cl.data.max(); lvl++) {
-				if (lvl == 1)
-					lvlXP = 0;
-				else if (lvl == 2)
-					lvlXP = cl.data.raw.xp;
-				else if (lvl == 7)
-					lvlXP = Math.round(lvlXP / 2500) * 5000;
-				else if ((lvl > 8) && (cl.data.raw.racename != 'Thrassian'))
-					lvlXP += this.data.additionalxp();
-				else
-					lvlXP *= 2;
-
 				let str = $('<tr/>');
 				str.append('<td>'+lvl+'</td>');
 				if (lvl == 1)
 					str.append('<td>0</td>');
 				else
-					str.append('<td>'+lvlXP+'</td>');
+					str.append('<td>'+lvlXP[lvl-1]+'</td>');
 				str.append('<td><input type="text" class="ui-corner-all ui-state-default ui-widget" value="' + cl.data.raw.levelnames[lvl-1] + '" /></td>');
 				//for each spell type, for each on this level
 				['divine','arcane','custommagic'].forEach(function(magic){
@@ -1319,7 +1327,6 @@ window.acksCreator.Register("class",function(){
 		},
 		pdf: function(doc,print){
 			print = print || {powers:true};
-			console.log(print);
 			let data = this.data;
 			let mag = window.acksCreator.magic;
 
@@ -1487,6 +1494,7 @@ window.acksCreator.Register("class",function(){
 			let xm = 4;
 			let startxs = [x];
 			let starty = y;
+			let lvlxp = window.acksCreator.class.data.levelxp();
 			let names = {
 				arcane: 'Arcane',
 				divine: 'Divine'
@@ -1507,12 +1515,15 @@ window.acksCreator.Register("class",function(){
 			x -= xm/2;
 			y += h();
 			let offset = x;
+			let xpwidth = doc.getTextWidth(lvlxp.slice(-1)[0].toString());
+			doc.text(x-2*xm-1-xpwidth,y,'Title',null,null,'right');
+			doc.text(x-xpwidth/2-xm-1,y,'XP',null,null,'center');
 			doc.text(x-xm/2,y,'Lvl',null,null,'center');
-			doc.text(x-2*xm-1,y,'Title',null,null,'right');
 			for(let i = 0; i<data.max(); i++) {
 				y += h();
 				x = offset;
-				doc.text(x-xm-1,y,data.raw.levelnames[i],null,null,'right');
+				doc.text(x-1.5*xm-1-xpwidth,y,data.raw.levelnames[i],null,null,'right');
+				doc.text(x-xm-1,y,lvlxp[i].toString(),null,null,'right');
 				doc.text(x-xm/2,y,(i+1).toString(),null,null,'center');
 				x += xm;
 				['divine','arcane','custommagic'].forEach(function(el){
@@ -1529,7 +1540,7 @@ window.acksCreator.Register("class",function(){
                         data.raw.levelnames.forEach(function(name){
                                 namelen = Math.max(doc.getTextWidth(name),namelen);
                         });
-			startxs.push(offset-xm*3/2-namelen);
+			startxs.push(offset-2*xm-namelen-xpwidth);
 			startxs.forEach(function(x0){
 				let yy = starty+1;
 				if(startxs.length>2 && x0 != startxs[startxs.length-1])
