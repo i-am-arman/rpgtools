@@ -563,13 +563,13 @@ window.acksCreator.Register("class",function(){
 						clears = ['hd','fighter','thief','divine','arcane','custommagic'];
 						break;
 					default:
-						if(!raw.race)
+						if(raw.race) {
 							return;
-						['hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
-							let rc = window.acksCreator.race;
-							if(rc.getCount(el,4) > 0)
-								cl.makeSel(el,rc.getCount(el,idx));
-						});
+							['hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
+								cl.makeSel(el,window.acksCreator.race.getCount(el,idx));
+							});
+						} else
+							clears = ['hd','fighter','thief','divine','arcane','custommagic'];
 						break;
 				}
 				//Set everything back to parity
