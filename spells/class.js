@@ -1,5 +1,3 @@
-//TODO: Tradeoffs don't take into account earlier levels (ie, 1 Engineering vs 2 Engineering)
-//TODO: Tradeoffs aren't dropping
 window.acksCreator.Register("class",function(){
 	window.acksCreator.class = {
 		data: {
@@ -214,7 +212,7 @@ window.acksCreator.Register("class",function(){
 			},
 			toString: function(){
 				let cl = window.acksCreator.class.data;
-				//TODO: fighter stuff
+				//TODO: print all the fighter stuff (weapons, etc.)
 				let str = `<ul><li>Hit Die (${cl.hd()}): ${cl.hdType()}</li>` +
 					`<li>Fighter (${(cl.fighter()==1?(cl.raw.isCleric?'1/Cleric':'1/Thief'):cl.fighter())}): type; weapons, armor, styles, damage bonus, cleaves</li>` +
 					`<li>Thief (${cl.thief()}): ${['0', '3', '5', '10', '15'][cl.thief()]} skills</li>` +
@@ -563,7 +561,6 @@ window.acksCreator.Register("class",function(){
 						break;
 					default:
 						if(raw.race) {
-							return;
 							['hd','fighter','thief','divine','arcane','custommagic'].forEach(function(el){
 								cl.makeSel(el,window.acksCreator.race.getCount(el,idx));
 							});
@@ -818,13 +815,20 @@ window.acksCreator.Register("class",function(){
 				let lvl = $(this).attr('lvl');
 				$(this).find('.powers').each(function(){
 					let cost = $(this).attr('cost')*1;
-					lvlused[lvl] += cost;
-					if($('#racepowers .powers').length > 0) {
+					if(lvl>1) {
 						let name = $(this).children('.name').text();
-						let racepower = $('#racepowers .powers .name:contains("'+name+'")');
-						if(racepower.length > 0)
-							lvlused[lvl] -= racepower.parent().attr('cost')*1;
-					}
+						let max = 0;
+						$('#powerholder .powers .name').filter(function() {
+							return $(this).text() === name &&
+								$(this).parent().parent().parent().attr('lvl')*1 < lvl;
+						}).each(function(){
+							let newcost = $(this).parent().attr('cost')*1;
+							if(newcost != cost)
+								max = Math.max(newcost,max);
+						});
+						lvlused[lvl] += cost - max;
+					} else
+						lvlused[lvl] += cost;
 
 					raw.powers.push({
 						level: lvl,
@@ -1076,6 +1080,7 @@ window.acksCreator.Register("class",function(){
 			});
 		},
 		dropped: function(pow){
+			//TODO: handle upgraded powers in tradeoffs
 			let cl = this;
 			let target = $('.waitvalue');
 			let vals = pow.cost.split(',');
@@ -1268,7 +1273,7 @@ window.acksCreator.Register("class",function(){
 			if(cl.data.classpoints() > 4)
 				err += '<p>Too many class points spent!</p>';
 			if($('.custpowers').text()*1 < 0)
-				err += '<p>Too man custom powers!</p>';
+				err += '<p>Too many custom powers!</p>';
 			else if($('.custpowers').text()*1 > 0)
 				err += '<p>Add some more custom powers, or remove a tradeoff.</p>';
 			$('.remaining').each(function(){

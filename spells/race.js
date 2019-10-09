@@ -661,7 +661,26 @@ window.acksCreator.Register("race",function(){
 			rac.calc();
 			return true;
 		},
-		displayPdf: function() {
+		preDisplayPdf: function(){
+			let rc = window.acksCreator.race;
+			let err = "";
+			if(rc.data.custommagic() > 0)
+				err += '<p><label><input type="checkbox" class="printchoice" value="magic" /> Print custom magic summary sheet?</label></p>';
+			err += '<p><label><input type="checkbox" class="printchoice" value="save" /> Print save information?</label></p>';
+			let buttons = [
+				{text: 'Cancel', click:function(){$(this).dialog('close');}},
+				{text: 'Go!', click:function(){
+					let print = {};
+					$('.printchoice:checked').each(function(){
+						print[$(this).val()] = true;
+					});
+					$(this).dialog('close');
+					window.acksCreator.class.displayPdf(print);
+				}}
+			];
+			window.acksCreator.popup('Display PDF',null,buttons,err);
+		},
+		displayPdf: function(print) {
 			var doc = new jsPDF();
 			
 			doc = this.pdf(doc);
@@ -669,7 +688,7 @@ window.acksCreator.Register("race",function(){
 				title: window.acksCreator.race.data.name
 			});
 
-			if(window.acksCreator.race.data.magic) {
+			if(window.acksCreator.race.data.magic && print.magic) {
 				let cm = 0;
 				for(let lvl = 0; lvl <= 4; lvl++) {
 					if(window.acksCreator.race.data.race[lvl].custommagic) cm++;
@@ -677,6 +696,20 @@ window.acksCreator.Register("race",function(){
 				if(cm > 0) {
 					doc.addPage();
 					window.acksCreator.magic.pdf(doc);
+				}
+			}
+			if(print.save) {
+				let wid = doc.internal.pageSize.getWidth()-40;
+				let hit = doc.internal.pageSize.getHeight()-40;
+				let maxheight = Math.floor(hit/h());
+				doc.setFontSize(8);
+				let txt = doc.splitTextToSize('Save information:\n\nc' + window.acksCreator.save(window.acksCreator.race.data), wid);
+				while(txt.length > 0) {
+					doc.addPage();
+					doc.rect(18,18,wid+4,hit+4);
+					let text = txt.splice(maxheight);
+					doc.text(20,20+h(),txt);
+					txt = text;
 				}
 			}
 

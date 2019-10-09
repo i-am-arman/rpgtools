@@ -194,8 +194,8 @@ window.acksCreator.Register("magic",function(){
 				if(this.basexp()<1000)
 					return ['1/2','Full','Spells x 133%','Spells x 150%'];
 				else if(this.basexp()>=2000)
-					return ['1/3rd','1/2','2/3rd','Full'];
-				else return ['2/5','3/4','Full','Spells x 133%'];
+					return ['1/3rd','1/2','2/3rd','Full','Spells x 133%','Spells x 150%','Spells x 166%','Spells x 200%'];
+				else return ['2/5','3/4','Full','Spells x 133%','Spells x 150%','Spells x 166%'];
 			},
 			raw:{objType: "magic",powers:[]},
 			researchlevel: function(){return (this.raw.acquisition!="inherited"?5:"N/A");},
@@ -252,7 +252,7 @@ window.acksCreator.Register("magic",function(){
 				return "<table id='stats' class='over'><tbody><tr><td>Saving Throw:</td><td>as "+this.saves()+"</td></tr><tr><td>Prime Req.:</td><td>"+this.prime()+"</td></tr><tr><td>XP after 8th:</td><td>"+this.additionalxp()+"</td></tr><tr><td>Item usage:</td><td>"+this.items()+"</td></tr></tbody></table>";
 			},
 			getRanksTable:function(){
-				let ranks = this.rankdata();
+				let ranks = this.rankdata().slice(0,4);
 				let lvls = this.xplevels();
 				let ret = "<table id='ranks' class='over'><thead><tr><td>Val</td><td>Spells</td><td>XP</td></tr></thead><tbody><tr><td>0</td><td>None</td><td>0</td></tr>";
 				for(let i=0;i<4;i++){
@@ -714,7 +714,7 @@ window.acksCreator.Register("magic",function(){
 			//XP levels
 			let cols = [
 				['Val','0','1','2','3','4'],
-				data.rankdata(),
+				data.rankdata().slice(0,4),
 				data.xplevels().slice(0,4).map(function(item){return item.toString();})
 			];
 			cols[1].unshift('Spells','None');
