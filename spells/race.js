@@ -723,7 +723,7 @@ window.acksCreator.Register("race",function(){
 				);
 			}
 
-			window.acksCreator.showPDF(doc,'Download Your Race');
+			window.acksCreator.showPDF(doc,window.acksCreator.race.data.name);
 		},
 		pdf: function(doc){
 			let data = this.data;

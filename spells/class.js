@@ -1326,7 +1326,7 @@ window.acksCreator.Register("class",function(){
 				);
 			}
 
-			window.acksCreator.showPDF(doc,'Download Your Class');
+			window.acksCreator.showPDF(doc,window.acksCreator.class.data.raw.name);
 		},
 		pdf: function(doc,print){
 			print = print || {powers:true};

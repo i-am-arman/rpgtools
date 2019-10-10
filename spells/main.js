@@ -36,13 +36,11 @@ if (typeof window.acksCreator == "undefined")
 		showPDF: function(doc,title) {
 			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 				//There's probably a better way to tell if something is mobile...
-				var blob = doc.output();
-				window.open(URL.createObjectURL(blob));
+				doc.save(title+'.pdf');
 			} else {
 				window.acksCreator.popup(
-					title,'75%',null,
-					'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" f
-					rameborder="0" style="position:relative;z-index:999"></iframe>'
+					'Download '+title,'75%',null,
+					'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
 				);
 				$('.preview-pane').attr('src', doc.output('bloburi'));
 			}

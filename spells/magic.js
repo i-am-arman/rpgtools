@@ -633,7 +633,7 @@ window.acksCreator.Register("magic",function(){
 				);
 			}
 
-			window.acksCreator.showPDF(doc,'Download Your Class');
+			window.acksCreator.showPDF(doc,window.acksCreator.class.magic.raw.name);
 		},
 		pdf: function(doc){
 			let data = this.data;
