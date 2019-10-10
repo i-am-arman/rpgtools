@@ -632,12 +632,8 @@ window.acksCreator.Register("magic",function(){
 					'Page '+p
 				);
 			}
-			
-			window.acksCreator.popup(
-				'Download Your Class','75%',null,
-				'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" frameborder="0" style="position:relative;z-index:999"></iframe>'
-			);
-			$('.preview-pane').attr('src', doc.output('bloburi'));
+
+			window.acksCreator.showPDF(doc,'Download Your Class');
 		},
 		pdf: function(doc){
 			let data = this.data;

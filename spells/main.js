@@ -33,6 +33,20 @@ if (typeof window.acksCreator == "undefined")
 			let b64 = btoa(compressed);
 			return b64;
 		},
+		showPDF: function(doc,title) {
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+				//There's probably a better way to tell if something is mobile...
+				var blob = doc.output();
+				window.open(URL.createObjectURL(blob));
+			} else {
+				window.acksCreator.popup(
+					title,'75%',null,
+					'<iframe class="preview-pane" type="application/pdf" width="100%" height="95%" f
+					rameborder="0" style="position:relative;z-index:999"></iframe>'
+				);
+				$('.preview-pane').attr('src', doc.output('bloburi'));
+			}
+		},
 		popup: function(title,width,buttons,html){
 			let setting = {
 				modal: true,
