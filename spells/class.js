@@ -104,7 +104,9 @@ window.acksCreator.Register("class",function(){
 					return 'STR or CON';
 			},
 			max: function(){
-				let max = 17 - this.raw.racepoints - this.classpoints();
+				let max = 18 - this.classpoints();
+				if(this.raw.racename != 'None')
+					max -= this.raw.racepoints + 1;
 				if (this.raw.powers.findIndex(function(val){return val.name == 'Heroic Spirit';}) > -1)
 					max += 1;
 				if (max > 14)
