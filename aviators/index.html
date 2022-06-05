@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Horizons: The Aviators</title>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8" />
+
+<script type="text/javascript" src="//rpg.i-arman.com/jquery-ui/external/jquery/jquery.js"></script>
+<script type="text/javascript" src="//rpg.i-arman.com/jquery-ui/jquery-ui.min.js"></script>
+<script type="test/javascript" src="//rpg.i-arman.com/jsPDF/jspdf.min.js"></script>
+<link href="//rpg.i-arman.com/jquery-ui/jquery-ui.css" rel="stylesheet">
+<link href="//rpg.i-arman.com/jquery-ui/main.css" rel="stylesheet">
+<style type="text/css">
+body{background-color:#000}
+#wrapper{width:60em;margin:0 auto}
+#header,#text,#feature{background-color:#999;border-radius:1em;padding:1em;margin:1em;overflow:auto;opacity:1}
+#header{text-align:center;width:60em;}
+#text{width:42%;display:inline-block;}
+#feature{width:42%;display:inline-block;}
+#protoedge,#junkerquirk{display:none;}
+</style>
+<script type="text/javascript">
+	var edges = {
+		'-- Select an Edge --':null,
+		'Speedy':'Base pace +2 (does not affect the die type)',
+		'Aerodynamic':'Ignore two points of wind- and weather-related negatives (for climb, handling, and speed)',
+		'Armored':'+1 toughness',
+		'Pontoons':'Additional floats allow the plane to land in water or on land',
+		'Stable':'Stall speed is 1 lower (minimum 1, though it will cancel 1 point of overloading)',
+		'Efficient':'An efficient design gives an extra 15 minutes of flight time per 60 lbs fuel',
+		'Comfortable':'Improved seating allows for an extra hour of flight time before becoming fatigued',
+		'Spacious':'The plane has room for a passenger, and the storage area is accessible from inside the plane'
+	};
+	var quirks = {
+		'-- Select a Quirk --':null,
+		'Open Cockpit':'The plane is open to the air; weather effects are double, and the pilot must deal with rain/wind/etc.',
+		'Slow':'Base pace is at -2 (does not affect the die type)',
+		'Cantankerous':'When starting engine, draw a card; clubs requires Repair roll to start engine',
+		'Touchy':'-2 to takeoff, landing, and stall-related piloting rolls',
+		'Thin-walled':'-1 toughness',
+		'Stalls':'Stall speed is 1 higher',
+		'Gas Guzzler':'15 minutes less flight time per 60 lbs of fuel',
+		'Unresponsive':'-2 to all Stunt-related rolls',
+		'Heavy':'-15 lbs of cargo space',
+		'Clinker':'Random bad luck each day; roll 2d6 on the Bad Luck table'
+	};
+	var upgrades = {
+		'Armor':'+1 armor (may be taken multiple times)',
+		'Armored Component':'+4 armor for a specific Critical Hit location (ie, Engine, Cockpit, etc.) (once per component)',
+		'Pontoons':'Additional floats allow the plane to land in water or on land (once)',
+		'Vibration dampers':'Extra hour of flight time before becoming fatigued (once)',
+		'Engine Tuning':'Increase base pace by 1',
+		'Wing Tuning':'Decrease stall speed by 1'
+	};
+	var components = ['Engine','Rudder','Weapon','Cockpit','Passenger Seat','Hold','Fuel Tank'];
+	var es = [];
+	var qs = [];
+	$(function(){
+		$('#name,#speed,#climb,#handling,#durability,#cargo').on('change keyup paste drop',function(){
+			let spd = 1*$('#speed').val();
+			let clm = 1*$('#climb').val();
+			let hnd = 1*$('#handling').val();
+			let dur = 1*$('#durability').val();
+			let car = 1*$('#cargo').val();
+			let points = spd+clm+hnd+dur+car;
+			if(points > 5) {
+				$(this).val($(this).val()-points+5);
+				points = 5;
+			}
+
+			let toughness = 4+dur + (es.find(x => x === 'Armored') ? 1 : 0) - (qs.find(x => x === 'Thin-walled') ? 1 : 0) + (es.find(x => x === 'Armored')?' (1)':'');
+			let storage = (4+car)*30 - (qs.find(x => x === 'Heavy') ? 15 : 0);
+			let stall = 2*spd - (es.find(x => x === 'Stable')?1:0) - (qs.find(x => x === 'Stalls')?1:0);
+			if(stall < 1)
+				stall = '1, ignore '+(1-stall)+' point'+(stall < 0?'s':'')+' of penalties';
+
+			$('#points').text(5-points);
+			$('#nameval').text($('#name').val());
+			$('.speedval').text((4+2*spd+(es.find(x => x === 'Speedy')?2:0)-(qs.find(x => x === 'Slow')?2:0)) + ' + d' + (4+2*spd) + ' (stall '+stall+')');
+			$('.climbval').text(clm);
+			$('.handlingval').text((hnd>1?'+':'')+(-4+2*hnd));
+			$('.durabilityval').text('d'+(4+2*dur) + ' (toughness '+toughness+')');
+			$('.durabilitydie').text('d'+(4+2*dur));
+			$('.toughness').text(toughness);
+			$('.cargoval').text(4+car + ' (' + storage + ' lbs)');
+			$('.cargoval2').text(storage + ' lbs');
+
+			if(points == 0 && es[0] !== '-- Select an Edge --' && qs[0] !== '-- Select a Quirk --' && ($('#junker:checked').length == 0 || qs[1] !== '-- Select a Quirk --') && ($('prototype:checked').length == 0 || es[1] !== '-- Select an Edge --')) {
+				$('#wrapup').text('Aircraft complete!');
+			}
+		});
+
+		$('#prototype').change(function(){
+			$('#protoedge').toggle($(this)[0].checked);
+			$('.edge:eq(0)').trigger('selectmenuchange');
+		});
+		$('#junker').change(function(){
+			$('#junkerquirk').toggle($(this)[0].checked);
+			$('.quirk:eq(0)').trigger('selectmenuchange');
+		});
+
+		Object.keys(edges).forEach(function(k) {
+			$('.edge').append('<option title="'+edges[k]+'">'+k+'</option>');
+		});
+		Object.keys(quirks).forEach(function(k) {
+			$('.quirk').append('<option title="'+quirks[k]+'">'+k+'</option>');
+		});
+
+		$('.edge').selectmenu().on('selectmenuchange',function(){
+			console.log('triggered');
+			console.log($(this).parent().is(':visible'));
+			es = [];
+			let str = [];
+			$('.edge').each(function(){
+				let val = $(this).val();
+				es.push(val);
+				if(val !== '-- Select an Edge --' && $(this).parent().is(':visible'))
+					str.push('<li>'+val+': '+edges[val]+'</li>');
+			});
+			$('.edgeval').text(edges[es[0]]);
+			$('#protoedge .edgeval').text(edges[es[1]]);
+
+			$('.edgevals').html(str.join('\n'));
+			$('#speed').change();
+		});
+		$('.quirk').selectmenu().on('selectmenuchange',function(){
+			qs = [];
+			let str = [];
+			$('.quirk').each(function(){
+				let val = $(this).val();
+				qs.push(val);
+				if(val !== '-- Select a Quirk --' && $(this).parent().is(':visible'))
+					str.push('<li>'+val+': '+quirks[val]+'</li>')
+			});
+			$('.quirkval').text(quirks[qs[0]]);
+			$('#junkerquirk .quirkval').text(quirks[qs[1]]);
+
+			$('.quirkvals').html(str.join('\n'));
+			$('#speed').change();
+		});
+		$('#complete').button(function(){
+			//When complete, lock the options (turn them into fields, or something)
+			//And show the 'upgrades' section.
+		});
+	});
+</script>
+</head>
+<body>
+<div id="wrapper">
+<div id='header'><a href="/spells/index.html">ACKS Tools</a><a href="/shifting/index.html">Shifting Horizon Tools</a></div>
+<div id="text">
+<h2>Aircraft Design</h2>
+<p>Aircraft have five statistics: Speed, Climb, Handling, Durability, and Cargo. Along with an Edge and a Quirk, these fully describe the health, manuverability, and storage capacity of a given aircraft. For more information, see the Aircraft Creation rules in New Horizons: The Aviators.</p>
+<p>
+	<dt>Name</dt>
+	<dd><input type="text" id="name" />
+	<dt>Speed</dt>
+	<dd><input type="number" id="speed" value="0" min="0" max="4" step="1" /> <span class="speedval">4 + d4 (stall 1, ignore 1 point of penalties)</span></dd>
+	<dt>Climb</dt>
+	<dd><input type="number" id="climb" value="0" min="0" max="4" step="1" /> <span class="climbval">0</span></dd>
+	<dt>Handling</dt>
+	<dd><input type="number" id="handling" value="0" min="0" max="4" step="1" /> <span class="handlingval">-4</span></dd>
+	<dt>Durability</dt>
+	<dd><input type="number" id="durability" value="0" min="0" max="4" step="1" /> <span class="durabilityval">d4 (toughness 4)</span></dd>
+	<dt>Cargo</dt>
+	<dd><input type="number" id="cargo" value="0" min="0" max="4" step="1" /> <span class="cargoval">4 (120 lbs)</span></dd>
+</p>
+<p>Points remaining: <span id="points">5</span></p>
+<p>Select an Edge:</p>
+<select class='edge'></select> <span class='edgeval'></span>
+<p>Select a Quirk:</p>
+<select class='quirk'></select> <span class='quirkval'></span>
+<p>Other options:</p>
+<label for='prototype'><input type='checkbox' id='prototype' name='prototype' /> Prototype Edge</label>
+<label for='junker'><input type='checkbox' id='junker' name='junker' /> Junker Hindrance</label>
+<div id='protoedge'>
+	<p>Choose a second Edge:</p>
+	<select class='edge'></select>
+</div>
+<div id='junkerquirk'>
+	<p>Choose a second Quirk:</p>
+	<select class='quirk'></select>
+</div>
+<p id='wrapup'></p>
+<p><button id='complete'>Lock it in!</button></p>
+</div>
+<div id="feature">
+	<h2 id='nameval'></h2>
+	<p>Speed: <span class='speedval'>-</span></p>
+	<p>Climb: <span class='climbval'>0</span></p>
+	<p>Piloting modifier: <span class='handlingval'>-</span></p>
+	<p>Durability: <span class='durabilitydie'>-</span></p>
+	<p>Toughness: <span class='toughness'>-</span></p>
+	<p>Weight increment: <span class='cargoval2'>-</span></p>
+	<p>Edge(s): <ul class='edgevals'></ul></p>
+	<p>Quirk(s): <ul class='quirkvals'></ul></p>
+</div>
+</div>
+</body>
